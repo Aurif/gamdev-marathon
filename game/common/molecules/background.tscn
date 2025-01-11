@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ju7maq1qeu40"]
+
+[sub_resource type="Gradient" id="Gradient_qbdrh"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.121569, 0.0901961, 0.14902, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2utd0"]
+gradient = SubResource("Gradient_qbdrh")
+
+[node name="Background" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_2utd0")
