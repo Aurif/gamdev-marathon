@@ -1,5 +1,5 @@
-extends MarginContainer
+extends Node
 class_name MolSpriteHeart
 
 func take_damage() -> void:
-	$SpriteHeart/AnimationPlayer.play("TakeDamage")
+	$MarginContainer/SpriteHeart/AnimationPlayer.play("TakeDamage")

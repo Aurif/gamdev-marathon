@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1k3plojpbrj7"]
+
+[ext_resource type="Script" path="res://common/atoms/input_mouse_rotation/input_mouse_rotation.gd" id="1_giteo"]
+[ext_resource type="PackedScene" uid="uid://chynyknwob2sv" path="res://common/atoms/sprite_circle/sprite_circle.tscn" id="2_nw0yd"]
+
+[node name="InputMouseRotation" type="Node"]
+script = ExtResource("1_giteo")
+center = Vector2(0.5, 0.5)
+offset_angle = 90
+distance = 150
+
+[node name="SpriteCenter" parent="." instance=ExtResource("2_nw0yd")]
+modulate = Color(0.294118, 0.258824, 0.32549, 1)
+radius = 3
+
+[node name="SpriteRadius" parent="." instance=ExtResource("2_nw0yd")]
+modulate = Color(0.294118, 0.258824, 0.32549, 1)
+filled = false
