@@ -18,6 +18,7 @@ colors = PackedColorArray(0.18, 0.3, 0.18, 1)
 gradient = SubResource("Gradient_itgbf")
 
 [node name="WinScreen" instance=ExtResource("1_wdhnw")]
+process_mode = 3
 script = ExtResource("2_25vpm")
 
 [node name="Dim" parent="." index="1"]

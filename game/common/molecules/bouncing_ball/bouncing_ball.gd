@@ -11,7 +11,6 @@ func set_speed(new_speed: int) -> void:
 	if speed == new_speed:
 		return
 	speed = new_speed
-	#self.linear_velocity = self.linear_velocity.normalized() * speed
 	
 #
 # Events
