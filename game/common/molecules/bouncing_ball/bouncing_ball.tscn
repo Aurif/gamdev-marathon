@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct6c7ehcyifus"]
+
+[ext_resource type="Script" path="res://common/molecules/bouncing_ball/bouncing_ball.gd" id="1_mmtfh"]
+[ext_resource type="PackedScene" uid="uid://chynyknwob2sv" path="res://common/atoms/sprite_circle/sprite_circle.tscn" id="2_1n56m"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c6oho"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cgsd0"]
+radius = 8.0
+
+[node name="BouncingBall" type="RigidBody2D"]
+position = Vector2(565, 270)
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_c6oho")
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_mmtfh")
+speed = 300
+
+[node name="SpriteCircle" parent="." instance=ExtResource("2_1n56m")]
+modulate = Color(0.976471, 0.862745, 0.564706, 1)
+z_index = 1
+radius = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cgsd0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

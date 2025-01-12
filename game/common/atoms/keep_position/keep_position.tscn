@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7olk6ingolg1"]
+
+[ext_resource type="Script" path="res://common/atoms/keep_position/keep_position.gd" id="1_1d0k0"]
+
+[node name="KeepPosition" type="Node"]
+script = ExtResource("1_1d0k0")
