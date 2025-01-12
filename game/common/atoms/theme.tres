@@ -6,5 +6,9 @@
 Label/colors/font_color = Color(0.976471, 0.862745, 0.564706, 1)
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_0v0o8")
+Label_Failure/base_type = &"Label"
+Label_Failure/colors/font_color = Color(0.941176, 0.380392, 0.423529, 1)
+Label_Success/base_type = &"Label"
+Label_Success/colors/font_color = Color(0.8307, 0.9, 0.306, 1)
 LetterItem/base_type = &"Label"
 LetterItem/font_sizes/font_size = 48

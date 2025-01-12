@@ -1,0 +1,2 @@
+extends MolFailScreen
+class_name MolWinScreen

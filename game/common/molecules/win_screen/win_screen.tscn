@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdo5hamcxy2ol"]
+
+[ext_resource type="PackedScene" uid="uid://djgstwib3m7n0" path="res://common/molecules/fail_screen/fail_screen.tscn" id="1_wdhnw"]
+[ext_resource type="Script" path="res://common/molecules/win_screen/win_script.gd" id="2_25vpm"]
+
+[sub_resource type="Gradient" id="Gradient_q13y8"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.0915, 0.15, 0.0915, 0.352941)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g5kcy"]
+gradient = SubResource("Gradient_q13y8")
+
+[sub_resource type="Gradient" id="Gradient_itgbf"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.18, 0.3, 0.18, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3tul8"]
+gradient = SubResource("Gradient_itgbf")
+
+[node name="WinScreen" instance=ExtResource("1_wdhnw")]
+script = ExtResource("2_25vpm")
+
+[node name="Dim" parent="." index="1"]
+texture = SubResource("GradientTexture1D_g5kcy")
+
+[node name="TextureRect" parent="." index="2"]
+texture = SubResource("GradientTexture1D_3tul8")
+
+[node name="Label" parent="TextureRect/VBoxContainer" index="1"]
+theme_type_variation = &"Label_Success"
+text = "YOU WIN!"
+
+[node name="InsertText" parent="TextureRect/VBoxContainer" index="2"]
+theme_type_variation = &"Label_Success"
+
+[node name="Label3" parent="TextureRect/VBoxContainer" index="4"]
+theme_type_variation = &"Label_Success"
