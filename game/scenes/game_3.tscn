@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d1uwxmuddq56j"]
+[gd_scene load_steps=19 format=3 uid="uid://d1uwxmuddq56j"]
 
 [ext_resource type="Script" path="res://game-specific/game_3/game_3.gd" id="1_x0obi"]
 [ext_resource type="AudioStream" uid="uid://deodcckytpqxf" path="res://assets/sfx/tone.ogg" id="2_p054f"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://uab6k4wyov1f" path="res://assets/sfx/wrong.ogg" id="4_smjw4"]
 [ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="5_2djdl"]
 [ext_resource type="Script" path="res://debug.gd" id="6_3v41i"]
+[ext_resource type="AudioStream" uid="uid://ch3koqyk5r85x" path="res://assets/sfx/shuffle.ogg" id="6_283r6"]
 [ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="6_kua3x"]
 [ext_resource type="PackedScene" uid="uid://bg57vt571tkxo" path="res://common/atoms/clickable/clickable.tscn" id="7_vjpff"]
 [ext_resource type="PackedScene" uid="uid://djgstwib3m7n0" path="res://common/molecules/fail_screen/fail_screen.tscn" id="9_l4p3t"]
@@ -89,6 +90,11 @@ stream = ExtResource("4_smjw4")
 [node name="SoundSuccess" type="AudioStreamPlayer" parent="Game3"]
 stream = ExtResource("5_2djdl")
 volume_db = -9.0
+
+[node name="SoundShuffle" type="AudioStreamPlayer" parent="Game3"]
+stream = ExtResource("6_283r6")
+volume_db = -4.0
+pitch_scale = 0.56
 
 [node name="Background" parent="." instance=ExtResource("3_qjcu4")]
 layout_mode = 1

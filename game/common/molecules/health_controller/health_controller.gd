@@ -25,3 +25,8 @@ func take_damage() -> void:
 	
 	if current_health <= 0:
 		onDeath.emit()
+
+func full_heal() -> void:
+	current_health = max_health
+	for child in $HBoxContainer.get_children():
+		child.heal()

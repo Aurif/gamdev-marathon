@@ -43,6 +43,7 @@ func _on_button_clicked(button: Node) -> void:
 func after_sequence() -> void:
 	correct_sequence_animation()
 	in_sequence = false
+	n_health_controller.full_heal()
 	score += 1
 	n_score_label.text = "Score: "+str(score)
 	if hard_after_sequence.has(score):
@@ -51,6 +52,7 @@ func after_sequence() -> void:
 		next_sequence()
 		
 func next_sequence() -> void:
+	in_sequence = false
 	if score == 0:
 		make_sequence([n_button])
 	elif score == 1:
@@ -59,11 +61,17 @@ func next_sequence() -> void:
 		var random_sequence = range(sequence_length()).map(func(n): return (all_buttons.pick_random() as Node))
 		make_sequence(random_sequence)
 
+func sequence_displayed() -> void:
+	in_sequence = true
+
 #
 # Dynamic scaling (math functions)
 #
 func sequence_length() -> int:
-	return ceil(sqrt(float(score-1)/2.0))+2
+	return ceil(sqrt(float(score-1)/3.0))+2
+
+func rotation_count() -> int:
+	return max(0, floor((float(score)**(1.0/3.0)-1.0)*(1.0+sin(2.0*float(score))/4.0)))
 
 #
 # Node cloning
@@ -81,18 +89,34 @@ func recurse_prefab(current: Node) -> void:
 # Animations
 #
 func make_sequence(sequence: Array) -> void:
-	in_sequence = true
 	sequence_tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_SINE)
 	sequence_tween.tween_interval(1)
 	for node in sequence:
 		sequence_tween.tween_callback($SoundSequence.play)
 		sequence_tween.tween_property(node.get_node("Polygon2D"), "color", Color("#f9dc90"), 0.3)
 		sequence_tween.tween_property(node.get_node("Polygon2D"), "color", Color("#15111a"), 0.3)
-	sequence_tween.tween_interval(5)
-	sequence_tween.set_loops()
+	
+	apply_rotations()
+	sequence_tween.tween_callback(sequence_displayed)
+	if score < 2:
+		sequence_tween.tween_interval(5)
+	else:
+		sequence_tween.tween_interval(8)
+	sequence_tween.tween_callback(next_sequence)
 	
 	current_step = 0
 	current_sequence = sequence
+
+func apply_rotations() -> void:
+	var pos_transform = func(x): return x
+	for r in range(rotation_count()):
+		var rotator = rotations.values().pick_random()
+		pos_transform = func(x): return rotator.call(pos_transform.call(x))
+		sequence_tween.tween_callback($SoundShuffle.play)
+		sequence_tween.set_parallel(true)
+		for but in all_buttons:
+			sequence_tween.tween_property(but, "position", pos_transform.call(but.position), 0.7)
+		sequence_tween.set_parallel(false)
 
 func abort_sequence_animation() -> void:
 	if not sequence_tween.is_valid() or not sequence_tween.is_running():
@@ -166,6 +190,23 @@ func spawn_new(from: Vector2, to: Vector2) -> void:
 	new_node.get_node("Clickable").onClick.connect(_on_button_clicked)
 	all_buttons.append(new_node)
 	spawn_tween.tween_property(new_node, "position", to, 0.75)
+
+#
+# Rotations
+#
+var rotations = {
+	"mirror_x": func (pos: Vector2) -> Vector2: return pos*Vector2(1, -1),
+	"mirror_y": func (pos: Vector2) -> Vector2: return pos*Vector2(-1, 1),
+	"mirror_center": func (pos: Vector2) -> Vector2: return pos*Vector2(-1, -1),
+	"cross_\\": func (pos: Vector2) -> Vector2: return Vector2(pos.y, pos.x),
+	"cross_/": func (pos: Vector2) -> Vector2: return Vector2(pos.y*-1, pos.x*-1),
+	"rot_90": func (pos: Vector2) -> Vector2: return Vector2(pos.y, pos.x*-1),
+	"rot_neg_90": func (pos: Vector2) -> Vector2: return Vector2(pos.y*-1, pos.x),
+	"d1_rot_90": func (pos: Vector2) -> Vector2: return Vector2(pos.y, pos.x*-1),
+	"d1_rot_neg_90": func (pos: Vector2) -> Vector2: return Vector2(pos.y*-1, pos.x),
+	"d2_rot_90": func (pos: Vector2) -> Vector2: return Vector2(pos.y, pos.x*-1),
+	"d2_rot_neg_90": func (pos: Vector2) -> Vector2: return Vector2(pos.y*-1, pos.x),
+}
 
 #
 # Death
