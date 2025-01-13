@@ -162,6 +162,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture1D_iya7e")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -175,6 +176,7 @@ offset_top = -103.0
 offset_bottom = 103.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture1D_dbi4e")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
@@ -190,10 +192,12 @@ offset_right = 186.5
 offset_bottom = 103.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Spacer" type="Control" parent="TextureRect/VBoxContainer"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="TextureRect/VBoxContainer"]
 layout_mode = 2
@@ -213,6 +217,7 @@ horizontal_alignment = 1
 [node name="Spacer2" type="Control" parent="TextureRect/VBoxContainer"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Label3" type="Label" parent="TextureRect/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -226,3 +231,4 @@ horizontal_alignment = 1
 [node name="Spacer3" type="Control" parent="TextureRect/VBoxContainer"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
+mouse_filter = 2

@@ -1,0 +1,170 @@
+[gd_scene load_steps=18 format=3 uid="uid://d1uwxmuddq56j"]
+
+[ext_resource type="Script" path="res://game-specific/game_3/game_3.gd" id="1_x0obi"]
+[ext_resource type="AudioStream" uid="uid://deodcckytpqxf" path="res://assets/sfx/tone.ogg" id="2_p054f"]
+[ext_resource type="AudioStream" uid="uid://bao14ihsqfb34" path="res://assets/sfx/click.ogg" id="3_4xju2"]
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="3_qjcu4"]
+[ext_resource type="PackedScene" uid="uid://b1oi3lp3bg65g" path="res://common/molecules/health_controller/health_controller.tscn" id="3_sh0ea"]
+[ext_resource type="AudioStream" uid="uid://uab6k4wyov1f" path="res://assets/sfx/wrong.ogg" id="4_smjw4"]
+[ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="5_2djdl"]
+[ext_resource type="Script" path="res://debug.gd" id="6_3v41i"]
+[ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="6_kua3x"]
+[ext_resource type="PackedScene" uid="uid://bg57vt571tkxo" path="res://common/atoms/clickable/clickable.tscn" id="7_vjpff"]
+[ext_resource type="PackedScene" uid="uid://djgstwib3m7n0" path="res://common/molecules/fail_screen/fail_screen.tscn" id="9_l4p3t"]
+[ext_resource type="PackedScene" uid="uid://cdo5hamcxy2ol" path="res://common/molecules/win_screen/win_screen.tscn" id="10_tv1h6"]
+
+[sub_resource type="Gradient" id="Gradient_21j3h"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.18, 0.3, 0.18, 0.235294)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_77x41"]
+gradient = SubResource("Gradient_21j3h")
+
+[sub_resource type="Animation" id="Animation_m7utm"]
+resource_name = "Blink"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.25, 0.8),
+"transitions": PackedFloat32Array(1, 1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vcdme"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b05ir"]
+_data = {
+"Blink": SubResource("Animation_m7utm"),
+"RESET": SubResource("Animation_vcdme")
+}
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="Game3" type="Node" parent="." node_paths=PackedStringArray("n_button", "n_score_label", "n_health_controller", "n_fail_screen", "n_blinker")]
+script = ExtResource("1_x0obi")
+n_button = NodePath("../CenterContainer/Control/Area2D")
+n_score_label = NodePath("../Score")
+n_health_controller = NodePath("../HealthController")
+n_fail_screen = NodePath("../FailScreen")
+n_blinker = NodePath("../Blinker/AnimationPlayer")
+
+[node name="SoundSequence" type="AudioStreamPlayer" parent="Game3"]
+stream = ExtResource("2_p054f")
+volume_db = -16.0
+pitch_scale = 1.2
+
+[node name="SoundCorrect" type="AudioStreamPlayer" parent="Game3"]
+stream = ExtResource("3_4xju2")
+
+[node name="SoundIncorrect" type="AudioStreamPlayer" parent="Game3"]
+stream = ExtResource("4_smjw4")
+
+[node name="SoundSuccess" type="AudioStreamPlayer" parent="Game3"]
+stream = ExtResource("5_2djdl")
+volume_db = -9.0
+
+[node name="Background" parent="." instance=ExtResource("3_qjcu4")]
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="HealthController" parent="." instance=ExtResource("3_sh0ea")]
+layout_mode = 1
+
+[node name="Blinker" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_77x41")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Blinker"]
+libraries = {
+"": SubResource("AnimationLibrary_b05ir")
+}
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 8.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme = ExtResource("6_kua3x")
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CenterContainer"]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+
+[node name="Area2D" type="Area2D" parent="CenterContainer/Control"]
+z_index = 1
+script = ExtResource("6_3v41i")
+
+[node name="Clickable" parent="CenterContainer/Control/Area2D" node_paths=PackedStringArray("show_on_hover") instance=ExtResource("7_vjpff")]
+show_on_hover = NodePath("../HoverEffect")
+
+[node name="Polygon2D" type="Polygon2D" parent="CenterContainer/Control/Area2D"]
+color = Color(0.0836667, 0.065, 0.1, 1)
+polygon = PackedVector2Array(-15, -30, 15, -30, 30, -15, 30, 15, 15, 30, -15, 30, -30, 15, -30, -15)
+
+[node name="HoverEffect" type="Polygon2D" parent="CenterContainer/Control/Area2D"]
+modulate = Color(1, 1, 1, 0)
+color = Color(0.836667, 0.65, 1, 0.12549)
+polygon = PackedVector2Array(-15, -30, 15, -30, 30, -15, 30, 15, 15, 30, -15, 30, -30, 15, -30, -15)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CenterContainer/Control/Area2D"]
+polygon = PackedVector2Array(-15, -30, 15, -30, 30, -15, 30, 15, 15, 30, -15, 30, -30, 15, -30, -15)
+
+[node name="FailScreen" parent="." instance=ExtResource("9_l4p3t")]
+process_mode = 3
+layout_mode = 1
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="WinScreen" parent="." instance=ExtResource("10_tv1h6")]
+layout_mode = 1
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[connection signal="onDeath" from="HealthController" to="Game3" method="_on_death"]
+[connection signal="onClick" from="CenterContainer/Control/Area2D/Clickable" to="Game3" method="_on_button_clicked"]

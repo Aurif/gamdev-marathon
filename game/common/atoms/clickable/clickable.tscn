@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg57vt571tkxo"]
+
+[ext_resource type="Script" path="res://common/atoms/clickable/clickable.gd" id="1_knvn6"]
+
+[node name="Clickable" type="Node" node_paths=PackedStringArray("show_on_hover")]
+script = ExtResource("1_knvn6")
+show_on_hover = NodePath("")

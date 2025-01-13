@@ -207,8 +207,8 @@ text = "Score: 0"
 horizontal_alignment = 1
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(802.628, 541.146)
-rotation = -0.977584
+position = Vector2(792.894, 397.302)
+rotation = -1.10629
 motion_mode = 1
 
 [node name="InputMouseRotation" parent="CharacterBody2D" instance=ExtResource("7_4ynrm")]
@@ -275,10 +275,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 398.0
-offset_bottom = 216.0
+offset_left = 377.0
+offset_top = 216.0
+offset_right = 775.0
+offset_bottom = 432.0
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(1, 1)
