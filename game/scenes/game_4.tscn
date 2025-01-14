@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://x34bs7i5cihx"]
+
+[ext_resource type="Script" path="res://game-specific/game_4/game_4.gd" id="1_72b2o"]
+[ext_resource type="PackedScene" uid="uid://bgljbplcpnwd5" path="res://common/atoms/timer_simple/timer_simple.tscn" id="2_36vkk"]
+[ext_resource type="PackedScene" uid="uid://b5xgwvu5lk6kh" path="res://game-specific/game_4/bullet.tscn" id="2_jj02u"]
+[ext_resource type="AudioStream" uid="uid://pxya3q4x5gmu" path="res://assets/sfx/mini_explosion.ogg" id="3_oq4n6"]
+[ext_resource type="Texture2D" uid="uid://rdif632n00yt" path="res://assets/sprites/heart.png" id="5_yjfuv"]
+[ext_resource type="AudioStream" uid="uid://c14by7k5l2tj1" path="res://assets/sfx/projectile_spawn.ogg" id="6_ragmc"]
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="7_xkvds"]
+[ext_resource type="PackedScene" uid="uid://clnm2qhttix5m" path="res://common/atoms/move_to_cursor/move_to_cursor.tscn" id="8_75vd0"]
+[ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="9_s1dt3"]
+[ext_resource type="PackedScene" uid="uid://djgstwib3m7n0" path="res://common/molecules/fail_screen/fail_screen.tscn" id="12_fs8bl"]
+
+[sub_resource type="SystemFont" id="SystemFont_vcn03"]
+font_names = PackedStringArray("Monospace")
+font_weight = 800
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="Background" parent="." instance=ExtResource("7_xkvds")]
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Game4" type="Node" parent="." node_paths=PackedStringArray("n_time_label", "n_fail_screen")]
+script = ExtResource("1_72b2o")
+n_time_label = NodePath("../Time")
+n_fail_screen = NodePath("../FailScreen")
+prefab_bullet = ExtResource("2_jj02u")
+
+[node name="TimerSimple" parent="Game4" instance=ExtResource("2_36vkk")]
+
+[node name="TimerLarge" type="Timer" parent="Game4"]
+wait_time = 2.0
+autostart = true
+
+[node name="TimerMedium" type="Timer" parent="Game4"]
+wait_time = 0.49
+autostart = true
+
+[node name="TimerSmall" type="Timer" parent="Game4"]
+wait_time = 0.21
+autostart = true
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="Game4"]
+process_mode = 3
+stream = ExtResource("3_oq4n6")
+pitch_scale = 0.8
+
+[node name="SpawnSound" type="AudioStreamPlayer" parent="Game4"]
+stream = ExtResource("6_ragmc")
+volume_db = -12.0
+
+[node name="Objective" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 4.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme = ExtResource("9_s1dt3")
+text = "Objective: survive"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Time" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 37.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme = ExtResource("9_s1dt3")
+theme_override_fonts/font = SubResource("SystemFont_vcn03")
+theme_override_font_sizes/font_size = 19
+text = "Time: 12.233s"
+horizontal_alignment = 1
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2(615, 380)
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+modulate = Color(0.976471, 0.862745, 0.564706, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_yjfuv")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+scale = Vector2(0.85, 0.85)
+polygon = PackedVector2Array(0, 12, 10, 3, 13, -4, 10, -10, 6, -12, 0, -8, -6, -12, -10, -10, -13, -4, -10, 3)
+
+[node name="MoveToCursor" parent="Player" instance=ExtResource("8_75vd0")]
+
+[node name="FailScreen" parent="." instance=ExtResource("12_fs8bl")]
+process_mode = 3
+layout_mode = 1
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[connection signal="timeout" from="Game4/TimerLarge" to="Game4" method="attack_large"]
+[connection signal="timeout" from="Game4/TimerMedium" to="Game4" method="attack_medium"]
+[connection signal="timeout" from="Game4/TimerSmall" to="Game4" method="attack_small"]
+[connection signal="area_entered" from="Player" to="Game4" method="_on_hit"]

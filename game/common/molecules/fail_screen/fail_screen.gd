@@ -5,6 +5,7 @@ var is_restart_armed: bool = false
 
 func show_screen(message: String):
 	get_tree().paused = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$TextureRect/VBoxContainer/InsertText.text = message
 	$AnimationPlayer.play("Appear")
 	

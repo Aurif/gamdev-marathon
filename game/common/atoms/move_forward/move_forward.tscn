@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://rdyycoxu4e24"]
+
+[ext_resource type="Script" path="res://common/atoms/move_forward/move_forward.gd" id="1_qb3of"]
+
+[node name="MoveForward" type="VisibleOnScreenNotifier2D"]
+rect = Rect2(-20, -10, 40, 20)
+script = ExtResource("1_qb3of")
+speed = 7
+angle_offset = 90
+
+[connection signal="screen_exited" from="." to="." method="_on_screen_exited"]

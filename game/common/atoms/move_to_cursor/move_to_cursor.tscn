@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://clnm2qhttix5m"]
+
+[ext_resource type="Script" path="res://common/atoms/move_to_cursor/move_to_cursor.gd" id="1_6im7h"]
+
+[node name="MoveToCursor" type="Node"]
+script = ExtResource("1_6im7h")
