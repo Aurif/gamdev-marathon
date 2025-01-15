@@ -1,0 +1,187 @@
+[gd_scene load_steps=16 format=3 uid="uid://bq7ajrl023hlh"]
+
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="1_12ma6"]
+[ext_resource type="Script" path="res://game-specific/game_5/game_5.gd" id="1_lwdai"]
+[ext_resource type="AudioStream" uid="uid://bao14ihsqfb34" path="res://assets/sfx/click.ogg" id="2_yorv3"]
+[ext_resource type="PackedScene" uid="uid://b1oi3lp3bg65g" path="res://common/molecules/health_controller/health_controller.tscn" id="3_2ykgk"]
+[ext_resource type="PackedScene" uid="uid://cdo5hamcxy2ol" path="res://common/molecules/win_screen/win_screen.tscn" id="3_l87ph"]
+[ext_resource type="AudioStream" uid="uid://uab6k4wyov1f" path="res://assets/sfx/wrong.ogg" id="3_nlk2w"]
+[ext_resource type="PackedScene" uid="uid://bgljbplcpnwd5" path="res://common/atoms/timer_simple/timer_simple.tscn" id="4_maunw"]
+[ext_resource type="PackedScene" uid="uid://chynyknwob2sv" path="res://common/atoms/sprite_circle/sprite_circle.tscn" id="4_v1y6j"]
+[ext_resource type="AudioStream" uid="uid://pxya3q4x5gmu" path="res://assets/sfx/mini_explosion.ogg" id="5_2rd4a"]
+[ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="5_fh6pc"]
+[ext_resource type="Script" path="res://game-specific/game_5/on_mouse_over.gd" id="5_khi17"]
+[ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="7_vyv77"]
+[ext_resource type="PackedScene" uid="uid://clnm2qhttix5m" path="res://common/atoms/move_to_cursor/move_to_cursor.tscn" id="9_gybj5"]
+[ext_resource type="PackedScene" uid="uid://djgstwib3m7n0" path="res://common/molecules/fail_screen/fail_screen.tscn" id="10_8cmja"]
+
+[sub_resource type="SystemFont" id="SystemFont_d6nic"]
+font_names = PackedStringArray("Monospace")
+font_weight = 800
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="Game5" type="Node" parent="." node_paths=PackedStringArray("polygons", "n_health_controller", "n_label_score", "n_label_time", "n_fail_screen", "n_win_screen")]
+script = ExtResource("1_lwdai")
+polygons = [NodePath("../Area2D/Polygon2D"), NodePath("../Area2D2/Polygon2D"), NodePath("../Area2D3/Polygon2D"), NodePath("../Area2D4/Polygon2D"), NodePath("../Area2D5/Polygon2D")]
+colors = {
+"Blue": Color(0.705882, 0.847059, 0.909804, 1),
+"Orange": Color(0.945098, 0.694118, 0.756863, 1),
+"Purple": Color(0.639216, 0.478431, 0.705882, 1),
+"Red": Color(0.831373, 0.52549, 0.721569, 1)
+}
+n_health_controller = NodePath("../HealthController")
+n_label_score = NodePath("../Score")
+n_label_time = NodePath("../Time")
+n_fail_screen = NodePath("../FailScreen")
+n_win_screen = NodePath("../WinScreen")
+
+[node name="SoundCorrect" type="AudioStreamPlayer" parent="Game5"]
+stream = ExtResource("2_yorv3")
+
+[node name="SoundIncorrect" type="AudioStreamPlayer" parent="Game5"]
+stream = ExtResource("3_nlk2w")
+
+[node name="TimerSimple" parent="Game5" instance=ExtResource("4_maunw")]
+
+[node name="SoundSuccess" type="AudioStreamPlayer" parent="Game5"]
+process_mode = 3
+stream = ExtResource("5_fh6pc")
+volume_db = -9.0
+
+[node name="SoundDeath" type="AudioStreamPlayer" parent="Game5"]
+process_mode = 3
+stream = ExtResource("5_2rd4a")
+pitch_scale = 0.8
+
+[node name="Background" parent="." instance=ExtResource("1_12ma6")]
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 308.0
+offset_bottom = 342.0
+grow_horizontal = 2
+theme = ExtResource("7_vyv77")
+text = "Objective: survive"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Time" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 341.0
+offset_bottom = 375.0
+grow_horizontal = 2
+theme = ExtResource("7_vyv77")
+theme_override_fonts/font = SubResource("SystemFont_d6nic")
+theme_override_font_sizes/font_size = 19
+text = "Time: 12.233s"
+horizontal_alignment = 1
+
+[node name="HealthController" parent="." instance=ExtResource("3_2ykgk")]
+layout_mode = 1
+
+[node name="HBoxContainer" parent="HealthController" index="1"]
+offset_top = 370.0
+offset_bottom = 370.0
+
+[node name="FailScreen" parent="." instance=ExtResource("10_8cmja")]
+process_mode = 3
+layout_mode = 1
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="WinScreen" parent="." instance=ExtResource("3_l87ph")]
+layout_mode = 1
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D"]
+color = Color(0.705882, 0.847059, 0.909804, 1)
+polygon = PackedVector2Array(1152, 156, 1152, 0, 576, 0, 576, 174, 733, 290)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(1152, 156, 1152, 0, 576, 0, 576, 174, 733, 290)
+
+[node name="OnMouseOver" type="Node" parent="Area2D" node_paths=PackedStringArray("game")]
+script = ExtResource("5_khi17")
+game = NodePath("../../Game5")
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D2"]
+polygon = PackedVector2Array(0, 156, 0, 0, 576, 0, 576, 174, 419, 290)
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D2"]
+color = Color(0.945098, 0.694118, 0.756863, 1)
+polygon = PackedVector2Array(0, 156, 0, 0, 576, 0, 576, 174, 419, 290)
+
+[node name="OnMouseOver" type="Node" parent="Area2D2" node_paths=PackedStringArray("game")]
+script = ExtResource("5_khi17")
+game = NodePath("../../Game5")
+
+[node name="Area2D3" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D3"]
+polygon = PackedVector2Array(1152, 156, 1152, 648, 672, 472, 733, 290)
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D3"]
+color = Color(0.831373, 0.52549, 0.721569, 1)
+polygon = PackedVector2Array(1152, 156, 1152, 648, 672, 472, 733, 290)
+
+[node name="OnMouseOver" type="Node" parent="Area2D3" node_paths=PackedStringArray("game")]
+script = ExtResource("5_khi17")
+game = NodePath("../../Game5")
+
+[node name="Area2D4" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D4"]
+polygon = PackedVector2Array(0, 156, 0, 648, 480, 472, 419, 290)
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D4"]
+color = Color(0.639216, 0.478431, 0.705882, 1)
+polygon = PackedVector2Array(0, 156, 0, 648, 480, 472, 419, 290)
+
+[node name="OnMouseOver" type="Node" parent="Area2D4" node_paths=PackedStringArray("game")]
+script = ExtResource("5_khi17")
+game = NodePath("../../Game5")
+
+[node name="Area2D5" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D5"]
+polygon = PackedVector2Array(1152, 648, 0, 648, 480, 472, 672, 472)
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D5"]
+color = Color(0.489956, 0.727546, 0.766998, 1)
+polygon = PackedVector2Array(1152, 648, 0, 648, 480, 472, 672, 472)
+
+[node name="OnMouseOver" type="Node" parent="Area2D5" node_paths=PackedStringArray("game")]
+script = ExtResource("5_khi17")
+game = NodePath("../../Game5")
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="SpriteCircle" parent="Player" instance=ExtResource("4_v1y6j")]
+modulate = Color(0.294118, 0.258824, 0.32549, 1)
+radius = 8
+
+[node name="MoveToCursor" parent="Player" instance=ExtResource("9_gybj5")]
+
+[connection signal="onDeath" from="HealthController" to="Game5" method="on_death"]
+
+[editable path="HealthController"]
