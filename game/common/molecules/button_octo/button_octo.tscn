@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq2kq6r03ofa8"]
+
+[ext_resource type="Script" path="res://debug.gd" id="1_m81hs"]
+[ext_resource type="PackedScene" uid="uid://bg57vt571tkxo" path="res://common/atoms/clickable/clickable.tscn" id="2_ou86r"]
+
+[node name="ButtonOcto" type="Area2D"]
+z_index = 1
+script = ExtResource("1_m81hs")
+
+[node name="Clickable" parent="." node_paths=PackedStringArray("show_on_hover") instance=ExtResource("2_ou86r")]
+show_on_hover = NodePath("../HoverEffect")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.0836667, 0.065, 0.1, 1)
+polygon = PackedVector2Array(-15, -30, 15, -30, 30, -15, 30, 15, 15, 30, -15, 30, -30, 15, -30, -15)
+
+[node name="HoverEffect" type="Polygon2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+color = Color(0.836667, 0.65, 1, 0.12549)
+polygon = PackedVector2Array(-15, -30, 15, -30, 30, -15, 30, 15, 15, 30, -15, 30, -30, 15, -30, -15)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-15, -30, 15, -30, 30, -15, 30, 15, 15, 30, -15, 30, -30, 15, -30, -15)
