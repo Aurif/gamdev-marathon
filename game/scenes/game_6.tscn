@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfy5lswyfop6o"]
+
+[ext_resource type="Script" path="res://common/molecules/wave_function_background/wave_function_background.gd" id="2_nsyl6"]
+[ext_resource type="Texture2D" uid="uid://bjrt2va24pcml" path="res://assets/sprites/wave_function_collapse/p0.png" id="3_ecarv"]
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="7_vijaj"]
+[ext_resource type="PackedScene" uid="uid://cdo5hamcxy2ol" path="res://common/molecules/win_screen/win_screen.tscn" id="12_3vxua"]
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="Background" parent="." instance=ExtResource("7_vijaj")]
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="WinScreen" parent="." instance=ExtResource("12_3vxua")]
+layout_mode = 1
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ecarv")
+stretch_mode = 5
+script = ExtResource("2_nsyl6")
+size_margin = 2
+target_size = Vector2i(24, 24)
