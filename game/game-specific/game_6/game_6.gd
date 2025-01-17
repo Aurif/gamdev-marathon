@@ -2,6 +2,7 @@ extends Node
 
 @export var size: Vector2i
 @export var n_root: Control
+@export var n_source_tilemap: TileMap
 @export var n_pattern_tilemap: TileMap
 @export var n_hover_tilemap: TileMapLayer
 @export var n_draw_tilemap: TileMapLayer
@@ -16,6 +17,11 @@ var progress = 0
 var mistakes = 0
 
 func _ready():
+	var tileset = n_source_tilemap.tile_set
+	n_source_tilemap.set_pattern(
+		0, Vector2i.ZERO, 
+		tileset.get_pattern(randi_range(0, tileset.get_patterns_count()-1))
+	)
 	n_wfc.rect = Rect2i(Vector2i.ZERO, size)
 	n_wfc.start()
 
@@ -75,4 +81,5 @@ func update_labels() -> void:
 	n_label_accuracy.text = accuracy
 	
 	if progress >= lightSquares:
+		n_win_screen.disable_restart = true
 		n_win_screen.show_screen(accuracy)

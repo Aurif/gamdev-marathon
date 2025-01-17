@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cff1qkbumendj"]
+
+[ext_resource type="Script" path="res://game-specific/game_7/button.gd" id="1_pjx3r"]
+[ext_resource type="PackedScene" uid="uid://bg57vt571tkxo" path="res://common/atoms/clickable/clickable.tscn" id="2_yscfc"]
+
+[node name="Button" type="Node2D"]
+script = ExtResource("1_pjx3r")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 9.0
+offset_bottom = 9.0
+mouse_filter = 2
+color = Color(0.96, 0.70368, 0.1056, 0.396078)
+
+[node name="Trigger" type="ColorRect" parent="."]
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_default_cursor_shape = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Clickable" parent="Trigger" node_paths=PackedStringArray("show_on_hover") instance=ExtResource("2_yscfc")]
+show_on_hover = NodePath("../../ColorRect")
+click_sound = true
+
+[connection signal="onClick" from="Trigger/Clickable" to="." method="_on_click"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://byo2t0pf4w0nw"]
+
+[ext_resource type="Script" path="res://game-specific/game_7/lock.gd" id="1_8ydy7"]
+[ext_resource type="Texture2D" uid="uid://c60moxv1trm8o" path="res://assets/sprites/pointer.png" id="2_4bsrf"]
+
+[node name="Lock" type="Node2D"]
+position = Vector2(297, 189)
+script = ExtResource("1_8ydy7")
+steps = 8
+state = 3
+lid = 1
+
+[node name="Rotation" type="Node2D" parent="."]
+
+[node name="Arrow" type="Sprite2D" parent="Rotation"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_4bsrf")

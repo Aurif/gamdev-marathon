@@ -2,6 +2,7 @@ extends TextureRect
 class_name MolFailScreen
 
 var is_restart_armed: bool = false
+var disable_restart: bool = false
 
 func show_screen(message: String):
 	get_tree().paused = true
@@ -19,4 +20,5 @@ func _input(ev):
 	get_tree().reload_current_scene()
 	
 func arm_restart():
-	is_restart_armed = true
+	if not disable_restart:
+		is_restart_armed = true

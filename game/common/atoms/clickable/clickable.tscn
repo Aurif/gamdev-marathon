@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bg57vt571tkxo"]
+[gd_scene load_steps=3 format=3 uid="uid://bg57vt571tkxo"]
 
 [ext_resource type="Script" path="res://common/atoms/clickable/clickable.gd" id="1_knvn6"]
+[ext_resource type="AudioStream" uid="uid://bao14ihsqfb34" path="res://assets/sfx/click.ogg" id="2_xs2ht"]
 
-[node name="Clickable" type="Node" node_paths=PackedStringArray("show_on_hover")]
+[node name="Clickable" type="Node"]
 script = ExtResource("1_knvn6")
-show_on_hover = NodePath("")
+
+[node name="SoundClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xs2ht")

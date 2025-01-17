@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=4 uid="uid://bbt0d4o4dx17q"]
+
+[ext_resource type="Script" path="res://game-specific/game_7/game_7.gd" id="1_o4o77"]
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="2_4x0j4"]
+[ext_resource type="TileSet" uid="uid://o5q1rvd0o2ox" path="res://game-specific/game_7/pipe_tileset.tres" id="2_gje70"]
+[ext_resource type="PackedScene" uid="uid://byo2t0pf4w0nw" path="res://game-specific/game_7/lock.tscn" id="5_f57dk"]
+[ext_resource type="PackedScene" uid="uid://cff1qkbumendj" path="res://game-specific/game_7/button.tscn" id="6_rinll"]
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="Game7" type="Node" parent="." node_paths=PackedStringArray("n_lock_layer", "n_button_layer")]
+script = ExtResource("1_o4o77")
+n_lock_layer = NodePath("../LockLayer")
+n_button_layer = NodePath("../ButtonLayer")
+preset_button = ExtResource("6_rinll")
+preset_lock = ExtResource("5_f57dk")
+
+[node name="Spawnables" type="Node" parent="Game7"]
+
+[node name="Background" parent="." instance=ExtResource("2_4x0j4")]
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="ButtonLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+tile_map_data = PackedByteArray("AABHABgAAAAEAAMAAAARAAgAAAAGAAEAAAASAAgAAAAFAAEAAQAQAAgAAAAGAAMAAAAPAAgAAAAFAAMAAQA=")
+tile_set = ExtResource("2_gje70")
+
+[node name="LockLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AABHABgAAAAEAAMAAAAIAAYAAAABAAIAAAAJAAYAAAADAAMAAAAKAAYAAAACAAMAAAALAAYAAAACAAMAAAAMAAYAAAADAAMAAAAIAAAAAAAAAAEAAAAIAAEAAAAAAAIAAAAIAAIAAAAAAAEAAAAIAAMAAAABAAAAAQAIAAQAAAAAAAEAAAAIAAUAAAAAAAEAAAANAAYAAAACAAEAAAANAAcAAAAAAAEAAAANAAgAAAAAAAEAAAANAAkAAAAAAAIAAAANAAoAAAAAAAEAAAANAAsAAAAAAAEAAAA=")
+tile_set = ExtResource("2_gje70")
