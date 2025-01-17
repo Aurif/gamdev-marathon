@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://diy3paaonv2wv"]
+
+[ext_resource type="Script" path="res://common/atoms/parallax/parallax.gd" id="1_xe1fq"]
+
+[node name="Parallax" type="Node"]
+script = ExtResource("1_xe1fq")
+max_move = Vector2(30, 30)

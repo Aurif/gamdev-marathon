@@ -24,6 +24,7 @@ color = Color(1, 1, 1, 0)
 
 [node name="Clickable" parent="Trigger" node_paths=PackedStringArray("show_on_hover") instance=ExtResource("2_yscfc")]
 show_on_hover = NodePath("../../ColorRect")
+resize_on_click = false
 click_sound = true
 
 [connection signal="onClick" from="Trigger/Clickable" to="." method="_on_click"]

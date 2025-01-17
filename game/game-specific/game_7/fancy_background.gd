@@ -4,8 +4,8 @@ extends Node
 @export var layers: int = 100
 @export var transition_type: Tween.TransitionType
 @export var ease_type: Tween.EaseType
-@export var starting_scale: float = 0.7
-@export var min_scale: float = 0.3
+@export var starting_scale: float = 0.8
+@export var min_scale: float = 0.35
 
 @export var dim_color: Color
 @export var starting_dim: float = 0.24
@@ -26,7 +26,8 @@ func generate_background() -> void:
 			transition_type, ease_type
 		)
 		layer.scale *= scale
-		layer.generation_size = ceil(Vector2(base_size)/scale)
+		layer.generation_size = Vector2i(ceil(Vector2(base_size)/scale))+Vector2i(2, 1)
+		layer.position = Vector2(-18, -18)*scale
 		
 		var dim_level = Tween.interpolate_value(
 			starting_dim, 
