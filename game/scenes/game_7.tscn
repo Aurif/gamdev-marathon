@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://bbt0d4o4dx17q"]
+[gd_scene load_steps=8 format=4 uid="uid://bbt0d4o4dx17q"]
 
 [ext_resource type="Script" path="res://game-specific/game_7/game_7.gd" id="1_o4o77"]
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="2_4x0j4"]
 [ext_resource type="TileSet" uid="uid://o5q1rvd0o2ox" path="res://game-specific/game_7/pipe_tileset.tres" id="2_gje70"]
+[ext_resource type="Script" path="res://game-specific/game_7/fancy_background.gd" id="2_nbtkk"]
 [ext_resource type="PackedScene" uid="uid://byo2t0pf4w0nw" path="res://game-specific/game_7/lock.tscn" id="5_f57dk"]
+[ext_resource type="PackedScene" uid="uid://bmvtfci32c6ea" path="res://game-specific/game_7/bg_layer.tscn" id="6_ab3ih"]
 [ext_resource type="PackedScene" uid="uid://cff1qkbumendj" path="res://game-specific/game_7/button.tscn" id="6_rinll"]
 
 [node name="Root" type="Control"]
@@ -16,6 +18,19 @@ grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_lock_ = true
 
+[node name="Background" parent="." instance=ExtResource("2_4x0j4")]
+z_index = -2
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="FancyBackground" type="Node2D" parent="."]
+z_index = -1
+script = ExtResource("2_nbtkk")
+transition_type = 3
+ease_type = 1
+dim_color = Color(0.121569, 0.0901961, 0.14902, 1)
+preset_bg_layer = ExtResource("6_ab3ih")
+
 [node name="Game7" type="Node" parent="." node_paths=PackedStringArray("n_lock_layer", "n_button_layer")]
 script = ExtResource("1_o4o77")
 n_lock_layer = NodePath("../LockLayer")
@@ -25,9 +40,7 @@ preset_lock = ExtResource("5_f57dk")
 
 [node name="Spawnables" type="Node" parent="Game7"]
 
-[node name="Background" parent="." instance=ExtResource("2_4x0j4")]
-layout_mode = 1
-metadata/_edit_lock_ = true
+[node name="BGLayer" parent="." instance=ExtResource("6_ab3ih")]
 
 [node name="ButtonLayer" type="TileMapLayer" parent="."]
 texture_filter = 1

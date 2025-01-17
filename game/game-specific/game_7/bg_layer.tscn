@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmvtfci32c6ea"]
+
+[ext_resource type="TileSet" uid="uid://o5q1rvd0o2ox" path="res://game-specific/game_7/pipe_tileset.tres" id="1_ddal3"]
+[ext_resource type="Script" path="res://game-specific/game_7/bg_layer.gd" id="2_urrg1"]
+
+[node name="BGLayer" type="TileMapLayer"]
+texture_filter = 1
+scale = Vector2(3, 3)
+tile_set = ExtResource("1_ddal3")
+script = ExtResource("2_urrg1")
