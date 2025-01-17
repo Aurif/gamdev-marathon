@@ -13,7 +13,7 @@ lid = 1
 [node name="Rotation" type="Node2D" parent="."]
 
 [node name="Arrow" type="Sprite2D" parent="Rotation"]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(1, 0.26, 0.26, 1)
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_4bsrf")

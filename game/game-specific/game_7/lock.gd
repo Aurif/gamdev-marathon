@@ -16,6 +16,10 @@ func update_state(delta: int, immediate: bool = false) -> void:
 	state = (state+delta)%steps
 	if state < 0:
 		state += steps
+		
+	var modulate_color = Color("#ff4242")
+	if state == 0:
+		modulate_color = Color("#8b7399")
 	
 	if rotation_tween and rotation_tween.is_valid():
 		rotation_tween.custom_step(0.2)
@@ -23,8 +27,10 @@ func update_state(delta: int, immediate: bool = false) -> void:
 	
 	if immediate == true:
 		$Rotation.rotation = PI*2/steps*state
+		$Rotation/Arrow.modulate = modulate_color
 	else:
 		rotation_tween = get_tree().create_tween().bind_node(self)
 		rotation_tween.tween_property($Rotation, "rotation", PI*2/steps*anim_state, 0.2).set_trans(Tween.TRANS_SINE)
+		rotation_tween.parallel().tween_property($Rotation/Arrow, "modulate", modulate_color, 0.2).set_trans(Tween.TRANS_SINE)
 		rotation_tween.tween_property($Rotation, "rotation", PI*2/steps*state, 0)
 		rotation_tween.play()
