@@ -17,3 +17,6 @@ static func four_dir_movement_discrete() -> Vector2i:
 	if down:
 		return Vector2i(0, 1)
 	return Vector2i(0, 0)
+
+static func four_dir_vectors() -> Array[Vector2i]:
+	return [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c02cy46k5dbx5"]
+[gd_scene load_steps=9 format=4 uid="uid://c02cy46k5dbx5"]
 
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="1_fy36l"]
 [ext_resource type="Script" path="res://game-specific/game_8/game_8.gd" id="4_1if3m"]
-[ext_resource type="PackedScene" uid="uid://chynyknwob2sv" path="res://common/atoms/sprite_circle/sprite_circle.tscn" id="5_8eqdi"]
-[ext_resource type="Script" path="res://game-specific/game_8/tile.gd" id="5_c58tj"]
+[ext_resource type="PackedScene" uid="uid://ckhwv877pjmnf" path="res://game-specific/game_8/tile.tscn" id="5_ve0qb"]
+[ext_resource type="TileSet" uid="uid://cnwd8p6gymoc0" path="res://game-specific/game_8/level_editor_tileset.tres" id="7_i1itg"]
+[ext_resource type="Script" path="res://game-specific/game_8/level_spawner.gd" id="8_q2uyh"]
 [ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="11_f4nsl"]
 [ext_resource type="PackedScene" uid="uid://bm8s5tu35rfnt" path="res://common/atoms/highlight/highlight.tscn" id="12_v23mk"]
 [ext_resource type="PackedScene" uid="uid://cdo5hamcxy2ol" path="res://common/molecules/win_screen/win_screen.tscn" id="13_706wi"]
@@ -43,94 +44,12 @@ uppercase = true
 [node name="Game8" type="Node" parent="."]
 script = ExtResource("4_1if3m")
 
-[node name="ColorRect" type="ColorRect" parent="Game8" node_paths=PackedStringArray("n_player")]
-clip_children = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -94.0
-offset_top = -40.0
-offset_right = -14.0
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_c58tj")
-in_node = true
-n_player = NodePath("SpriteCircle")
-
-[node name="SpriteCircle" parent="Game8/ColorRect" instance=ExtResource("5_8eqdi")]
-visible = false
-modulate = Color(0.976471, 0.862745, 0.564706, 1)
-position = Vector2(40, 40)
-radius = 12
-
-[node name="ColorRect2" type="ColorRect" parent="Game8" node_paths=PackedStringArray("n_player")]
-clip_children = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 31.0
-offset_top = -41.0
-offset_right = 111.0
-offset_bottom = 39.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_c58tj")
-n_player = NodePath("SpriteCircle")
-
-[node name="SpriteCircle" parent="Game8/ColorRect2" instance=ExtResource("5_8eqdi")]
-visible = false
-modulate = Color(0.976471, 0.862745, 0.564706, 1)
-position = Vector2(40, 40)
-radius = 12
-
-[node name="ColorRect3" type="ColorRect" parent="Game8" node_paths=PackedStringArray("n_player")]
-clip_children = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 30.0
-offset_top = 68.0
-offset_right = 110.0
-offset_bottom = 148.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_c58tj")
-n_player = NodePath("SpriteCircle")
-
-[node name="SpriteCircle" parent="Game8/ColorRect3" instance=ExtResource("5_8eqdi")]
-visible = false
-modulate = Color(0.976471, 0.862745, 0.564706, 1)
-position = Vector2(40, 40)
-radius = 12
-
-[node name="ColorRect4" type="ColorRect" parent="Game8" node_paths=PackedStringArray("n_player")]
-clip_children = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = 66.0
-offset_right = -15.0
-offset_bottom = 146.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_c58tj")
-n_player = NodePath("SpriteCircle")
-
-[node name="SpriteCircle" parent="Game8/ColorRect4" instance=ExtResource("5_8eqdi")]
-visible = false
-modulate = Color(0.976471, 0.862745, 0.564706, 1)
-position = Vector2(40, 40)
-radius = 12
+[node name="TileMapLayer" type="TileMapLayer" parent="Game8"]
+position = Vector2(142, 188)
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAAEAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAA=")
+tile_set = ExtResource("7_i1itg")
+script = ExtResource("8_q2uyh")
+preset_tile = ExtResource("5_ve0qb")
 
 [node name="WinScreen" parent="." instance=ExtResource("13_706wi")]
 layout_mode = 1

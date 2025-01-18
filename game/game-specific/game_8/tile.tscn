@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckhwv877pjmnf"]
+
+[ext_resource type="Script" path="res://game-specific/game_8/tile.gd" id="1_lpeyy"]
+[ext_resource type="PackedScene" uid="uid://chynyknwob2sv" path="res://common/atoms/sprite_circle/sprite_circle.tscn" id="2_pgml0"]
+
+[node name="ColorRect" type="ColorRect" node_paths=PackedStringArray("n_player")]
+clip_children = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -40.0
+offset_right = -16.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lpeyy")
+n_player = NodePath("SpriteCircle")
+
+[node name="SpriteCircle" parent="." instance=ExtResource("2_pgml0")]
+visible = false
+modulate = Color(0.976471, 0.862745, 0.564706, 1)
+position = Vector2(40, 40)
+radius = 12

@@ -5,6 +5,8 @@ class_name G8Tile
 @export var n_player: Node2D
 @export var neighbours: Dictionary
 
+const MOVE_SPEED = 0.2
+
 class NeighbourDefinition:
 	var node: G8Tile
 	var target_dir: Vector2i
@@ -21,7 +23,7 @@ func _ready() -> void:
 		n_player.visible = true
 		n_player.position = self.size/2
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not in_node:
 		return
 	var movement = QuarkInput.four_dir_movement_discrete()
@@ -34,14 +36,14 @@ func _process(delta: float) -> void:
 		
 	in_node = false
 	var tween = get_tree().create_tween().bind_node(self)
-	tween.tween_property(n_player, "position", self.size/2+Vector2(movement)*self.size, 0.3).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(n_player, "position", self.size/2+Vector2(movement)*self.size, MOVE_SPEED).set_trans(Tween.TRANS_SINE)
 	next.move_to()
 
 func enter_player(source_dir: Vector2i) -> void:
 	n_player.visible = true
 	n_player.position = self.size/2+Vector2(source_dir)*self.size
 	var tween = get_tree().create_tween().bind_node(self)
-	tween.tween_property(n_player, "position", self.size/2, 0.3).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(n_player, "position", self.size/2, MOVE_SPEED).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(_enter_player_callback)
 
 func _enter_player_callback() -> void:
