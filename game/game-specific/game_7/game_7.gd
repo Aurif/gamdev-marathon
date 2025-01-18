@@ -124,6 +124,7 @@ func spawn_locks() -> void:
 		lock.rotation = deg_to_rad(tile_data.get_custom_data("Rotation"))
 		lock.steps = tile_data.get_custom_data("Steps")
 		lock.state = tile_data.get_custom_data("State")
+		lock.lid = lid
 		$SpawnedLocks.add_child.call_deferred(lock)
 		register_lock(lid, lock)
 
