@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ckhwv877pjmnf"]
+[gd_scene load_steps=7 format=3 uid="uid://ckhwv877pjmnf"]
 
 [ext_resource type="Script" path="res://game-specific/game_8/tile.gd" id="1_lpeyy"]
 [ext_resource type="TileSet" uid="uid://b8msl22gp3tl" path="res://game-specific/game_8/tileset_platform.tres" id="2_l6qa2"]
 [ext_resource type="Script" path="res://common/atoms/sprite_tilemap/sprite_tilemap.gd" id="3_q3his"]
 [ext_resource type="AudioStream" uid="uid://ch3koqyk5r85x" path="res://assets/sfx/shuffle.ogg" id="3_su7i5"]
 [ext_resource type="Texture2D" uid="uid://2j5eyeavqpfx" path="res://assets/sprites/topdown_brick.png" id="5_tr7f7"]
+[ext_resource type="PackedScene" uid="uid://bqxshgog72ifh" path="res://common/atoms/effect_float/effect_float.tscn" id="6_556vp"]
 
 [node name="ColorRect" type="ColorRect" node_paths=PackedStringArray("n_player")]
 clip_children = 1
@@ -19,6 +20,7 @@ offset_right = -22.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(36.5, 36.5)
 script = ExtResource("1_lpeyy")
 n_player = NodePath("Sprite2D")
 
@@ -40,3 +42,5 @@ texture_filter = 1
 position = Vector2(35, 35)
 scale = Vector2(2, 2)
 texture = ExtResource("5_tr7f7")
+
+[node name="EffectFloat" parent="." instance=ExtResource("6_556vp")]

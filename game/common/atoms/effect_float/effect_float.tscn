@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqxshgog72ifh"]
+
+[ext_resource type="Script" path="res://common/atoms/effect_float/effect_float.gd" id="1_itpad"]
+
+[node name="EffectFloat" type="Node"]
+script = ExtResource("1_itpad")
+speed = 2.0
+max_distance = Vector2(0, 8)

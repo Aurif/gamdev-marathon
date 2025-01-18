@@ -29,8 +29,9 @@ metadata/_edit_lock_ = true
 visible = false
 
 [node name="BackgroundAnimated" parent="." instance=ExtResource("2_rhhph")]
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
+offset_right = 3472.0
+offset_bottom = 1952.0
 
 [node name="Background" parent="." instance=ExtResource("1_fy36l")]
 modulate = Color(1, 1, 1, 0.560784)

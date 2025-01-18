@@ -6,6 +6,7 @@ class_name G8Tile
 @export var neighbours: Dictionary
 
 const MOVE_SPEED = 0.2
+var disable_movement: bool = false
 
 class NeighbourDefinition:
 	var node: G8Tile
@@ -33,12 +34,13 @@ func variant_goal() -> void:
 	$SpriteTilemap.set_cell(Vector2i(1, 0), 1, Vector2i(17, 3))
 	$SpriteTilemap.set_cell(Vector2i(0, 1), 1, Vector2i(15, 5))
 	$SpriteTilemap.set_cell(Vector2i(1, 1), 1, Vector2i(17, 5))
+	PlayerEntered.connect(func(): disable_movement = true)
 
 ##
 ## Player movement
 ##
 func _process(_delta: float) -> void:
-	if not in_node:
+	if not in_node or disable_movement:
 		return
 	var movement = QuarkInput.four_dir_movement_discrete()
 	if movement == Vector2i(0, 0):
