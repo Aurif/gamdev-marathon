@@ -11,4 +11,4 @@ tile_set = ExtResource("1_ddal3")
 script = ExtResource("2_urrg1")
 
 [node name="Parallax" parent="." instance=ExtResource("3_vnaku")]
-max_move = Vector2(2.5, 1.5)
+max_move = Vector2(1.5, 1)

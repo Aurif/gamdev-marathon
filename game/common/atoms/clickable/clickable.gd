@@ -41,6 +41,8 @@ func _mouse_exited() -> void:
 	if show_on_hover:
 		if show_on_hover_tween:
 			show_on_hover_tween.kill()
+		if not get_tree():
+			return
 		show_on_hover_tween = get_tree().create_tween().bind_node(self)
 		show_on_hover_tween.tween_property(show_on_hover, "modulate", Color("#ffffff", 0), 0.2).set_trans(Tween.TRANS_SINE)
 

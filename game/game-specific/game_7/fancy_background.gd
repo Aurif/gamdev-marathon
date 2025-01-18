@@ -1,4 +1,5 @@
 extends Node
+class_name G7FancyBackground
 
 @export var base_size: Vector2i = Vector2i(22, 12)
 @export var layers: int = 100
@@ -14,7 +15,7 @@ extends Node
 @export var preset_bg_layer: PackedScene
 
 func _ready() -> void:
-	generate_background()
+	generate_background.call_deferred()
 
 func generate_background() -> void:
 	for i in range(layers):
@@ -37,6 +38,27 @@ func generate_background() -> void:
 		)
 		layer.modulate = lerp(dim_color, Color.WHITE, dim_level)
 		
-		add_child.call_deferred(layer)
-		move_child.call_deferred(layer, 0)
+		add_child(layer)
+		move_child(layer, 0)
 		layer.generate()
+
+func transition_out() -> void:
+	for i in range(layers):
+		var t = lerp(1.0, 0.0, float(i)/layers)
+		var layer = self.get_child(-i)
+		var tween = get_tree().create_tween().bind_node(self)
+		tween.tween_interval(t)
+		tween.tween_property(layer, "modulate", Color(layer.modulate, 0), 0.2)
+		tween.tween_callback(layer.queue_free)
+
+func transition_in() -> void:
+	generate_background()
+	
+	for i in range(layers):
+		var t = lerp(1.0, 0.0, float(i+1)/layers)
+		var layer = self.get_child(-i)
+		var tween = get_tree().create_tween().bind_node(self)
+		tween.tween_interval(t)
+		var target_modulate = layer.modulate
+		layer.modulate = Color(layer.modulate, 0)
+		tween.tween_property(layer, "modulate", target_modulate, 0.1)

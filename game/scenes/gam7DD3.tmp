@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bbt0d4o4dx17q"]
+[gd_scene load_steps=10 format=4 uid="uid://bbt0d4o4dx17q"]
 
 [ext_resource type="Script" path="res://game-specific/game_7/game_7.gd" id="1_o4o77"]
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="2_4x0j4"]
@@ -7,12 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://byo2t0pf4w0nw" path="res://game-specific/game_7/lock.tscn" id="5_f57dk"]
 [ext_resource type="PackedScene" uid="uid://bmvtfci32c6ea" path="res://game-specific/game_7/bg_layer.tscn" id="6_ab3ih"]
 [ext_resource type="PackedScene" uid="uid://cff1qkbumendj" path="res://game-specific/game_7/button.tscn" id="6_rinll"]
-[ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="7_w1xd3"]
 [ext_resource type="AudioStream" uid="uid://bc6ps0qchn1g8" path="res://assets/sfx/victory_jingle.ogg" id="7_wx1kk"]
-[ext_resource type="AudioStream" uid="uid://dimymaqdhj2uh" path="res://assets/sfx/fanfare.mp3" id="9_3c45a"]
 [ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="10_y0611"]
-[ext_resource type="PackedScene" uid="uid://bm8s5tu35rfnt" path="res://common/atoms/highlight/highlight.tscn" id="11_pg6bm"]
-[ext_resource type="PackedScene" uid="uid://cdo5hamcxy2ol" path="res://common/molecules/win_screen/win_screen.tscn" id="12_x5o2m"]
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -39,73 +35,43 @@ preset_bg_layer = ExtResource("6_ab3ih")
 
 [node name="Opacity" type="Node2D" parent="."]
 
-[node name="Game7" type="Node" parent="Opacity" node_paths=PackedStringArray("n_lock_layer", "n_button_layer", "n_background", "n_label_level", "n_win_screen")]
+[node name="Game7" type="Node" parent="Opacity" node_paths=PackedStringArray("n_lock_layer", "n_button_layer", "n_background")]
 script = ExtResource("1_o4o77")
 n_lock_layer = NodePath("../LockLayer")
 n_button_layer = NodePath("../ButtonLayer")
 n_background = NodePath("../../FancyBackground")
-n_label_level = NodePath("../../Score")
 preset_button = ExtResource("6_rinll")
 preset_lock = ExtResource("5_f57dk")
-n_win_screen = NodePath("../../WinScreen")
 
 [node name="SpawnedButtons" type="Node" parent="Opacity/Game7"]
 
 [node name="SpawnedLocks" type="Node" parent="Opacity/Game7"]
 
 [node name="VictorySound" type="AudioStreamPlayer" parent="Opacity/Game7"]
-process_mode = 3
 stream = ExtResource("7_wx1kk")
-volume_db = -14.0
-pitch_scale = 0.86
-
-[node name="LevelSound" type="AudioStreamPlayer" parent="Opacity/Game7"]
-stream = ExtResource("7_w1xd3")
-volume_db = -10.0
-pitch_scale = 0.6
-
-[node name="FanfareSound" type="AudioStreamPlayer" parent="Opacity/Game7"]
-process_mode = 3
-stream = ExtResource("9_3c45a")
-volume_db = -16.0
-pitch_scale = 0.92
+volume_db = -12.0
+pitch_scale = 0.8
 
 [node name="ButtonLayer" type="TileMapLayer" parent="Opacity"]
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
-tile_map_data = PackedByteArray("AABHABgAAAAEAAMAAAArABgAAAAEAAIAAAAhABMAAAAFAAMAAQAiABMAAAAGAAMAAAAjABMAAAAGAAEAAAAkABMAAAAFAAEAAQD/////AAADAAEAAAA=")
+tile_map_data = PackedByteArray("AABHABgAAAAEAAMAAAARAAgAAAAGAAEAAAASAAgAAAAFAAEAAQAQAAgAAAAGAAMAAAAPAAgAAAAFAAMAAQA=")
 tile_set = ExtResource("2_gje70")
 
 [node name="LockLayer" type="TileMapLayer" parent="Opacity"]
 texture_filter = 1
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AABHABgAAAAEAAMAAAD/////AAADAAEAAAAWAAwAAAAEAAIAAAAMAAYAAAABAAIAAAANAAYAAAADAAMAAAAMAAAAAAAAAAEAAAAMAAEAAAAAAAIAAAAMAAIAAAAAAAEAAAAMAAMAAAABAAAAAQAMAAQAAAAAAAEAAAAMAAUAAAAAAAEAAAAOAAYAAAACAAMAAAAPAAYAAAACAAMAAAAQAAYAAAADAAMAAAARAAYAAAACAAEAAAARAAcAAAAAAAEAAAARAAgAAAAAAAEAAAARAAkAAAAAAAIAAAARAAoAAAAAAAEAAAARAAsAAAAAAAEAAAA=")
+tile_map_data = PackedByteArray("AABHABgAAAAEAAMAAAAIAAYAAAABAAIAAAAJAAYAAAADAAMAAAAKAAYAAAACAAMAAAALAAYAAAACAAMAAAAMAAYAAAADAAMAAAAIAAAAAAAAAAEAAAAIAAEAAAAAAAIAAAAIAAIAAAAAAAEAAAAIAAMAAAABAAAAAQAIAAQAAAAAAAEAAAAIAAUAAAAAAAEAAAANAAYAAAACAAEAAAANAAcAAAAAAAEAAAANAAgAAAAAAAEAAAANAAkAAAAAAAIAAAANAAoAAAAAAAEAAAANAAsAAAAAAAEAAAA=")
 tile_set = ExtResource("2_gje70")
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 445.0
 offset_top = 8.0
-offset_right = -445.0
 offset_bottom = 42.0
 grow_horizontal = 2
-pivot_offset = Vector2(131, 17)
 theme = ExtResource("10_y0611")
 text = "Level 0"
 horizontal_alignment = 1
 uppercase = true
-
-[node name="Highlight" parent="Score" instance=ExtResource("11_pg6bm")]
-
-[node name="WinScreen" parent="." instance=ExtResource("12_x5o2m")]
-layout_mode = 1
-mouse_filter = 2
-disable_restart = true
-metadata/_edit_lock_ = true
-
-[node name="Label3" parent="WinScreen/TextureRect/VBoxContainer" index="4"]
-text = ""
-
-[editable path="WinScreen"]

@@ -1,6 +1,18 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://o5q1rvd0o2ox"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://o5q1rvd0o2ox"]
 
 [ext_resource type="Texture2D" uid="uid://svdem8a4qchw" path="res://assets/sprites/tilemaps/pipes.png" id="1_1ou3a"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_l7mei"]
+tile_data = PackedInt32Array(0, 196608, 1, 589840, 327680, 65539, 589841, 393216, 3, 589842, 393216, 1, 589843, 327680, 65537, 1638444, 262144, 2)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_mafls"]
+tile_data = PackedInt32Array(0, 196608, 1, 65545, 0, 1, 131081, 0, 2, 196617, 0, 1, 262153, 65536, 65536, 327689, 0, 1, 393225, 0, 1, 458761, 65536, 2, 458762, 196608, 3, 458763, 131072, 3, 458764, 131072, 3, 458765, 196608, 3, 458766, 131072, 1, 524302, 0, 1, 589838, 0, 1, 655374, 0, 2, 720910, 0, 1, 786446, 0, 1, 851991, 262144, 2)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_5hsv1"]
+tile_data = PackedInt32Array(0, 196608, 1, 1310754, 327680, 65539, 1310755, 393216, 3, 1310756, 393216, 1, 1310757, 327680, 65537, 1638444, 262144, 2)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_5tovo"]
+tile_data = PackedInt32Array(0, 196608, 1, 65549, 0, 1, 131085, 0, 2, 196621, 0, 1, 262157, 65536, 65536, 327693, 0, 1, 393229, 0, 1, 458765, 65536, 2, 458766, 196608, 3, 458767, 131072, 3, 458768, 131072, 3, 458769, 196608, 3, 458770, 131072, 1, 524306, 0, 1, 589842, 0, 1, 655378, 0, 2, 720914, 0, 1, 786450, 0, 1, 851991, 262144, 2)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ym1w"]
 texture = ExtResource("1_1ou3a")
@@ -120,3 +132,7 @@ custom_data_layer_3/type = 2
 custom_data_layer_4/name = "State"
 custom_data_layer_4/type = 2
 sources/0 = SubResource("TileSetAtlasSource_5ym1w")
+pattern_0 = SubResource("TileMapPattern_l7mei")
+pattern_1 = SubResource("TileMapPattern_mafls")
+pattern_2 = SubResource("TileMapPattern_5hsv1")
+pattern_3 = SubResource("TileMapPattern_5tovo")

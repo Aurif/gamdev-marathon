@@ -3,5 +3,6 @@
 [ext_resource type="Script" path="res://common/atoms/parallax/parallax.gd" id="1_xe1fq"]
 
 [node name="Parallax" type="Node"]
+process_mode = 3
 script = ExtResource("1_xe1fq")
 max_move = Vector2(30, 30)

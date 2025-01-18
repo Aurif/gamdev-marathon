@@ -1,8 +1,8 @@
 extends TextureRect
 class_name MolFailScreen
 
+@export var disable_restart: bool = false
 var is_restart_armed: bool = false
-var disable_restart: bool = false
 
 func show_screen(message: String):
 	get_tree().paused = true
