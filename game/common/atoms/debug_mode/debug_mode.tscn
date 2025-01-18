@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjvqk1d0ebx55"]
+
+[ext_resource type="Script" path="res://common/atoms/debug_mode/debug_mode.gd" id="1_13jbq"]
+
+[node name="DEBUG_MODE" type="Node2D"]
+script = ExtResource("1_13jbq")

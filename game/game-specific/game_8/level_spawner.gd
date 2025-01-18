@@ -72,3 +72,15 @@ func connect_sides(tile1: Vector2i, dir1: Vector2i, tile2: Vector2i, dir2: Vecto
 	blob_free_sides.erase([tile2, dir2])
 	nodes[tile1].register_neighbour(dir1, nodes[tile2], dir2)
 	nodes[tile2].register_neighbour(dir2, nodes[tile1], dir1)
+	
+	if QuarkDebug.DEBUG:
+		var color = QuarkDebug.random_color()
+		var marker_pos = [[tile1, dir1], [tile2, dir2]]
+		for m in range(len(marker_pos)):
+			var tile = nodes[marker_pos[m][0]] as G8Tile
+			var dir = marker_pos[m][1]
+			var marker = ColorRect.new()
+			marker.modulate = color
+			marker.size = Vector2(8, 8)
+			tile.add_child(marker)
+			marker.position = (tile.size-marker.size)/2+dir*(tile.size.x/2-4)
