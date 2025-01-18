@@ -20,6 +20,11 @@ func register_level(name: String, node: MolLevelManager_LevelLayer) -> void:
 ## Level spawning
 ##
 func next_level() -> void:
+	var tween = get_tree().create_tween().bind_node(self)
+	tween.tween_interval(0.2)
+	tween.tween_callback(next_level_immediate)
+	
+func next_level_immediate() -> void:
 	if current_level_i + 1 > len(levels)-1:
 		GameWon.emit()
 		return

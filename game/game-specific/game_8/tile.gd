@@ -29,7 +29,10 @@ func _ready() -> void:
 ## Visual variants
 ##
 func variant_goal() -> void:
-	self.self_modulate = Color("#42ff62")
+	$SpriteTilemap.set_cell(Vector2i(0, 0), 1, Vector2i(15, 3))
+	$SpriteTilemap.set_cell(Vector2i(1, 0), 1, Vector2i(17, 3))
+	$SpriteTilemap.set_cell(Vector2i(0, 1), 1, Vector2i(15, 5))
+	$SpriteTilemap.set_cell(Vector2i(1, 1), 1, Vector2i(17, 5))
 
 ##
 ## Player movement
