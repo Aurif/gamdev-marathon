@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://c02cy46k5dbx5"]
+[gd_scene load_steps=12 format=4 uid="uid://c02cy46k5dbx5"]
 
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="1_fy36l"]
 [ext_resource type="Script" path="res://game-specific/game_8/game_8.gd" id="4_1if3m"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://common/molecules/level_manager/level_manager.gd" id="5_r4145"]
 [ext_resource type="PackedScene" uid="uid://ckhwv877pjmnf" path="res://game-specific/game_8/tile.tscn" id="5_ve0qb"]
 [ext_resource type="TileSet" uid="uid://cnwd8p6gymoc0" path="res://game-specific/game_8/level_editor_tileset.tres" id="7_i1itg"]
+[ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="8_0fcl7"]
 [ext_resource type="Script" path="res://game-specific/game_8/level_spawner.gd" id="8_q2uyh"]
 [ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="11_f4nsl"]
 [ext_resource type="PackedScene" uid="uid://bm8s5tu35rfnt" path="res://common/atoms/highlight/highlight.tscn" id="12_v23mk"]
@@ -54,6 +55,11 @@ horizontal_alignment = 1
 uppercase = true
 
 [node name="Highlight" parent="LevelManager/LevelLabel" instance=ExtResource("12_v23mk")]
+
+[node name="SoundLevel" type="AudioStreamPlayer" parent="LevelManager/LevelLabel"]
+stream = ExtResource("8_0fcl7")
+volume_db = -10.0
+pitch_scale = 0.6
 
 [node name="SpawnHere" type="Control" parent="LevelManager"]
 layout_mode = 1

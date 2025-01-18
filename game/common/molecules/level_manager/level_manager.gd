@@ -47,3 +47,4 @@ func spawn_level() -> void:
 func update_label():
 	$LevelLabel.text = levels[current_level_i][0]
 	$LevelLabel/Highlight.highlight()
+	$LevelLabel/SoundLevel.play()

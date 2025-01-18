@@ -47,6 +47,7 @@ func _process(_delta: float) -> void:
 		
 	in_node = false
 	var tween = get_tree().create_tween().bind_node(self)
+	$SoundMove.play()
 	tween.tween_property(n_player, "position", self.size/2+Vector2(movement)*self.size, MOVE_SPEED).set_trans(Tween.TRANS_SINE)
 	next.move_to()
 

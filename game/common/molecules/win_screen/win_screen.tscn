@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdo5hamcxy2ol"]
+[gd_scene load_steps=8 format=3 uid="uid://cdo5hamcxy2ol"]
 
 [ext_resource type="PackedScene" uid="uid://djgstwib3m7n0" path="res://common/molecules/fail_screen/fail_screen.tscn" id="1_wdhnw"]
 [ext_resource type="Script" path="res://common/molecules/win_screen/win_script.gd" id="2_25vpm"]
+[ext_resource type="AudioStream" uid="uid://dimymaqdhj2uh" path="res://assets/sfx/fanfare.mp3" id="3_b480t"]
 
 [sub_resource type="Gradient" id="Gradient_q13y8"]
 offsets = PackedFloat32Array(0)
@@ -36,3 +37,9 @@ theme_type_variation = &"Label_Success"
 
 [node name="Label3" parent="TextureRect/VBoxContainer" index="4"]
 theme_type_variation = &"Label_Success"
+
+[node name="SoundFanfare" type="AudioStreamPlayer" parent="." index="3"]
+process_mode = 3
+stream = ExtResource("3_b480t")
+volume_db = -16.0
+pitch_scale = 0.92
