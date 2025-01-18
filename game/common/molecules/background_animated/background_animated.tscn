@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dllc5jfk53p86"]
+
+[ext_resource type="Texture2D" uid="uid://cflqyiusthw8w" path="res://assets/sprites/pattern/lines.png" id="1_by61x"]
+[ext_resource type="Script" path="res://common/molecules/background_animated/background_animated.gd" id="2_y4fae"]
+
+[node name="BackgroundAnimated" type="TextureRect"]
+z_index = -2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3496.0
+offset_bottom = 1968.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_by61x")
+stretch_mode = 1
+script = ExtResource("2_y4fae")
+dir = Vector2(1, 1)
+speed = 3.0

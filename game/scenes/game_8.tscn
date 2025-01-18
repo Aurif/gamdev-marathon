@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://c02cy46k5dbx5"]
+[gd_scene load_steps=15 format=4 uid="uid://c02cy46k5dbx5"]
 
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="1_fy36l"]
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_txbkq"]
+[ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="2_rhhph"]
 [ext_resource type="Script" path="res://game-specific/game_8/game_8.gd" id="4_1if3m"]
 [ext_resource type="Script" path="res://common/molecules/level_manager/level_layer.gd" id="5_4b358"]
 [ext_resource type="Script" path="res://common/molecules/level_manager/level_manager.gd" id="5_r4145"]
@@ -27,7 +28,12 @@ metadata/_edit_lock_ = true
 [node name="DEBUG_MODE" parent="." instance=ExtResource("1_txbkq")]
 visible = false
 
+[node name="BackgroundAnimated" parent="." instance=ExtResource("2_rhhph")]
+layout_mode = 0
+anchors_preset = 0
+
 [node name="Background" parent="." instance=ExtResource("1_fy36l")]
+modulate = Color(1, 1, 1, 0.560784)
 z_index = -2
 layout_mode = 1
 metadata/_edit_lock_ = true
