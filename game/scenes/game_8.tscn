@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://c02cy46k5dbx5"]
+[gd_scene load_steps=14 format=4 uid="uid://c02cy46k5dbx5"]
 
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="1_fy36l"]
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_txbkq"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="8_0fcl7"]
 [ext_resource type="Script" path="res://game-specific/game_8/level_spawner.gd" id="8_q2uyh"]
 [ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="11_f4nsl"]
+[ext_resource type="PackedScene" uid="uid://bhkj2clwx51i1" path="res://common/molecules/input_prompt/input_prompt_wasd.tscn" id="12_p0r2q"]
 [ext_resource type="PackedScene" uid="uid://bm8s5tu35rfnt" path="res://common/atoms/highlight/highlight.tscn" id="12_v23mk"]
 [ext_resource type="PackedScene" uid="uid://cdo5hamcxy2ol" path="res://common/molecules/win_screen/win_screen.tscn" id="13_706wi"]
 
@@ -76,7 +77,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Level1" type="Control" parent="LevelManager"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -93,6 +93,8 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAA
 tile_set = ExtResource("7_i1itg")
 script = ExtResource("8_q2uyh")
 preset_tile = ExtResource("5_ve0qb")
+
+[node name="InputPromptWASD" parent="LevelManager/Level1" instance=ExtResource("12_p0r2q")]
 
 [node name="Level2" type="Control" parent="LevelManager"]
 visible = false
@@ -190,6 +192,7 @@ script = ExtResource("8_q2uyh")
 preset_tile = ExtResource("5_ve0qb")
 
 [node name="Level7" type="Control" parent="LevelManager"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
