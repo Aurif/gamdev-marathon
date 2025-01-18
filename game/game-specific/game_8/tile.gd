@@ -1,4 +1,4 @@
-extends Node
+extends Control
 class_name G8Tile
 
 @export var in_node: bool = false
@@ -18,11 +18,22 @@ class NeighbourDefinition:
 	func move_to() -> void:
 		node.enter_player(target_dir)
 
+signal PlayerEntered
+
 func _ready() -> void:
 	if in_node:
 		n_player.visible = true
 		n_player.position = self.size/2
 
+##
+## Visual variants
+##
+func variant_goal() -> void:
+	self.self_modulate = Color("#42ff62")
+
+##
+## Player movement
+##
 func _process(_delta: float) -> void:
 	if not in_node:
 		return
@@ -48,6 +59,7 @@ func enter_player(source_dir: Vector2i) -> void:
 
 func _enter_player_callback() -> void:
 	in_node = true
+	PlayerEntered.emit()
 
 func register_neighbour(source_dir: Vector2i, node: G8Tile, target_dir: Vector2i) -> void:
 	assert(not neighbours.get(source_dir), "Tile had more than one neighbour registered for the same side")

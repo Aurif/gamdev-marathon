@@ -26,19 +26,7 @@ z_index = -2
 layout_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="Game8" type="Node" parent="."]
-script = ExtResource("4_1if3m")
-
-[node name="LevelManager" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_r4145")
-
-[node name="LevelLabel" type="Label" parent="LevelManager"]
+[node name="LevelLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -53,7 +41,19 @@ text = "Level 0"
 horizontal_alignment = 1
 uppercase = true
 
-[node name="Highlight" parent="LevelManager/LevelLabel" instance=ExtResource("12_v23mk")]
+[node name="Highlight" parent="LevelLabel" instance=ExtResource("12_v23mk")]
+
+[node name="Game8" type="Node" parent="."]
+script = ExtResource("4_1if3m")
+
+[node name="LevelManager" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_r4145")
 
 [node name="SpawnHere" type="Control" parent="LevelManager"]
 layout_mode = 1
@@ -66,7 +66,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Level1" type="Control" parent="LevelManager"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -79,7 +78,7 @@ script = ExtResource("5_4b358")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="LevelManager/Level1"]
 position = Vector2(0, -20)
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQD6/wAAAAABAAAAAAD8/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAKAAAAAAAAAAAAAQA=")
 tile_set = ExtResource("7_i1itg")
 script = ExtResource("8_q2uyh")
 preset_tile = ExtResource("5_ve0qb")
@@ -97,7 +96,25 @@ script = ExtResource("5_4b358")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="LevelManager/Level2"]
 position = Vector2(0, -20)
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAD6/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD6/wIAAAAAAAAAAAD6/wQAAAAAAAAAAAAEAP7/AAAAAAAAAAAEAPz/AAAAAAAAAAACAPz/AAAAAAAAAAD8/wQAAAAAAAAAAAD+/wQAAAABAAAAAAAAAPz/AAAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAKAAAAAAAAAAAAAQA=")
+tile_set = ExtResource("7_i1itg")
+script = ExtResource("8_q2uyh")
+preset_tile = ExtResource("5_ve0qb")
+
+[node name="Level3" type="Control" parent="LevelManager"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_4b358")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="LevelManager/Level3"]
+position = Vector2(0, -20)
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAKAAAAAAAAAAAAAQA=")
 tile_set = ExtResource("7_i1itg")
 script = ExtResource("8_q2uyh")
 preset_tile = ExtResource("5_ve0qb")
@@ -110,11 +127,5 @@ metadata/_edit_lock_ = true
 
 [node name="Label3" parent="WinScreen/TextureRect/VBoxContainer" index="4"]
 text = ""
-
-[connection signal="GameWon" from="LevelManager" to="WinScreen" method="show_screen" binds= ["Congratulations ^^"]]
-[connection signal="InitLevel" from="LevelManager/Level1" to="LevelManager/Level1/TileMapLayer" method="spawn"]
-[connection signal="LevelWon" from="LevelManager/Level1/TileMapLayer" to="LevelManager" method="next_level"]
-[connection signal="InitLevel" from="LevelManager/Level2" to="LevelManager/Level2/TileMapLayer" method="spawn"]
-[connection signal="LevelWon" from="LevelManager/Level2/TileMapLayer" to="LevelManager" method="next_level"]
 
 [editable path="WinScreen"]
