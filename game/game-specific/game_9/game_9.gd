@@ -23,10 +23,17 @@ func story() -> void:
 	var boar_running = G9StoryPoint.new()
 	var boar_climbing = G9StoryPoint.new()
 	var boar_before_fall = G9StoryPoint.new()
+	var lost_start = G9StoryPoint.new()
+	var lost_no_choice = G9StoryPoint.new()
+	var lost_last_breath = G9StoryPoint.new()
 	var ending_reasonable = G9Ending.new("Be reasonable", "You turn back, enter your car and drive home. The forest feels... wrong, especially this time of year. \nWho knows what might have happened to you?")
 	var ending_boar = G9Ending.new("The boar", "The end is painful, but at least it's quick.")
 	var ending_cliff = G9Ending.new("The cliff", "And then it stops.")
+	var ending_night = G9Ending.new("The night", "")
 	var cliff_ending_sequence = G9EndingSequence.new(ending_cliff)
+	var lost_getting_tired = G9EndingSequence.new(lost_no_choice)
+	var lost_wandering = G9EndingSequence.new(lost_getting_tired)
+	var lost_dying = G9EndingSequence.new(lost_last_breath)
 	
 	setup_story_point.call_deferred(
 		"You find yourself at the edge of an unfamiliar forest. Tall pines rise before you, their branches covered in snow.",
@@ -35,10 +42,10 @@ func story() -> void:
 	
 	before_forest \
 		.right("Enter the forest", "You push through the shrubbery until you notice a dirt path between the trees.", path_start) \
-		.ending_left("Turn back", ending_reasonable)
+		.ending_down("Turn back", ending_reasonable)
 		
 	path_start \
-		.left("Go left", "", null_node) \
+		.left("Go left", "You veer off to the left. Despite walking for what feels like ages, all you can see are the seemingly endless trees.", lost_start) \
 		.right("Go right", "You turn right and walk for a while. You stop when you spot a pair of glowing eyes in the distance. By your best guess, you are staring at a boar, and the boar is staring at you.", boar_encounter) \
 		.condition_right(func(): return not saw_boar) \
 		.up("Follow the path", "", null_node) \
@@ -65,6 +72,31 @@ func story() -> void:
 		.seq_left("Shout for help", ["You try shouting, but only a gurgling sound escapes your mouth.", "You try again, but again only gurgling can be heard.", "There is no use."]) \
 		.seq_up("Wait", ["You try to remain still, hopefully waiting for someone to come by and help you.", "You wait, but no one comes.", "You wait, but you know no one will come."]) \
 		.story(["You notice the blood.", "There is a lot of blood.", "It hurts.", "It hurts so much.", "IT HURTS SO MUCH!!!!!"])
+
+	lost_start \
+		.right("Go back", "You turn back and head to the path, finding your way without much trouble.", path_start) \
+		.left("Push further", "You continue heading straight, pushing deeper into the forest.", lost_wandering)
+		
+	lost_wandering \
+		.seq_right("Go back", ["You decide to turn back onto the path. Step after step, the forest stretches on. Are you sure this is the right way?", "You try to find you way back. The trees are all starting to look the same, and you are losing your sense of direction.", "Your attempts are futile, you are lost."]) \
+		.seq_left("Push further", ["You push further into the unknown, hoping to find that what you came here for.", "You keep going through the endless sea of trees, but you can't seem to get anywhere.", "But your stubborness takes over, and so you continue moving forward."]) \
+		.story(["It's getting dark.", "It's getting cold.", "You are getting tired."])
+	
+	lost_getting_tired \
+		.seq_right("Go back", []) \
+		.seq_left("Push further", []) \
+		.story(["You keep on walking, hoping to get somewhere.", "But your pace is getting slower.", "And it is getting harder to move.", "Until you can't walk no more."]) \
+		.down("Sit down", "You sit down under one of the trees, freezing from the snow underneath you.", lost_dying)
+	
+	lost_no_choice \
+		.down("Sit down", "You sit down under one of the trees, freezing from the snow underneath you.", lost_dying)
+	
+	lost_dying \
+		.seq_right("Rest", []) \
+		.story(["The cold claws relentlessly at your skin.", "You are exhausted.", "Your fingers become numb.", "You are lonely.", "You can't feel your face anymore.", "How you wish someone was with you right now.", "It's getting hard to breathe.", "You know what comes next.", "You look into the starry night one last time."])
+		
+	lost_last_breath \
+		.ending_right("And then you close your eyes.", ending_night)
 
 ## 
 ## Setup

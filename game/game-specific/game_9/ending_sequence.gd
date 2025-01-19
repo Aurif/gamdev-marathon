@@ -1,14 +1,14 @@
 extends G9StoryPoint
 class_name G9EndingSequence
 
-var _ending: G9Ending
+var _ending: G9StoryPoint
 var _story_sequence = [[], [], [], []]
 var _story_count = [0, 0, 0, 0]
 var _total_count = 0
 var _max_story_count = 0
 var _story = []
 
-func _init(ending: G9Ending) -> void:
+func _init(ending: G9StoryPoint) -> void:
 	_ending = ending
 	
 func story(story: Array[String]) -> G9EndingSequence:
@@ -23,9 +23,11 @@ func _set_choice_sequence(i: int, label: String, story: Array[String]) -> void:
 	_choices[i] = [label, func(): 
 		if _total_count >= _max_story_count:
 			var ind = _total_count-_max_story_count
-			print(_total_count, " ", _max_story_count, " ", ind, " ", len(story))
-			if ind >= len(_story):
+			
+			if _ending is G9Ending and ind >= len(_story):
 				return ["", _ending]
+			if _ending is not G9Ending and ind >= len(_story)-1:
+				return [_story[ind], _ending]
 			
 			_total_count += 1
 			return [_story[ind], self]
