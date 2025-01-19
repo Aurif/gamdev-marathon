@@ -7,10 +7,11 @@ extends Node
 @export var n_down: Control
 
 @onready var choice_nodes: Array[Control] = [n_left, n_right, n_up, n_down]
-var current_choices = []
+var current_choices = [[], [], [], []]
 
 ## Story conditionals
 var saw_boar = false
+var animating = false
 
 ##
 ## Story
@@ -50,7 +51,7 @@ func story() -> void:
 	var ending_sword = G9Ending.new("The motives", "You scream for you don't know.")
 	
 	
-	setup_story_point.call_deferred(
+	instant_setup_story_point.call_deferred(
 		"You find yourself at the edge of an unfamiliar forest. Tall pines rise before you, their branches covered in snow.",
 		before_forest
 	)
@@ -167,7 +168,7 @@ func _ready() -> void:
 ##
 ## Transitions
 ##
-func setup_story_point(story: String, story_point: G9StoryPoint) -> void:
+func instant_setup_story_point(story: String, story_point: G9StoryPoint) -> void:
 	if story_point is G9Ending:
 		story_point.start_ending()
 		current_choices = [[], [], [], []]
@@ -179,11 +180,48 @@ func setup_story_point(story: String, story_point: G9StoryPoint) -> void:
 	for i in range(4):
 		if len(current_choices[i]) == 0:
 			choice_nodes[i].visible = false
+			choice_nodes[i].modulate = Color.TRANSPARENT
 			continue
 		
 		choice_nodes[i].visible = true
 		choice_nodes[i].get_node("Label").text = current_choices[i][0]
+		
+func setup_story_point(story: String, story_point: G9StoryPoint, previous_choice: int = -1, SPEED: float = 0.8) -> void:
+	if story_point is G9Ending:
+		story_point.start_ending()
+		current_choices = [[], [], [], []]
+		return
+		
+	animating = true
+	for i in range(4):
+		if len(current_choices[i]) == 0:
+			continue 
+		var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_SINE)
+		if previous_choice == i:
+			tween.tween_interval(SPEED*0.8)
+			tween.tween_property(choice_nodes[i], "modulate", Color.TRANSPARENT, SPEED/2)
+		else:
+			tween.tween_property(choice_nodes[i], "modulate", Color.TRANSPARENT, SPEED)
+		tween.tween_property(choice_nodes[i], "visible", false, 0)
+	
+	var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(n_text, "modulate", Color.TRANSPARENT, SPEED)
+	tween.tween_interval(SPEED*0.8)
+	tween.tween_property(n_text.get_node("Label"), "text", story, 0)
+	tween.tween_property(n_text, "modulate", Color.WHITE, SPEED)
+	tween.set_parallel(true)
+	
+	current_choices = story_point.get_choices()
+	for i in range(4):
+		if len(current_choices[i]) == 0:
+			continue
+		tween.tween_property(choice_nodes[i], "modulate", Color.WHITE, SPEED)
+		tween.tween_property(choice_nodes[i], "visible", true, 0)
+		tween.tween_property(choice_nodes[i].get_node("Label"), "text", current_choices[i][0], 0)
+	tween.chain().tween_callback(func(): animating = false)
 
 func _on_choice_picked(choice: int) -> void:
+	if animating:
+		return
 	var choice_result = current_choices[choice][1].call()
-	setup_story_point(choice_result[0], choice_result[1])
+	setup_story_point(choice_result[0], choice_result[1], choice)
