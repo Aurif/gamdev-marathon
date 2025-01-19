@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ce8apnynn8qpi"]
+[gd_scene load_steps=9 format=3 uid="uid://ce8apnynn8qpi"]
 
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_vbf3n"]
 [ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="2_r2ln1"]
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="3_c7d2q"]
+[ext_resource type="Texture2D" uid="uid://efvpvq38s1ex" path="res://assets/sprites/pattern/triangles.png" id="3_q2fnb"]
 [ext_resource type="Script" path="res://game-specific/game_9/game_9.gd" id="4_b75t0"]
 [ext_resource type="PackedScene" uid="uid://bg57vt571tkxo" path="res://common/atoms/clickable/clickable.tscn" id="6_5vx5d"]
 [ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="6_ddalh"]
@@ -23,10 +24,14 @@ visible = false
 
 [node name="BackgroundAnimated" parent="." instance=ExtResource("2_r2ln1")]
 layout_mode = 1
-offset_right = 3472.0
-offset_bottom = 1952.0
+offset_right = 1144.0
+offset_bottom = 660.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_q2fnb")
+dir = Vector2(0, 0)
 
 [node name="Background" parent="." instance=ExtResource("3_c7d2q")]
+visible = false
 modulate = Color(1, 1, 1, 0.560784)
 z_index = -2
 layout_mode = 1
@@ -47,9 +52,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -140.0
+offset_left = -155.0
 offset_top = -200.0
-offset_right = 160.0
+offset_right = 175.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -68,6 +73,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 15.0
+offset_right = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_ddalh")
@@ -78,7 +85,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ColorRect2" type="ColorRect" parent="Foreground"]
-self_modulate = Color(1, 1, 1, 0.156863)
+self_modulate = Color(1, 1, 1, 0.74902)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -86,6 +93,7 @@ offset_left = -294.0
 offset_right = -40.0
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+color = Color(0.1411, 0.1122, 0.17, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Foreground/ColorRect2"]
 layout_mode = 1
@@ -115,7 +123,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ColorRect3" type="ColorRect" parent="Foreground"]
-self_modulate = Color(1, 1, 1, 0.156863)
+self_modulate = Color(1, 1, 1, 0.74902)
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -126,6 +134,7 @@ offset_right = 294.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+color = Color(0.1411, 0.1122, 0.17, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Foreground/ColorRect3"]
 layout_mode = 1
@@ -155,18 +164,15 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ColorRect4" type="ColorRect" parent="Foreground"]
-self_modulate = Color(1, 1, 1, 0.156863)
+self_modulate = Color(1, 1, 1, 0.74902)
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -300.0
 offset_top = -124.0
-offset_bottom = -434.0
-grow_horizontal = 0
-grow_vertical = 2
+offset_bottom = -34.0
+grow_horizontal = 2
 mouse_default_cursor_shape = 2
+color = Color(0.1411, 0.1122, 0.17, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Foreground/ColorRect4"]
 layout_mode = 1
@@ -196,18 +202,18 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ColorRect5" type="ColorRect" parent="Foreground"]
-self_modulate = Color(1, 1, 1, 0.156863)
+self_modulate = Color(1, 1, 1, 0.74902)
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = 434.0
+offset_top = 34.0
 offset_bottom = 124.0
-grow_horizontal = 0
-grow_vertical = 2
+grow_horizontal = 2
+grow_vertical = 0
 mouse_default_cursor_shape = 2
+color = Color(0.1411, 0.1122, 0.17, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Foreground/ColorRect5"]
 layout_mode = 1
