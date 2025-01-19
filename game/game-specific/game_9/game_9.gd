@@ -38,7 +38,16 @@ func story() -> void:
 	var path_crossroads = G9StoryPoint.new()
 	var mushroom_clearing = G9StoryPoint.new()
 	var mushroom_look = G9StoryPoint.new()
+	var sword_sign = G9StoryPoint.new()
+	var sword_closer = G9StoryPoint.new()
+	var sword_decision = G9StoryPoint.new()
+	var sword_question = G9StoryPoint.new()
+	var sword_second_question = G9StoryPoint.new()
+	var poster = G9StoryPoint.new()
+	var poster_second = G9StoryPoint.new()
+	var sword_confusion = G9EndingSequence.new(sword_question)
 	var ending_mushroom = G9Ending.new("The mushrooms", "You pick up some mushrooms, carefully selecting only those that look edible. You go back to your car and drive home, happy that you completed your goal so quickly. This is what you came here for, right?\nRight?")
+	var ending_sword = G9Ending.new("The motives", "You scream for you don't know.")
 	
 	
 	setup_story_point.call_deferred(
@@ -106,8 +115,8 @@ func story() -> void:
 	
 	path_crossroads \
 		.left("Go left", "You turn left and follow the path. After a short walk, the path ends and you find yourself in a middle of a small clearing.", mushroom_clearing) \
-		.right("Go right", "", null_node) \
-		.up("Go forward", "", null_node)
+		.right("Go right", "You turn right and follow the path. It doesn't take long until it ends. There seem to be some kind of poster plastered across one of the trees, but there isn't anything more than that.", poster) \
+		.up("Go forward", "You keep heading forward, until a warning sign blocks your way.", sword_sign)
 	
 	mushroom_clearing \
 		.right("Go back", "You walk back the same way you came, until you are at the crossroads again.", path_crossroads) \
@@ -119,6 +128,34 @@ func story() -> void:
 		.left("Push further", "Despite the path's abrupt end, you continue heading straight, pushing deeper into the forest.", lost_wandering) \
 		.ending_down("Collect mushrooms", ending_mushroom)
 	
+	sword_sign \
+		.up("Go around it", "You go around the sign, and continue heading in the same direction until a bizarre sight appears before you - a sword, half-buried in a massive rock.", sword_closer) \
+		.down("Go back", "You walk back the same way you came, until you are at the crossroads again.", path_crossroads)
+		
+	sword_closer \
+		.right("Come closer", "This is what you came here for. This is how you are going to save your life.", sword_decision)
+		
+	sword_decision \
+		.left("Go back", "You try going back, but after walking for a while you somehow end up back near the sword.", sword_decision) \
+		.right("Pick up the sword", "You try reaching for the sword, but as your hand touches the handle it turns into a mere branch, just like the many laying around.", sword_confusion)
+		
+	sword_confusion \
+		.seq_right("Look around", ["You frantically start looking around you, hoping the sword is still here somewhere."]) \
+		.seq_left("Go forward", ["You keep moving forward, not letting this unusual occurence get to your head."]) \
+		.story(["Wait.", "How did you get here?", "What are you doing alone in the forest?", "Why are you here?"])
+		
+	sword_question \
+		.right("I don't know", "WHY ARE YOU HERE?!", sword_second_question)
+		
+	sword_second_question \
+		.ending_right("Scream", ending_sword)
+		
+	poster \
+		.right("Look closer", "Turns out it wasn't a poster, just a piece of paper in a protective plastic. All it says is \"DO NOT EAT THE MUSHROOMS\".", poster_second) \
+		.left("Go back", "You walk back the same way you came, until you are at the crossroads again.", path_crossroads)
+		
+	poster_second \
+		.left("Go back", "You walk back the same way you came, until you are at the crossroads again.", path_crossroads)
 ## 
 ## Setup
 ##
