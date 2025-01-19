@@ -35,6 +35,12 @@ func story() -> void:
 	var lost_wandering = G9EndingSequence.new(lost_getting_tired)
 	var lost_dying = G9EndingSequence.new(lost_last_breath)
 	
+	var path_crossroads = G9StoryPoint.new()
+	var mushroom_clearing = G9StoryPoint.new()
+	var mushroom_look = G9StoryPoint.new()
+	var ending_mushroom = G9Ending.new("The mushrooms", "You pick up some mushrooms, carefully selecting only those that look edible. You go back to your car and drive home, happy that you completed your goal so quickly. This is what you came here for, right?\nRight?")
+	
+	
 	setup_story_point.call_deferred(
 		"You find yourself at the edge of an unfamiliar forest. Tall pines rise before you, their branches covered in snow.",
 		before_forest
@@ -48,7 +54,7 @@ func story() -> void:
 		.left("Go left", "You veer off to the left. Despite walking for what feels like ages, all you can see are the seemingly endless trees.", lost_start) \
 		.right("Go right", "You turn right and walk for a while. You stop when you spot a pair of glowing eyes in the distance. By your best guess, you are staring at a boar, and the boar is staring at you.", boar_encounter) \
 		.condition_right(func(): return not saw_boar) \
-		.up("Follow the path", "", null_node) \
+		.up("Follow the path", "You follow the path, enjoying the serene calmness of strolling alone through the forest in the middle of the winter. You continue like that, lost in your thoughts, until you are at the crossroads with another path ahead.", path_crossroads) \
 		.ending_down("Turn back", ending_reasonable)
 		
 	boar_encounter \
@@ -97,7 +103,22 @@ func story() -> void:
 		
 	lost_last_breath \
 		.ending_right("And then you close your eyes.", ending_night)
-
+	
+	path_crossroads \
+		.left("Go left", "You turn left and follow the path. After a short walk, the path ends and you find yourself in a middle of a small clearing.", mushroom_clearing) \
+		.right("Go right", "", null_node) \
+		.up("Go forward", "", null_node)
+	
+	mushroom_clearing \
+		.right("Go back", "You walk back the same way you came, until you are at the crossroads again.", path_crossroads) \
+		.left("Push further", "Despite the path's abrupt end, you continue heading straight, pushing deeper into the forest.", lost_wandering) \
+		.down("Look around", "You look around you, but all you can see are some mushrooms peeking through the snow.", mushroom_look)
+	
+	mushroom_look \
+		.right("Go back", "You walk back the same way you came, until you are at the crossroads again.", path_crossroads) \
+		.left("Push further", "Despite the path's abrupt end, you continue heading straight, pushing deeper into the forest.", lost_wandering) \
+		.ending_down("Collect mushrooms", ending_mushroom)
+	
 ## 
 ## Setup
 ##
