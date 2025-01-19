@@ -2,7 +2,7 @@ extends Node
 
 @export var show_on_hover: Node
 @export var resize_on_click: bool = true
-@export var click_sound: bool = false
+@export var click_sound: bool = true
 
 signal onClick(Node)
 
@@ -23,6 +23,7 @@ func __on_mouse_click():
 	if click_sound:
 		$SoundClick.play()
 	if resize_on_click:
+		get_parent().pivot_offset = get_parent().size/2
 		var tween = get_tree().create_tween().bind_node(self)
 		tween.tween_property(get_parent(), "scale", Vector2(0.8, 0.8), 0.1).set_trans(Tween.TRANS_SINE)
 		tween.tween_property(get_parent(), "scale", Vector2(1, 1), 0.1).set_trans(Tween.TRANS_SINE)

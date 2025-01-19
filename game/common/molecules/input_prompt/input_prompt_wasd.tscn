@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhkj2clwx51i1"]
+[gd_scene load_steps=5 format=3 uid="uid://bhkj2clwx51i1"]
 
 [ext_resource type="Texture2D" uid="uid://0rpaqwlkc00b" path="res://assets/sprites/input_hints/W.png" id="1_ohjtm"]
 [ext_resource type="Texture2D" uid="uid://cqbgsxid82fqv" path="res://assets/sprites/input_hints/S.png" id="2_0lsvj"]
 [ext_resource type="Texture2D" uid="uid://6opxa3yjsqmv" path="res://assets/sprites/input_hints/A.png" id="3_wlua5"]
+[ext_resource type="Texture2D" uid="uid://ltbhimh2vufb" path="res://assets/sprites/input_hints/D.png" id="4_ss1xm"]
 
 [node name="InputPromptWASD" type="Node2D"]
 position = Vector2(-203, -85)
@@ -29,4 +30,4 @@ texture = ExtResource("3_wlua5")
 texture_filter = 1
 position = Vector2(30, 16)
 scale = Vector2(2, 2)
-texture = ExtResource("3_wlua5")
+texture = ExtResource("4_ss1xm")

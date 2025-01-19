@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmma7svai4cnr"]
+
+[ext_resource type="Script" path="res://common/atoms/anchor/anchor.gd" id="1_3o3li"]
+
+[node name="Anchor" type="Node"]
+script = ExtResource("1_3o3li")
