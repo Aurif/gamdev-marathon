@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dam4f0xcffr7m"]
+
+[ext_resource type="Script" path="res://common/atoms/sprite_tilemap/sprite_tilemap.gd" id="1_yasfa"]
+
+[node name="SpriteTilemap" type="TileMapLayer"]
+script = ExtResource("1_yasfa")

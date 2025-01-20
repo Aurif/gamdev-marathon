@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://r4lq3xoijjoh"]
+
+[ext_resource type="Script" path="res://common/atoms/sprite_random/sprite_random.gd" id="1_dsvl8"]
+
+[node name="SpriteRandom" type="Sprite2D" node_paths=PackedStringArray("update_polygon")]
+modulate = Color(0.98, 0.910583, 0.735, 1)
+script = ExtResource("1_dsvl8")
+folder_name = "generic_items"
+update_polygon = NodePath("")
+normalize_size = Vector2(50, 50)

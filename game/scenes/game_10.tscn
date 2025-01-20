@@ -1,0 +1,121 @@
+[gd_scene load_steps=15 format=3 uid="uid://c5e325mo0pekf"]
+
+[ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_7glho"]
+[ext_resource type="Script" path="res://game-specific/game_10/game_10.gd" id="1_vx08k"]
+[ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="2_771s3"]
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="3_x1l06"]
+[ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="4_0gcjv"]
+[ext_resource type="PackedScene" uid="uid://bm8s5tu35rfnt" path="res://common/atoms/highlight/highlight.tscn" id="5_vbdn6"]
+[ext_resource type="PackedScene" uid="uid://b24r5qgmcj3o" path="res://common/molecules/timer/timer.tscn" id="6_f075t"]
+[ext_resource type="PackedScene" uid="uid://bde3sffylsasq" path="res://game-specific/game_10/item.tscn" id="7_yxl1o"]
+[ext_resource type="PackedScene" uid="uid://cdo5hamcxy2ol" path="res://common/molecules/win_screen/win_screen.tscn" id="9_1s2g5"]
+[ext_resource type="Script" path="res://common/atoms/cursor/cursor.gd" id="9_4yu0k"]
+[ext_resource type="PackedScene" uid="uid://clnm2qhttix5m" path="res://common/atoms/move_to_cursor/move_to_cursor.tscn" id="9_y7lcj"]
+[ext_resource type="PackedScene" uid="uid://chynyknwob2sv" path="res://common/atoms/sprite_circle/sprite_circle.tscn" id="10_eteeb"]
+[ext_resource type="AudioStream" uid="uid://bao14ihsqfb34" path="res://assets/sfx/click.ogg" id="12_0nmas"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ifw24"]
+radius = 16.0
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="Wind" type="Node" parent="."]
+
+[node name="Game10" type="Node" parent="." node_paths=PackedStringArray("n_score_label", "n_timer", "n_instructions", "n_win_screen")]
+script = ExtResource("1_vx08k")
+n_score_label = NodePath("../Score")
+n_timer = NodePath("../Timer")
+n_instructions = NodePath("../Instructions")
+n_win_screen = NodePath("../WinScreen")
+preset_item = ExtResource("7_yxl1o")
+
+[node name="SoundBreak" type="AudioStreamPlayer" parent="Game10"]
+stream = ExtResource("12_0nmas")
+volume_db = -3.0
+pitch_scale = 0.2
+
+[node name="DEBUG_MODE" parent="." instance=ExtResource("1_7glho")]
+visible = false
+
+[node name="BackgroundAnimated" parent="." instance=ExtResource("2_771s3")]
+layout_mode = 1
+offset_right = 3472.0
+offset_bottom = 1952.0
+
+[node name="Background" parent="." instance=ExtResource("3_x1l06")]
+modulate = Color(1, 1, 1, 0.560784)
+z_index = -2
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Timer" parent="." instance=ExtResource("6_f075t")]
+layout_mode = 1
+offset_top = 46.0
+offset_bottom = 51.0
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 8.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme = ExtResource("4_0gcjv")
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="Highlight" parent="Score" instance=ExtResource("5_vbdn6")]
+
+[node name="Instructions" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -17.0
+offset_right = 46.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0gcjv")
+text = "Destroy falling objects by clicking on them
+You have 60s to reach your score
+Press <left click> to start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinScreen" parent="." instance=ExtResource("9_1s2g5")]
+layout_mode = 1
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Cursor" type="Node2D" parent="."]
+position = Vector2(648, 340)
+script = ExtResource("9_4yu0k")
+
+[node name="Area2D" type="Area2D" parent="Cursor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/Area2D"]
+shape = SubResource("CircleShape2D_ifw24")
+
+[node name="MoveToCursor" parent="Cursor" instance=ExtResource("9_y7lcj")]
+
+[node name="SpriteCircle" parent="Cursor" instance=ExtResource("10_eteeb")]
+modulate = Color(0.98, 0.93002, 0.8036, 1)
+z_index = 2
+radius = 6
+
+[node name="SoundClick" type="AudioStreamPlayer" parent="Cursor"]
+stream = ExtResource("12_0nmas")
+
+[connection signal="ClickedArea" from="Cursor" to="Game10" method="item_click"]
