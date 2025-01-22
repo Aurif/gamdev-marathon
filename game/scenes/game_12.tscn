@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://quc4wd1fqrxj"]
+
+[ext_resource type="AudioStream" uid="uid://bao14ihsqfb34" path="res://assets/sfx/click.ogg" id="206_76vg3"]
+[ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="207_i2hsn"]
+[ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="208_pktwh"]
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="210_paied"]
+[ext_resource type="PackedScene" uid="uid://cdo5hamcxy2ol" path="res://common/molecules/win_screen/win_screen.tscn" id="212_xvmwu"]
+[ext_resource type="Script" path="res://common/atoms/cursor/cursor.gd" id="213_t7e1t"]
+[ext_resource type="PackedScene" uid="uid://clnm2qhttix5m" path="res://common/atoms/move_to_cursor/move_to_cursor.tscn" id="214_mcclx"]
+[ext_resource type="PackedScene" uid="uid://chynyknwob2sv" path="res://common/atoms/sprite_circle/sprite_circle.tscn" id="215_2cv7u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ifw24"]
+radius = 16.0
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="DEBUG_MODE" parent="." instance=ExtResource("207_i2hsn")]
+visible = false
+
+[node name="BackgroundAnimated" parent="." instance=ExtResource("208_pktwh")]
+z_index = -3
+layout_mode = 1
+offset_right = 3472.0
+offset_bottom = 1952.0
+
+[node name="Background" parent="." instance=ExtResource("210_paied")]
+modulate = Color(1, 1, 1, 0.560784)
+z_index = -2
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="WinScreen" parent="." instance=ExtResource("212_xvmwu")]
+layout_mode = 1
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Cursor" type="Node2D" parent="."]
+position = Vector2(648, 340)
+script = ExtResource("213_t7e1t")
+
+[node name="Area2D" type="Area2D" parent="Cursor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/Area2D"]
+shape = SubResource("CircleShape2D_ifw24")
+
+[node name="MoveToCursor" parent="Cursor" instance=ExtResource("214_mcclx")]
+
+[node name="SpriteCircle" parent="Cursor" instance=ExtResource("215_2cv7u")]
+modulate = Color(0.98, 0.93002, 0.8036, 1)
+z_index = 2
+radius = 6
+
+[node name="SoundClick" type="AudioStreamPlayer" parent="Cursor"]
+stream = ExtResource("206_76vg3")

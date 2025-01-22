@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpr75opokbxkc"]
+
+[ext_resource type="PackedScene" uid="uid://cq2kq6r03ofa8" path="res://common/molecules/button_octo/button_octo.tscn" id="1_h010a"]
+[ext_resource type="Texture2D" uid="uid://bnkutnqvxfyar" path="res://assets/sprites/icons/cards_take.png" id="2_2t10k"]
+
+[node name="ButtonOcto" instance=ExtResource("1_h010a")]
+
+[node name="Clickable" parent="." index="0"]
+click_sound = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="4"]
+modulate = Color(0.98, 0.899477, 0.6958, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_2t10k")
