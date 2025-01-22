@@ -1,16 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://quc4wd1fqrxj"]
+[gd_scene load_steps=12 format=3 uid="uid://quc4wd1fqrxj"]
 
-[ext_resource type="AudioStream" uid="uid://bao14ihsqfb34" path="res://assets/sfx/click.ogg" id="206_76vg3"]
+[ext_resource type="Texture2D" uid="uid://ddahfvpx7gxd7" path="res://assets/sprites/9patch/3x_pixel_metal_plate.png" id="5_im5db"]
+[ext_resource type="FontFile" uid="uid://ds51dbfxa1w64" path="res://assets/fonts/Kenney Mini.ttf" id="6_erxtk"]
+[ext_resource type="PackedScene" uid="uid://dasqq41qfxink" path="res://game-specific/game_12/num_key.tscn" id="6_hcrwn"]
+[ext_resource type="Texture2D" uid="uid://bx36c1nsffvf7" path="res://assets/sprites/9patch/3x_display.png" id="7_7uv4q"]
+[ext_resource type="FontFile" uid="uid://c1s63rm1qdjl8" path="res://assets/fonts/DSEG7ClassicMini-Regular.ttf" id="8_1ti0x"]
+[ext_resource type="Texture2D" uid="uid://cnn26qlgxddgw" path="res://assets/sprites/sticky_note.png" id="10_sn33f"]
+[ext_resource type="FontFile" uid="uid://8kk0utca26jh" path="res://assets/fonts/Tiny5-Regular.ttf" id="11_wv1ee"]
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="207_i2hsn"]
 [ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="208_pktwh"]
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="210_paied"]
 [ext_resource type="PackedScene" uid="uid://cdo5hamcxy2ol" path="res://common/molecules/win_screen/win_screen.tscn" id="212_xvmwu"]
-[ext_resource type="Script" path="res://common/atoms/cursor/cursor.gd" id="213_t7e1t"]
-[ext_resource type="PackedScene" uid="uid://clnm2qhttix5m" path="res://common/atoms/move_to_cursor/move_to_cursor.tscn" id="214_mcclx"]
-[ext_resource type="PackedScene" uid="uid://chynyknwob2sv" path="res://common/atoms/sprite_circle/sprite_circle.tscn" id="215_2cv7u"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ifw24"]
-radius = 16.0
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -42,21 +42,180 @@ layout_mode = 1
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Cursor" type="Node2D" parent="."]
-position = Vector2(648, 340)
-script = ExtResource("213_t7e1t")
+[node name="Panel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -240.0
+offset_right = 150.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Area2D" type="Area2D" parent="Cursor"]
+[node name="NinePatchRect" type="NinePatchRect" parent="Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_im5db")
+region_rect = Rect2(0, 0, 96, 96)
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/Area2D"]
-shape = SubResource("CircleShape2D_ifw24")
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 15.0
+offset_right = -21.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
 
-[node name="MoveToCursor" parent="Cursor" instance=ExtResource("214_mcclx")]
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0.317647, 0.372549, 0.419608, 1)
+theme_override_fonts/font = ExtResource("6_erxtk")
+text = "APG001-XS5"
+horizontal_alignment = 1
 
-[node name="SpriteCircle" parent="Cursor" instance=ExtResource("215_2cv7u")]
-modulate = Color(0.98, 0.93002, 0.8036, 1)
-z_index = 2
-radius = 6
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
 
-[node name="SoundClick" type="AudioStreamPlayer" parent="Cursor"]
-stream = ExtResource("206_76vg3")
+[node name="NinePatchRect" type="NinePatchRect" parent="Panel/VBoxContainer/VBoxContainer2"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+texture = ExtResource("7_7uv4q")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.388235, 0.458824, 0.521569, 1)
+theme_override_fonts/font = ExtResource("8_1ti0x")
+theme_override_font_sizes/font_size = 48
+text = "888888"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/VBoxContainer2/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_1ti0x")
+theme_override_font_sizes/font_size = 48
+text = "123458"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="NumKey" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_hcrwn")]
+layout_mode = 2
+
+[node name="NumKey2" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_hcrwn")]
+layout_mode = 2
+
+[node name="NumKey3" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("6_hcrwn")]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="NumKey" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("6_hcrwn")]
+layout_mode = 2
+
+[node name="NumKey2" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("6_hcrwn")]
+layout_mode = 2
+
+[node name="NumKey3" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("6_hcrwn")]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="NumKey" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("6_hcrwn")]
+layout_mode = 2
+
+[node name="NumKey2" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("6_hcrwn")]
+layout_mode = 2
+
+[node name="NumKey3" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("6_hcrwn")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="NumKey" parent="Panel/VBoxContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("6_hcrwn")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="StickyNoteAnchor" type="Control" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel/StickyNoteAnchor"]
+texture_filter = 1
+position = Vector2(110, 95)
+scale = Vector2(3, 3)
+texture = ExtResource("10_sn33f")
+
+[node name="Label" type="Label" parent="Panel/StickyNoteAnchor"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 56.0
+offset_top = 50.0
+offset_right = 140.0
+offset_bottom = 109.0
+theme_override_colors/font_color = Color(0.294118, 0.137255, 0.00784314, 1)
+theme_override_constants/line_spacing = -2
+theme_override_fonts/font = ExtResource("11_wv1ee")
+text = "The pin is
+123456"
+horizontal_alignment = 1
+vertical_alignment = 1

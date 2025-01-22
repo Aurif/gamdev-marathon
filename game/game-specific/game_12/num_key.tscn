@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dasqq41qfxink"]
+
+[ext_resource type="Texture2D" uid="uid://lbdc6j8ew0o4" path="res://assets/sprites/9patch/button_underside.png" id="1_litpu"]
+[ext_resource type="Texture2D" uid="uid://brwtsbl750hbo" path="res://assets/sprites/9patch/button_hex.png" id="2_8whls"]
+[ext_resource type="FontFile" uid="uid://8kk0utca26jh" path="res://assets/fonts/Tiny5-Regular.ttf" id="3_fgeah"]
+
+[node name="NumKey" type="Control"]
+custom_minimum_size = Vector2(76, 76)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Underside" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(38, 38)
+scale = Vector2(2, 2)
+texture = ExtResource("1_litpu")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(38, 38)
+scale = Vector2(2, 2)
+texture = ExtResource("2_8whls")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.317647, 0.372549, 0.419608, 1)
+theme_override_fonts/font = ExtResource("3_fgeah")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
