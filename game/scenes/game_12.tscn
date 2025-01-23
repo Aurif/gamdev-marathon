@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://quc4wd1fqrxj"]
+[gd_scene load_steps=15 format=3 uid="uid://quc4wd1fqrxj"]
 
+[ext_resource type="Texture2D" uid="uid://cqoomrrd1mk8v" path="res://assets/sprites/pattern/stones.png" id="3_kv2vl"]
 [ext_resource type="Script" path="res://game-specific/game_12/game_12.gd" id="5_hsrjk"]
 [ext_resource type="Texture2D" uid="uid://ddahfvpx7gxd7" path="res://assets/sprites/9patch/3x_pixel_metal_plate.png" id="5_im5db"]
 [ext_resource type="FontFile" uid="uid://ds51dbfxa1w64" path="res://assets/fonts/Kenney Mini.ttf" id="6_erxtk"]
 [ext_resource type="PackedScene" uid="uid://dasqq41qfxink" path="res://game-specific/game_12/num_key.tscn" id="6_hcrwn"]
+[ext_resource type="AudioStream" uid="uid://bc6ps0qchn1g8" path="res://assets/sfx/victory_jingle.ogg" id="6_ww8oa"]
 [ext_resource type="Texture2D" uid="uid://bx36c1nsffvf7" path="res://assets/sprites/9patch/3x_display.png" id="7_7uv4q"]
 [ext_resource type="FontFile" uid="uid://c1s63rm1qdjl8" path="res://assets/fonts/DSEG7ClassicMini-Regular.ttf" id="8_1ti0x"]
 [ext_resource type="Texture2D" uid="uid://cnn26qlgxddgw" path="res://assets/sprites/sticky_note.png" id="10_sn33f"]
@@ -31,6 +33,8 @@ z_index = -3
 layout_mode = 1
 offset_right = 3472.0
 offset_bottom = 1952.0
+texture = ExtResource("3_kv2vl")
+dir = Vector2(0, 0)
 
 [node name="Background" parent="." instance=ExtResource("210_paied")]
 modulate = Color(1, 1, 1, 0.560784)
@@ -45,6 +49,10 @@ n_display = NodePath("../Panel/VBoxContainer/VBoxContainer2/NinePatchRect/Label2
 n_sticky_note = NodePath("../Panel/StickyNoteAnchor/Label")
 n_overlay = NodePath("../Overlay")
 n_win_screen = NodePath("../WinScreen")
+
+[node name="SoundVictory" type="AudioStreamPlayer2D" parent="Game12"]
+stream = ExtResource("6_ww8oa")
+volume_db = -12.0
 
 [node name="Panel" type="Control" parent="."]
 layout_mode = 1
@@ -92,7 +100,7 @@ alignment = 2
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-theme_override_colors/font_color = Color(0.317647, 0.372549, 0.419608, 1)
+theme_override_colors/font_color = Color(0.329412, 0.298039, 0.380392, 1)
 theme_override_fonts/font = ExtResource("6_erxtk")
 text = "APG001-XS5"
 horizontal_alignment = 1
@@ -119,7 +127,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.388235, 0.458824, 0.521569, 1)
+theme_override_colors/font_color = Color(0.466667, 0.541176, 0.137255, 1)
 theme_override_fonts/font = ExtResource("8_1ti0x")
 theme_override_font_sizes/font_size = 48
 text = "888888"
@@ -133,6 +141,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.93, 1, 0.65, 1)
 theme_override_fonts/font = ExtResource("8_1ti0x")
 theme_override_font_sizes/font_size = 48
 text = "123458"

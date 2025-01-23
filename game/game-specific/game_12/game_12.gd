@@ -16,7 +16,7 @@ const LEVELS = [
 	{
 		"pin": "111111",
 		"start": "256",
-		"buttons": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+		"buttons": ["0", "1", "2", "3", "4", "5", "8", "9"]
 	}
 ]
 
@@ -97,6 +97,7 @@ func parse_button(trans: Callable) -> void:
 			tween.tween_interval(0.3)
 			tween.tween_callback(n_win_screen.show_screen.bind("You broken through all the keypads!"))
 		else:
+			$SoundVictory.play()
 			var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 			tween.tween_interval(0.3)
 			tween.tween_property(n_overlay, "modulate", Color.WHITE, 0.4)
