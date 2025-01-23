@@ -4,17 +4,25 @@ extends Node
 @export var resize_on_click: bool = true
 @export var click_sound: bool = true
 
+@export var n_area: Area2D
+
 signal onClick(Node)
 
 var show_on_hover_tween
 
+func _triggering_node() -> Node:
+	if n_area:
+		return n_area
+	return get_parent()
+
 func _ready() -> void:
-	get_parent().mouse_entered.connect(_mouse_entered)
-	get_parent().mouse_exited.connect(_mouse_exited)
-	if get_parent().get("input_event"):
-		get_parent().input_event.connect(_input_event)
-	if get_parent().get("gui_input"):
-		get_parent().gui_input.connect(_gui_input)
+	var triggering_node = _triggering_node()
+	triggering_node.mouse_entered.connect(_mouse_entered)
+	triggering_node.mouse_exited.connect(_mouse_exited)
+	if triggering_node.get("input_event"):
+		triggering_node.input_event.connect(_input_event)
+	if triggering_node.get("gui_input"):
+		triggering_node.gui_input.connect(_gui_input)
 	
 	if show_on_hover:
 		show_on_hover.modulate = Color("#ffffff", 0)

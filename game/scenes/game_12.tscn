@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://quc4wd1fqrxj"]
+[gd_scene load_steps=13 format=3 uid="uid://quc4wd1fqrxj"]
 
+[ext_resource type="Script" path="res://game-specific/game_12/game_12.gd" id="5_hsrjk"]
 [ext_resource type="Texture2D" uid="uid://ddahfvpx7gxd7" path="res://assets/sprites/9patch/3x_pixel_metal_plate.png" id="5_im5db"]
 [ext_resource type="FontFile" uid="uid://ds51dbfxa1w64" path="res://assets/fonts/Kenney Mini.ttf" id="6_erxtk"]
 [ext_resource type="PackedScene" uid="uid://dasqq41qfxink" path="res://game-specific/game_12/num_key.tscn" id="6_hcrwn"]
@@ -37,10 +38,13 @@ z_index = -2
 layout_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="WinScreen" parent="." instance=ExtResource("212_xvmwu")]
-layout_mode = 1
-mouse_filter = 2
-metadata/_edit_lock_ = true
+[node name="Game12" type="Node" parent="." node_paths=PackedStringArray("n_model", "n_display", "n_sticky_note", "n_overlay", "n_win_screen")]
+script = ExtResource("5_hsrjk")
+n_model = NodePath("../Panel/VBoxContainer/Label")
+n_display = NodePath("../Panel/VBoxContainer/VBoxContainer2/NinePatchRect/Label2")
+n_sticky_note = NodePath("../Panel/StickyNoteAnchor/Label")
+n_overlay = NodePath("../Overlay")
+n_win_screen = NodePath("../WinScreen")
 
 [node name="Panel" type="Control" parent="."]
 layout_mode = 1
@@ -55,6 +59,7 @@ offset_right = 150.0
 offset_bottom = 240.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Panel"]
 texture_filter = 1
@@ -215,7 +220,18 @@ offset_bottom = 109.0
 theme_override_colors/font_color = Color(0.294118, 0.137255, 0.00784314, 1)
 theme_override_constants/line_spacing = -2
 theme_override_fonts/font = ExtResource("11_wv1ee")
-text = "The pin is
-123456"
+text = "Backup pin
+123456?"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Overlay" parent="." instance=ExtResource("210_paied")]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="WinScreen" parent="." instance=ExtResource("212_xvmwu")]
+layout_mode = 1
+mouse_filter = 2
+metadata/_edit_lock_ = true
