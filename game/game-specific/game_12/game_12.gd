@@ -10,13 +10,62 @@ var level = 0
 const LEVELS = [
 	{
 		"pin": "123456",
-		"start": "",
 		"buttons": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 	},
 	{
 		"pin": "111111",
 		"start": "256",
 		"buttons": ["0", "1", "2", "3", "4", "5", "8", "9"]
+	},
+	{
+		"pin": "111115",
+		"buttons": ["0", "1", "3", "8", "∑"]
+	},
+	{
+		"pin": "001248",
+		"buttons": ["0", "1", "∑"]
+	},
+	{
+		"pin": "101360",
+		"buttons": ["0", "1", "∑"]
+	},
+	{
+		"pin": "111191",
+		"buttons": ["0", "1", "∑"]
+	},
+	{
+		"pin": "999994",
+		"buttons": ["0", "3", "∑", "∑%"]
+	},
+	{
+		"pin": "338995",
+		"buttons": ["0", "3", "∑", "∑%"]
+	},
+	{
+		"pin": "238360",
+		"buttons": ["0", "2", "3", "∑", "∑%"]
+	},
+	{
+		"pin": "842000",
+		"buttons": ["0", "2", "3", "6", "∑", "∑%"]
+	},
+	{
+		"pin": "115555",
+		"start": "555555",
+		"buttons": ["5", "∑", "∑%"]
+	},
+	{
+		"pin": "000112",
+		"buttons": ["2", "--"]
+	},
+	{
+		"pin": "124888",
+		"buttons": ["0", "2", "--", "∑", "∑%"]
+	},
+	{
+		"pin": "202040",
+		"start": "555555",
+		"buttons": ["5", "--", "∑%"]
 	}
 ]
 
@@ -31,8 +80,28 @@ var BUTTONS = {
 	"7": {"pos": 6, "func": func(v): return v+"7"},
 	"8": {"pos": 7, "func": func(v): return v+"8"},
 	"9": {"pos": 8, "func": func(v): return v+"9"},
+	"∑": {"func": but_sum},
+	"∑%": {"func": but_sum_mod},
+	"--": {"func": but_minus_minus}
 }
 
+##
+## Button functions
+##
+func but_sum(v):
+	var next_v = 0
+	for i in v.split():
+		next_v += int(i)
+	return v+str(min(next_v, 9))
+	
+func but_sum_mod(v):
+	var next_v = 0
+	for i in v.split():
+		next_v += int(i)
+	return v+str(next_v%10)
+	
+func but_minus_minus(v):
+	return "".join(Array(v.split()).map(func(x): return max(0, int(x)-1)))
 ##
 ## Level preparation
 ##
@@ -44,11 +113,11 @@ func load_level() -> void:
 	n_model.text = "TKB"+str(level+1).lpad(3, "0")+"-"+LETTERS.pick_random()+LETTERS.pick_random()+LETTERS.pick_random()
 	
 	const NOTE_PREFIX = [
-		"The pin is\n%s", "Try %s", "Changed to\n%s", "Intel says\n%s", "Default is\n%s", "Factory set\nto %s", "Last time it\nwas %s", "Guess\n%s", "Maybe\n%s", "Overheard\n%s", "Start with\n%s", "%s", "Check\n%s", "Found\n%s\nin manual", "Likely\n%s", "Default is\n%s", "Probaly\n%s", "It's %s", "PIN=%s", "Wasn't it\n%s?", "Backup pin\n%s",
+		"The pin is\n%s", "Try %s", "Changed to\n%s", "Intel says\n%s", "Default is\n%s", "Factory set\nto %s", "Last time it\nwas %s", "Guess\n%s", "Maybe\n%s", "Overheard\n%s", "Start with\n%s", "%s", "%s?", "Check\n%s", "Found\n%s\nin manual", "Likely\n%s", "Default is\n%s", "Probaly\n%s", "It's %s", "PIN=%s", "Wasn't it\n%s?", "Backup pin\n%s",
 	]
 	var cur_level = LEVELS[level]
 	n_sticky_note.text = NOTE_PREFIX.pick_random() % cur_level.pin
-	n_display.text = cur_level.start.lpad(6, "!")
+	n_display.text = cur_level.get("start", "").lpad(6, "!")
 	
 	
 	var numkeys = get_tree().get_nodes_in_group("numkey")
