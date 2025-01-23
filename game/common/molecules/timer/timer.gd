@@ -10,6 +10,9 @@ func start_timer(time: int, callback: Callable) -> void:
 	animation_player.play("Shrink", -1, 1000.0/(time as float))
 	current_callback = callback
 
+func stop_timer() -> void:
+	animation_player.stop()
+
 func execute_callback() -> void:
 	if current_callback.is_valid():
 		current_callback.call()
