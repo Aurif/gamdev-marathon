@@ -1,0 +1,101 @@
+[gd_scene load_steps=11 format=3 uid="uid://diqpmd66kfyx3"]
+
+[ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_x6oq2"]
+[ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="2_nuix2"]
+[ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="3_wagwy"]
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="4_fvudd"]
+[ext_resource type="Script" path="res://game-specific/game_14/game_14.gd" id="4_oo8nl"]
+[ext_resource type="AudioStream" uid="uid://deodcckytpqxf" path="res://assets/sfx/tone.ogg" id="5_n22vp"]
+[ext_resource type="AudioStream" uid="uid://uab6k4wyov1f" path="res://assets/sfx/wrong.ogg" id="6_xc78e"]
+[ext_resource type="PackedScene" uid="uid://b24r5qgmcj3o" path="res://common/molecules/timer/timer.tscn" id="7_g278c"]
+[ext_resource type="PackedScene" uid="uid://bgljbplcpnwd5" path="res://common/atoms/timer_simple/timer_simple.tscn" id="10_qoudt"]
+[ext_resource type="PackedScene" uid="uid://djgstwib3m7n0" path="res://common/molecules/fail_screen/fail_screen.tscn" id="11_lbjvk"]
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="DEBUG_MODE" parent="." instance=ExtResource("1_x6oq2")]
+visible = false
+
+[node name="BackgroundAnimated" parent="." instance=ExtResource("2_nuix2")]
+z_index = -3
+layout_mode = 1
+offset_right = 3472.0
+offset_bottom = 1952.0
+
+[node name="Background" parent="." instance=ExtResource("4_fvudd")]
+modulate = Color(1, 1, 1, 0.560784)
+z_index = -2
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+modulate = Color(0.96, 0.3264, 0.3264, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.219608)
+
+[node name="Game14" type="Node" parent="." node_paths=PackedStringArray("n_color", "n_instructions", "n_fail_screen", "n_timer")]
+script = ExtResource("4_oo8nl")
+n_color = NodePath("../ColorRect")
+n_instructions = NodePath("../RichTextLabel")
+n_fail_screen = NodePath("../FailScreen")
+n_timer = NodePath("../Timer")
+
+[node name="SoundMove" type="AudioStreamPlayer" parent="Game14"]
+stream = ExtResource("5_n22vp")
+volume_db = -7.0
+
+[node name="SoundNotMove" type="AudioStreamPlayer" parent="Game14"]
+stream = ExtResource("6_xc78e")
+
+[node name="TimerSimple" parent="Game14" instance=ExtResource("10_qoudt")]
+
+[node name="Timer" parent="." instance=ExtResource("7_g278c")]
+layout_mode = 1
+offset_left = -553.0
+offset_top = -92.0
+offset_right = 569.0
+offset_bottom = -85.0
+
+[node name="ProgressBar" parent="Timer" index="0"]
+pivot_offset = Vector2(561, 0)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 83.0
+offset_bottom = -243.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_wagwy")
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+bbcode_enabled = true
+text = "[center]
+[color=green]You [u][b]must[/b][/u] move your cursor when light is green[/color]
+[color=red]You [u][b]can't[/b][/u] move your cursor when light is red[/color]
+
+[color=#f9db90]Press LMB to start"
+
+[node name="FailScreen" parent="." instance=ExtResource("11_lbjvk")]
+process_mode = 3
+layout_mode = 1
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[editable path="Timer"]

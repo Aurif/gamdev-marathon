@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c02k6aerkrk2u"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c02k6aerkrk2u"]
 
 [ext_resource type="FontFile" uid="uid://cxtmys45unr0u" path="res://assets/fonts/Rubik-Regular.ttf" id="1_0v0o8"]
+[ext_resource type="FontFile" uid="uid://cvsib3f32aqbc" path="res://assets/fonts/Rubik-Bold.ttf" id="2_fqkte"]
 
 [resource]
 Label/colors/font_color = Color(0.976471, 0.862745, 0.564706, 1)
@@ -12,3 +13,7 @@ Label_Success/base_type = &"Label"
 Label_Success/colors/font_color = Color(0.8307, 0.9, 0.306, 1)
 LetterItem/base_type = &"Label"
 LetterItem/font_sizes/font_size = 48
+RichTextLabel/font_sizes/bold_font_size = 24
+RichTextLabel/font_sizes/normal_font_size = 24
+RichTextLabel/fonts/bold_font = ExtResource("2_fqkte")
+RichTextLabel/fonts/normal_font = ExtResource("1_0v0o8")
