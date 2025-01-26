@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b268goadst3j"]
+[gd_scene load_steps=8 format=3 uid="uid://b268goadst3j"]
 
 [ext_resource type="Script" path="res://common/molecules/throw_with_trajectory/projectile.gd" id="1_pvfy6"]
 [ext_resource type="PackedScene" uid="uid://chynyknwob2sv" path="res://common/atoms/sprite_circle/sprite_circle.tscn" id="2_65g4h"]
 [ext_resource type="Script" path="res://common/molecules/throw_with_trajectory/trajectory.gd" id="3_muil6"]
-[ext_resource type="Script" path="res://common/molecules/throw_with_trajectory/collision_test.gd" id="4_ge8q8"]
 [ext_resource type="AudioStream" uid="uid://bao14ihsqfb34" path="res://assets/sfx/click.ogg" id="4_x4u8x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xdcw5"]
@@ -21,6 +20,7 @@ position = Vector2(-476, 169)
 collision_layer = 2
 input_pickable = true
 script = ExtResource("1_pvfy6")
+gravity = Vector2(0, 1000)
 n_trajectory = NodePath("Line2D")
 
 [node name="SpriteCircle" parent="." instance=ExtResource("2_65g4h")]
@@ -39,7 +39,6 @@ script = ExtResource("3_muil6")
 
 [node name="CollisionTest" type="CharacterBody2D" parent="Line2D"]
 collision_layer = 4
-script = ExtResource("4_ge8q8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/CollisionTest"]
 shape = SubResource("CircleShape2D_xdcw5")

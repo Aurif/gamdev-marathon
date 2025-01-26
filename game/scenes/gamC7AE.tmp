@@ -251,14 +251,12 @@ offset_top = 96.0
 offset_right = 367.0
 offset_bottom = 527.0
 color = Color(1, 1, 1, 0.145098)
+script = ExtResource("15_ib0j0")
+gravity_overwrite = Vector2(0, -1000)
 
 [node name="Area2D" type="Area2D" parent="ColorRect"]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 6
-gravity_space_override = 3
-gravity_point_center = Vector2(0, -1)
-gravity_direction = Vector2(0, -1)
-script = ExtResource("15_ib0j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/Area2D"]
 position = Vector2(99, 216)

@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-@export var gravity: Vector2 = Vector2(100.0, 1000.0)
 @export var n_trajectory: MolThrowWithTrajectory_Trajectory
 
 func enable() -> void:
@@ -10,7 +9,7 @@ func enable() -> void:
 ## Movement
 ##
 func _physics_process(delta: float) -> void:
-	velocity += gravity * delta
+	velocity += QuarkPhysicsAtPoint.gravity(get_world_2d(), self.global_position) * delta
 	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
@@ -19,7 +18,7 @@ func _physics_process(delta: float) -> void:
 			$SoundBounce.play()
 	
 	if velocity.length() > 20 and aiming:
-		n_trajectory.update_trajectory(_calc_throw_velocity(get_viewport().get_mouse_position()), gravity)
+		n_trajectory.update_trajectory(_calc_throw_velocity(get_viewport().get_mouse_position()))
 		n_trajectory.modulate = Color("#754647")
 	else:
 		n_trajectory.modulate = Color("#766650")
@@ -44,7 +43,9 @@ func _input(event: InputEvent) -> void:
 		velocity += _calc_throw_velocity(event.position)
 		$SoundThrow.play()
 	if event is InputEventMouseMotion and aiming:
-		n_trajectory.update_trajectory(_calc_throw_velocity(event.position), gravity)
+		n_trajectory.update_trajectory(_calc_throw_velocity(event.position))
+		
+		
 
 func _calc_throw_velocity(end_pos: Vector2) -> Vector2:
 	var screen_rect = get_viewport().get_visible_rect()

@@ -59,6 +59,7 @@ ui_down={
 2d_physics/layer_1="Walls"
 2d_physics/layer_2="Entities"
 2d_physics/layer_3="FakeEntities"
+2d_physics/layer_4="Areas"
 
 [rendering]
 
