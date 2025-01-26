@@ -15,6 +15,8 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		velocity = velocity.bounce(collision.get_normal()) * 0.6
+		if velocity.length() > 20:
+			$SoundBounce.play()
 	
 	if velocity.length() > 20 and aiming:
 		n_trajectory.update_trajectory(_calc_throw_velocity(get_viewport().get_mouse_position()), gravity)
@@ -40,6 +42,7 @@ func _input(event: InputEvent) -> void:
 		if velocity.length() > 20:
 			return
 		velocity += _calc_throw_velocity(event.position)
+		$SoundThrow.play()
 	if event is InputEventMouseMotion and aiming:
 		n_trajectory.update_trajectory(_calc_throw_velocity(event.position), gravity)
 
