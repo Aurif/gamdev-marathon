@@ -1,7 +1,6 @@
 [gd_scene load_steps=22 format=4 uid="uid://bcexpewhmps12"]
 
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_nhrrh"]
-[ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="2_0ypav"]
 [ext_resource type="AudioStream" uid="uid://pxya3q4x5gmu" path="res://assets/sfx/mini_explosion.ogg" id="2_1vq7x"]
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="3_f821p"]
 [ext_resource type="PackedScene" uid="uid://bqsmf1mn60c0i" path="res://common/molecules/level_manager/level_manager.tscn" id="4_5fwdi"]
@@ -15,7 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://ct0nar2cew4sj" path="res://assets/sprites/tilemaps/monochrome_tilemap_transparent.png" id="11_jyff8"]
 [ext_resource type="Script" path="res://game-specific/game_16/goal.gd" id="13_55etg"]
 [ext_resource type="PackedScene" uid="uid://cdo5hamcxy2ol" path="res://common/molecules/win_screen/win_screen.tscn" id="14_0ln77"]
-[ext_resource type="Script" path="res://common/molecules/gravity_area/gravity_area.gd" id="15_ib0j0"]
+[ext_resource type="Script" path="res://common/atoms/fit_parent/fit_parent.gd" id="14_pyt4b"]
+[ext_resource type="Texture2D" uid="uid://cwhct8f3ufbj7" path="res://assets/sprites/pattern/white_arrows.png" id="15_tpjej"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4i4l"]
+size = Vector2(198, 432)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cyf38"]
 atlas = ExtResource("11_jyff8")
@@ -46,9 +49,6 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4i4l"]
-size = Vector2(198, 432)
-
 [node name="Root" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -67,13 +67,7 @@ stream = ExtResource("2_1vq7x")
 volume_db = -12.0
 pitch_scale = 2.0
 
-[node name="BackgroundAnimated" parent="." instance=ExtResource("2_0ypav")]
-layout_mode = 1
-offset_right = 3472.0
-offset_bottom = 1952.0
-
 [node name="Background" parent="." instance=ExtResource("3_f821p")]
-modulate = Color(1, 1, 1, 0.560784)
 z_index = -2
 layout_mode = 1
 metadata/_edit_lock_ = true
@@ -92,6 +86,49 @@ theme_override_font_sizes/font_size = 36
 [node name="Level1" parent="LevelManager" instance=ExtResource("5_v8upg")]
 process_mode = 4
 layout_mode = 1
+
+[node name="GravityArea" type="ColorRect" parent="LevelManager/Level1"]
+clip_children = 1
+z_index = -1
+layout_mode = 0
+offset_left = -528.0
+offset_top = -228.0
+offset_right = 528.0
+offset_bottom = 204.0
+
+[node name="Area2D" type="Area2D" parent="LevelManager/Level1/GravityArea"]
+collision_layer = 8
+collision_mask = 6
+gravity_space_override = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelManager/Level1/GravityArea/Area2D"]
+visible = false
+position = Vector2(99, 216)
+shape = SubResource("RectangleShape2D_f4i4l")
+
+[node name="FitParent" type="Node" parent="LevelManager/Level1/GravityArea/Area2D/CollisionShape2D"]
+script = ExtResource("14_pyt4b")
+
+[node name="ColorRect" type="ColorRect" parent="LevelManager/Level1/GravityArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.0784314, 0.12549, 1)
+
+[node name="TextureRect" type="TextureRect" parent="LevelManager/Level1/GravityArea"]
+modulate = Color(0.121569, 0.0901961, 0.14902, 1)
+layout_mode = 0
+offset_left = 1168.0
+offset_top = 503.0
+offset_right = 7525.0
+offset_bottom = 3281.0
+rotation = 3.14159
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("15_tpjej")
+stretch_mode = 1
 
 [node name="TileMapLayer" type="TileMapLayer" parent="LevelManager/Level1"]
 texture_filter = 1
@@ -151,6 +188,48 @@ pitch_scale = 0.6
 [node name="Level2" parent="LevelManager" instance=ExtResource("5_v8upg")]
 process_mode = 4
 layout_mode = 1
+
+[node name="GravityArea" type="ColorRect" parent="LevelManager/Level2"]
+clip_children = 1
+z_index = -1
+offset_left = -528.0
+offset_top = -228.0
+offset_right = 528.0
+offset_bottom = 204.0
+
+[node name="Area2D" type="Area2D" parent="LevelManager/Level2/GravityArea"]
+collision_layer = 8
+collision_mask = 6
+gravity_space_override = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelManager/Level2/GravityArea/Area2D"]
+visible = false
+position = Vector2(99, 216)
+shape = SubResource("RectangleShape2D_f4i4l")
+
+[node name="FitParent" type="Node" parent="LevelManager/Level2/GravityArea/Area2D/CollisionShape2D"]
+script = ExtResource("14_pyt4b")
+
+[node name="ColorRect" type="ColorRect" parent="LevelManager/Level2/GravityArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.0784314, 0.12549, 1)
+
+[node name="TextureRect" type="TextureRect" parent="LevelManager/Level2/GravityArea"]
+modulate = Color(0.121569, 0.0901961, 0.14902, 1)
+layout_mode = 0
+offset_left = 1168.0
+offset_top = 503.0
+offset_right = 7525.0
+offset_bottom = 3281.0
+rotation = 3.14159
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("15_tpjej")
+stretch_mode = 1
 
 [node name="TileMapLayer" type="TileMapLayer" parent="LevelManager/Level2"]
 texture_filter = 1
@@ -244,26 +323,6 @@ stream = ExtResource("8_k6vev")
 volume_db = -10.0
 pitch_scale = 0.6
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 169.0
-offset_top = 96.0
-offset_right = 367.0
-offset_bottom = 527.0
-color = Color(1, 1, 1, 0.145098)
-
-[node name="Area2D" type="Area2D" parent="ColorRect"]
-collision_layer = 8
-collision_mask = 6
-gravity_space_override = 3
-gravity_point_center = Vector2(0, -1)
-gravity_direction = Vector2(0, -1)
-script = ExtResource("15_ib0j0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/Area2D"]
-position = Vector2(99, 216)
-shape = SubResource("RectangleShape2D_f4i4l")
-
 [node name="WinScreen" parent="." instance=ExtResource("14_0ln77")]
 layout_mode = 1
 mouse_filter = 2
@@ -274,9 +333,13 @@ metadata/_edit_lock_ = true
 text = ""
 
 [connection signal="GameWon" from="LevelManager" to="WinScreen" method="show_screen" binds= ["Congratulations ^^"]]
+[connection signal="body_entered" from="LevelManager/Level1/GravityArea/Area2D" to="LevelManager/Level1/GravityArea" method="_on_body_entered"]
+[connection signal="body_exited" from="LevelManager/Level1/GravityArea/Area2D" to="LevelManager/Level1/GravityArea" method="_on_body_exited"]
 [connection signal="AllGoalsReached" from="LevelManager/Level1/Goal" to="LevelManager" method="next_level"]
 [connection signal="body_entered" from="LevelManager/Level1/Goal/Area2D" to="LevelManager/Level1/Goal" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="LevelManager/Level1/Goal/Area2D" to="SoundGoal" method="play" unbinds=1]
+[connection signal="body_entered" from="LevelManager/Level2/GravityArea/Area2D" to="LevelManager/Level2/GravityArea" method="_on_body_entered"]
+[connection signal="body_exited" from="LevelManager/Level2/GravityArea/Area2D" to="LevelManager/Level2/GravityArea" method="_on_body_exited"]
 [connection signal="AllGoalsReached" from="LevelManager/Level2/Goal" to="LevelManager" method="next_level"]
 [connection signal="body_entered" from="LevelManager/Level2/Goal/Area2D" to="LevelManager/Level2/Goal" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="LevelManager/Level2/Goal/Area2D" to="SoundGoal" method="play" unbinds=1]
@@ -286,8 +349,6 @@ text = ""
 [connection signal="AllGoalsReached" from="LevelManager/Level2/Goal3" to="LevelManager" method="next_level"]
 [connection signal="body_entered" from="LevelManager/Level2/Goal3/Area2D" to="LevelManager/Level2/Goal3" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="LevelManager/Level2/Goal3/Area2D" to="SoundGoal" method="play" unbinds=1]
-[connection signal="body_entered" from="ColorRect/Area2D" to="ColorRect" method="_on_body_entered"]
-[connection signal="body_exited" from="ColorRect/Area2D" to="ColorRect" method="_on_body_exited"]
 
 [editable path="LevelManager"]
 [editable path="WinScreen"]
