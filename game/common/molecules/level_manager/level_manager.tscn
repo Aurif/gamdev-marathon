@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqsmf1mn60c0i"]
+
+[ext_resource type="Script" path="res://common/molecules/level_manager/level_manager.gd" id="1_bj6p3"]
+[ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="2_ajwlf"]
+[ext_resource type="PackedScene" uid="uid://bm8s5tu35rfnt" path="res://common/atoms/highlight/highlight.tscn" id="3_8y76j"]
+[ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="4_6o7ii"]
+
+[node name="LevelManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bj6p3")
+
+[node name="LevelLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 445.0
+offset_top = 8.0
+offset_right = -445.0
+offset_bottom = 42.0
+grow_horizontal = 2
+pivot_offset = Vector2(131, 17)
+theme = ExtResource("2_ajwlf")
+text = "Level 0"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Highlight" parent="LevelLabel" instance=ExtResource("3_8y76j")]
+
+[node name="SoundLevel" type="AudioStreamPlayer" parent="LevelLabel"]
+stream = ExtResource("4_6o7ii")
+volume_db = -10.0
+pitch_scale = 0.6
+
+[node name="SpawnHere" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2

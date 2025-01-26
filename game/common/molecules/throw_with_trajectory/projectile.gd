@@ -3,6 +3,9 @@ extends CharacterBody2D
 @export var gravity: Vector2 = Vector2(100.0, 1000.0)
 @export var n_trajectory: MolThrowWithTrajectory_Trajectory
 
+func enable() -> void:
+	self.process_mode = Node.PROCESS_MODE_INHERIT
+
 ##
 ## Movement
 ##
@@ -44,5 +47,5 @@ func _calc_throw_velocity(end_pos: Vector2) -> Vector2:
 	var screen_rect = get_viewport().get_visible_rect()
 	end_pos = end_pos.clamp(screen_rect.position, screen_rect.end)
 	var delta = end_pos-_mouse_start_pos
-	return -delta.normalized()*(pow(delta.length(), 3.0/4.0)*25)
+	return -delta.normalized()*(pow(delta.length(), 3.0/4.0)*25)/2
 	
