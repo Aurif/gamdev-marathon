@@ -10,6 +10,8 @@ signal GameWon()
 ## Initialization
 ##
 func _ready() -> void:
+	if len(levels) == 0:
+		return
 	$LevelLabel.text = levels[current_level_i][0]
 	spawn_level()
 	

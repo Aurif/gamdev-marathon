@@ -4,7 +4,7 @@ extends Node
 @export var resize_on_click: bool = true
 @export var click_sound: bool = true
 
-@export var n_area: Area2D
+@export var n_area: CollisionObject2D
 
 signal onClick(Node)
 
