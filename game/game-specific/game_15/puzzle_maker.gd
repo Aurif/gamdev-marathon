@@ -1,5 +1,7 @@
 extends Node
 
+static var current_level
+
 @export var image: CompressedTexture2D
 @export var splits: Vector2i
 @export var subsets: int
@@ -17,6 +19,9 @@ var current_subset = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if current_level != null:
+		splits = current_level[0]
+		subsets = current_level[1]
 	spawn_image.call_deferred(image, splits)
 
 var holder_to_pos = {}
@@ -85,6 +90,8 @@ func spawn_image(img: CompressedTexture2D, splits: Vector2i) -> void:
 	tween.tween_interval(0.5)
 	for p in range(len(pieces)):
 		tween.tween_callback(func(): 
+			if not is_instance_valid(pieces[p]):
+				return
 			pieces[p].global_position = outside_pos
 			holders[p].get_node("Area2D").drop_here(pieces[p].get_node("Draggable"))
 		)
@@ -119,3 +126,7 @@ func next_subset() -> void:
 	current_subset = (current_subset + 1)%subsets
 	for piece in piece_subsets[current_subset]:
 		(piece.get_node("EffectTransition").n_scale_target.get_node("Sprite2D") as Sprite2D).texture = ImageTexture.create_from_image(current_image)
+
+func start_level(_n: Node, splits: Vector2i, subsets: int) -> void:
+	current_level = [splits, subsets]
+	get_tree().reload_current_scene()
