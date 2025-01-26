@@ -7,5 +7,6 @@ func _ready() -> void:
 
 
 func _set_size_rect_shape(size: Vector2) -> void:
+	get_parent().shape = RectangleShape2D.new()
 	get_parent().shape.size = size
 	get_parent().position = size/2
