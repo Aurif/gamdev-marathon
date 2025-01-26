@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bcexpewhmps12"]
+[gd_scene load_steps=15 format=4 uid="uid://bcexpewhmps12"]
 
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_nhrrh"]
 [ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="2_0ypav"]
@@ -10,8 +10,17 @@
 [ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="8_k6vev"]
 [ext_resource type="PackedScene" uid="uid://chynyknwob2sv" path="res://common/atoms/sprite_circle/sprite_circle.tscn" id="9_2qyja"]
 [ext_resource type="TileSet" uid="uid://dtwdlvxt75ycr" path="res://common/atoms/tileset_pico_platformer.tres" id="10_5i1tb"]
+[ext_resource type="Script" path="res://common/molecules/throw_with_trajectory/trajectory.gd" id="11_tkdqh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xdcw5"]
+
+[sub_resource type="Curve" id="Curve_qh17w"]
+_data = [Vector2(0, 0.90014), 0.0, 0.0, 0, 0, Vector2(1, 0.35), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_bm21m"]
+offsets = PackedFloat32Array(0, 0.953781)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -87,16 +96,29 @@ tile_set = ExtResource("10_5i1tb")
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(604, 277)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Node2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Node2D" node_paths=PackedStringArray("n_trajectory")]
 collision_layer = 2
 input_pickable = true
 script = ExtResource("8_5spoa")
-dir = Vector2(1, 0)
 gravity = Vector2(0, 1000)
+n_trajectory = NodePath("Line2D")
 
 [node name="SpriteCircle" parent="Node2D/CharacterBody2D" instance=ExtResource("9_2qyja")]
 modulate = Color(0.976471, 0.862745, 0.564706, 1)
+z_index = 1
 radius = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/CharacterBody2D"]
+shape = SubResource("CircleShape2D_xdcw5")
+
+[node name="Line2D" type="Line2D" parent="Node2D/CharacterBody2D"]
+modulate = Color(0.46, 0.276, 0.279067, 1)
+width_curve = SubResource("Curve_qh17w")
+gradient = SubResource("Gradient_bm21m")
+script = ExtResource("11_tkdqh")
+
+[node name="CollisionTest" type="CharacterBody2D" parent="Node2D/CharacterBody2D/Line2D"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/CharacterBody2D/Line2D/CollisionTest"]
 shape = SubResource("CircleShape2D_xdcw5")
