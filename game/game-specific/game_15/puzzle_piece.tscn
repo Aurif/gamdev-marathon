@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3lppxdief3sl"]
+
+[ext_resource type="Script" path="res://common/molecules/drag_and_drop/draggable.gd" id="1_tmc76"]
+[ext_resource type="PackedScene" uid="uid://44jxk1dbqlpb" path="res://common/atoms/effect_transition/effect_transition.tscn" id="2_xepp4"]
+[ext_resource type="Texture2D" uid="uid://c2sijhe3885pp" path="res://assets/sprites/photos/red_panda_baby.jpg" id="3_s845b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hhvc"]
+size = Vector2(5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibq81"]
+size = Vector2(39, 66)
+
+[node name="PuzzlePiece" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="Draggable" type="Node2D" parent="." node_paths=PackedStringArray("n_hitbox", "n_transitions")]
+script = ExtResource("1_tmc76")
+n_hitbox = NodePath("../Area2D")
+n_transitions = NodePath("../EffectTransition")
+
+[node name="Area2D" type="Area2D" parent="Draggable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Draggable/Area2D"]
+shape = SubResource("RectangleShape2D_5hhvc")
+
+[node name="EffectTransition" parent="." node_paths=PackedStringArray("n_scale_target") instance=ExtResource("2_xepp4")]
+n_scale_target = NodePath("../Sprite")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(19.5, 23)
+shape = SubResource("RectangleShape2D_ibq81")
+
+[node name="Sprite" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_s845b")
+centered = false
+region_enabled = true

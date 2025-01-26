@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://gxlwrfejiwka"]
+
+[ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_47rpj"]
+[ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="2_imjy3"]
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="3_pw4p0"]
+[ext_resource type="Script" path="res://game-specific/game_15/puzzle_maker.gd" id="4_s3e1c"]
+[ext_resource type="PackedScene" uid="uid://b7i21ymoqlnpv" path="res://game-specific/game_15/drop_area.tscn" id="7_l2o2p"]
+[ext_resource type="Texture2D" uid="uid://c2sijhe3885pp" path="res://assets/sprites/photos/red_panda_baby.jpg" id="9_2cbqj"]
+[ext_resource type="PackedScene" uid="uid://d3lppxdief3sl" path="res://game-specific/game_15/puzzle_piece.tscn" id="10_2xnn3"]
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="DEBUG_MODE" parent="." instance=ExtResource("1_47rpj")]
+visible = false
+
+[node name="BackgroundAnimated" parent="." instance=ExtResource("2_imjy3")]
+z_index = -3
+layout_mode = 1
+offset_top = 1.0
+offset_right = 3472.0
+offset_bottom = 1953.0
+
+[node name="Background" parent="." instance=ExtResource("3_pw4p0")]
+modulate = Color(1, 1, 1, 0.560784)
+z_index = -2
+layout_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="PuzzleMaker" type="Node" parent="." node_paths=PackedStringArray("n_image_bg_holder", "n_image_holder")]
+script = ExtResource("4_s3e1c")
+image = ExtResource("9_2cbqj")
+splits = Vector2i(12, 2)
+n_image_bg_holder = NodePath("../CenterContainer/ImageBgHolder")
+n_image_holder = NodePath("../ImageHolder")
+preset_drop_area = ExtResource("7_l2o2p")
+preset_puzzle_piece = ExtResource("10_2xnn3")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ImageBgHolder" type="Control" parent="CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ImageHolder" type="Node2D" parent="."]
