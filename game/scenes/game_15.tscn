@@ -47,6 +47,7 @@ color = Color(0, 0, 0, 0.443137)
 script = ExtResource("4_s3e1c")
 image = ExtResource("9_2cbqj")
 splits = Vector2i(6, 2)
+subsets = 3
 n_image_bg = NodePath("../Background")
 n_image_bg_holder = NodePath("../CenterContainer/VBoxContainer/MarginContainer/ImageBgHolder")
 preset_drop_area = ExtResource("7_l2o2p")
@@ -71,7 +72,47 @@ layout_mode = 2
 
 [node name="ImageBgHolder" type="Control" parent="CenterContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 1
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/MarginContainer/ImageBgHolder"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/ImageBgHolder/Control"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = -124.5
+offset_right = 46.0
+offset_bottom = 124.5
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("9_1hsxf")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -7
+theme_override_font_sizes/font_size = 32
+text = "N
+E
+X
+T
+ 
+S
+U
+B
+S
+E
+T"
+vertical_alignment = 1
+
+[node name="Clickable" parent="CenterContainer/VBoxContainer/MarginContainer/ImageBgHolder/Control/Label" instance=ExtResource("8_y0lel")]
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer"]
 visible = false
@@ -108,4 +149,5 @@ vertical_alignment = 1
 
 [node name="Clickable" parent="CenterContainer/VBoxContainer/Label" instance=ExtResource("8_y0lel")]
 
+[connection signal="onClick" from="CenterContainer/VBoxContainer/MarginContainer/ImageBgHolder/Control/Label/Clickable" to="PuzzleMaker" method="next_subset" unbinds=1]
 [connection signal="onClick" from="CenterContainer/VBoxContainer/Label/Clickable" to="PuzzleMaker" method="check_puzzle" unbinds=1]

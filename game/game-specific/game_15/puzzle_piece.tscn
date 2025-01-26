@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3lppxdief3sl"]
+[gd_scene load_steps=5 format=3 uid="uid://d3lppxdief3sl"]
 
 [ext_resource type="Script" path="res://common/molecules/drag_and_drop/draggable.gd" id="1_tmc76"]
 [ext_resource type="PackedScene" uid="uid://44jxk1dbqlpb" path="res://common/atoms/effect_transition/effect_transition.tscn" id="2_xepp4"]
-[ext_resource type="Texture2D" uid="uid://c2sijhe3885pp" path="res://assets/sprites/photos/red_panda_baby.jpg" id="3_s845b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hhvc"]
 size = Vector2(5, 5)
@@ -48,6 +47,5 @@ mouse_filter = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_s845b")
 centered = false
 region_enabled = true

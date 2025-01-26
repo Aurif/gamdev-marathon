@@ -2,6 +2,7 @@ extends Node
 
 @export var image: CompressedTexture2D
 @export var splits: Vector2i
+@export var subsets: int
 @export var n_image_bg: MolBackgroundBlurred
 @export var n_image_bg_holder: Control
 @export var preset_drop_area: PackedScene
@@ -10,17 +11,28 @@ extends Node
 @export var n_label_incorrect: Label
 
 var finished = false
+var current_image: Image
+var current_image_blurred: Image
+var current_subset = -1
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_image.call_deferred(image, splits)
 
 var holder_to_pos = {}
 var piece_to_pos = {}
+var piece_subsets = []
 
 func spawn_image(img: CompressedTexture2D, splits: Vector2i) -> void:
-	n_image_bg.set_img(img.get_image())
 	var split_size = Vector2(Vector2i(img.get_size()/2/Vector2(splits)))
 	n_image_bg_holder.set_custom_minimum_size(img.get_size()/2)
+	
+	current_image = img.get_image()
+	current_image_blurred = Image.new()
+	current_image_blurred.copy_from(current_image)
+	current_image_blurred.resize(splits.x, splits.y, Image.INTERPOLATE_LANCZOS)
+	current_image_blurred.resize(split_size.x*splits.x*2, split_size.y*splits.y*2, Image.INTERPOLATE_NEAREST)
+	n_image_bg.set_img(current_image)
 	
 	var holders = []
 	var pieces = []
@@ -46,11 +58,28 @@ func spawn_image(img: CompressedTexture2D, splits: Vector2i) -> void:
 			hitbox.position = split_size/2
 			var sprite = puzzle_piece.get_node("EffectTransition").n_scale_target
 			sprite.pivot_offset = split_size/2
-			(sprite.get_node("Sprite2D") as Sprite2D).region_rect = Rect2(
+			var sprite2D = sprite.get_node("Sprite2D") as Sprite2D
+			sprite2D.region_rect = Rect2(
 				split_size*2*Vector2(x, y),
 				split_size*2
 			)
+			sprite2D.texture = ImageTexture.create_from_image(current_image_blurred)
 			
+	pieces.shuffle()
+	var pos = 0
+	for i in range(subsets-1):
+		var subset = []
+		for j in range(splits.x*splits.y/subsets):
+			subset.append(pieces[pos])
+			pos += 1
+		piece_subsets.append(subset)
+	
+	var subset = []
+	for p in range(pos, len(pieces)):
+		subset.append(pieces[p])
+	piece_subsets.append(subset)
+	next_subset()
+	
 	pieces.shuffle()
 	var tween = get_tree().create_tween()
 	tween.tween_interval(0.5)
@@ -70,8 +99,23 @@ func check_puzzle() -> void:
 			is_puzzle_valid = false
 			break
 			
+	for subset in piece_subsets:
+		for piece in subset:
+			(piece.get_node("EffectTransition").n_scale_target.get_node("Sprite2D") as Sprite2D).texture = ImageTexture.create_from_image(current_image)
+			
 	finished = true
 	if is_puzzle_valid:
 		n_label_correct.visible = true
 	else:
 		n_label_incorrect.visible = true
+
+func next_subset() -> void:
+	if finished:
+		return
+	if current_subset >= 0:
+		for piece in piece_subsets[current_subset]:
+			(piece.get_node("EffectTransition").n_scale_target.get_node("Sprite2D") as Sprite2D).texture = ImageTexture.create_from_image(current_image_blurred)
+			
+	current_subset = (current_subset + 1)%subsets
+	for piece in piece_subsets[current_subset]:
+		(piece.get_node("EffectTransition").n_scale_target.get_node("Sprite2D") as Sprite2D).texture = ImageTexture.create_from_image(current_image)
