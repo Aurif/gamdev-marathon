@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Game"
-run/main_scene="res://scenes/game_16.tscn"
+run/main_scene="res://scenes/game_17.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://scenes/icon.svg"
 
 [display]
 
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [input]
 

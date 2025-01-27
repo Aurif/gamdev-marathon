@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk70tq5tr40dh"]
+
+[ext_resource type="PackedScene" uid="uid://cq2kq6r03ofa8" path="res://common/molecules/button_octo/button_octo.tscn" id="1_apwvx"]
+
+[node name="ColorButton" type="Control"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+
+[node name="ButtonOcto" parent="." instance=ExtResource("1_apwvx")]
+position = Vector2(30, 30)
+
+[editable path="ButtonOcto"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://7t0mxra1avpw"]
+
+[ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="1_apcwc"]
+[ext_resource type="Texture2D" uid="uid://b4mqdodav8pga" path="res://assets/sprites/icons/card.png" id="2_licfg"]
+
+[node name="ColorRule" type="BoxContainer"]
+offset_left = 551.0
+offset_top = 326.0
+offset_right = 601.0
+offset_bottom = 358.0
+alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_apcwc")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_licfg")
+expand_mode = 1
+stretch_mode = 4
