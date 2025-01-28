@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=4 uid="uid://mcj5srw4eros"]
+
+[ext_resource type="TileSet" uid="uid://dnspyeioavgls" path="res://common/atoms/tile_set_bg.tres" id="1_vas51"]
+[ext_resource type="Script" path="res://common/molecules/drawable_tilemap/drawable_tilemap.gd" id="2_6yqpv"]
+
+[node name="DrawableTilemap" type="TileMapLayer"]
+scale = Vector2(12, 12)
+tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAwD/////AAAAAAAAAwAAAP//AAAAAAAAAwAAAAAAAAAAAAAAAgABAP7/AAAAAAAAAwABAAEAAAAAAAAAAwD+/wEAAAAAAAAAAwD//wEAAAAAAAAAAwAAAAEAAAAAAAAAAwABAAAAAAAAAAAAAwABAP//AAAAAAAAAwAAAP7/AAAAAAAAAwD///7/AAAAAAAAAwD+////AAAAAAAAAwD+/wAAAAAAAAAAAwD+//7/AAAAAAAAAwA=")
+tile_set = ExtResource("1_vas51")
+script = ExtResource("2_6yqpv")
+
+[node name="Hover" type="TileMapLayer" parent="."]
+modulate = Color(1, 1, 1, 0.129412)
+tile_set = ExtResource("1_vas51")

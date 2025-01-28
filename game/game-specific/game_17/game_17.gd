@@ -16,7 +16,6 @@ func load_level(tilemap: MolDrawableTilemap) -> void:
 	const DEFAULT_CELL = 4
 	
 	current_level = extract_row_columns(tilemap)
-	print(current_level)
 	
 	var min_x = 0
 	var min_y = 0

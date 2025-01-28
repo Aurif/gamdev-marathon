@@ -5,7 +5,7 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k3dic"]
 texture = ExtResource("1_ecoem")
 texture_region_size = Vector2i(8, 8)
-0:0/next_alternative_id = 5
+0:0/next_alternative_id = 11
 0:0/0 = 0
 0:0/1 = 1
 0:0/1/modulate = Color(0.121569, 0.0901961, 0.14902, 1)
@@ -15,6 +15,18 @@ texture_region_size = Vector2i(8, 8)
 0:0/3/modulate = Color(0.5684, 0.81536, 0.98, 1)
 0:0/4 = 4
 0:0/4/modulate = Color(0.0836667, 0.065, 0.1, 1)
+0:0/5 = 5
+0:0/5/modulate = Color(0.5684, 0.98, 0.78106, 1)
+0:0/6 = 6
+0:0/6/modulate = Color(0.8918, 0.94472, 0.98, 1)
+0:0/7 = 7
+0:0/7/modulate = Color(0.28826, 0.71, 0.2414, 1)
+0:0/8 = 8
+0:0/8/modulate = Color(1, 0.574167, 0.27, 1)
+0:0/9 = 9
+0:0/9/modulate = Color(0.69188, 0.5684, 0.98, 1)
+0:0/10 = 10
+0:0/10/modulate = Color(0, 0.419608, 0.847059, 1)
 
 [resource]
 tile_size = Vector2i(8, 8)

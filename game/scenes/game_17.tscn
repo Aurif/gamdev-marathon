@@ -39,10 +39,11 @@ metadata/_edit_lock_ = true
 
 [node name="LevelManager" parent="." instance=ExtResource("4_qgkcl")]
 layout_mode = 1
+offset_top = 36.0
 
 [node name="LevelLabel" parent="LevelManager" index="0"]
-offset_top = 579.0
-offset_bottom = 613.0
+offset_top = 572.0
+offset_bottom = 606.0
 
 [node name="SpawnHere" parent="LevelManager" index="1"]
 anchors_preset = 15
@@ -52,6 +53,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Level1" parent="LevelManager" instance=ExtResource("5_2yalj")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_left = 0.0
@@ -101,6 +103,7 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Level2" parent="LevelManager" instance=ExtResource("5_2yalj")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_left = 0.0
@@ -149,6 +152,564 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
+[node name="Level3" parent="LevelManager" instance=ExtResource("5_2yalj")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="Control" parent="LevelManager/Level3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DrawableTilemap" type="TileMapLayer" parent="LevelManager/Level3/Center"]
+scale = Vector2(12, 12)
+tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAwD/////AAAAAAAAAwAAAP//AAAAAAAAAwAAAAAAAAAAAAAAAwABAP7/AAAAAAAAAwABAAEAAAAAAAAAAwD+/wEAAAAAAAAAAwD//wEAAAAAAAAAAgAAAAEAAAAAAAAAAgABAAAAAAAAAAAAAgABAP//AAAAAAAAAgAAAP7/AAAAAAAAAgD///7/AAAAAAAAAgD+////AAAAAAAAAgD+/wAAAAAAAAAAAgD+//7/AAAAAAAAAwA=")
+tile_set = ExtResource("4_fiuwg")
+script = ExtResource("5_6psld")
+
+[node name="Hover" type="TileMapLayer" parent="LevelManager/Level3/Center/DrawableTilemap"]
+modulate = Color(1, 1, 1, 0.129412)
+tile_set = ExtResource("4_fiuwg")
+
+[node name="Game17" type="Node" parent="LevelManager/Level3" node_paths=PackedStringArray("n_tilemap", "n_palette")]
+script = ExtResource("6_hf4tu")
+n_tilemap = NodePath("../Center/DrawableTilemap")
+n_palette = NodePath("../Palette")
+preset_color_button = ExtResource("7_i4kca")
+preset_color_rule = ExtResource("10_ohvm1")
+
+[node name="Palette" type="VBoxContainer" parent="LevelManager/Level3"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_right = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Level4" parent="LevelManager" instance=ExtResource("5_2yalj")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="Control" parent="LevelManager/Level4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DrawableTilemap" type="TileMapLayer" parent="LevelManager/Level4/Center"]
+scale = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAwAAAP//AAAAAAAAAgAAAAAAAAAAAAAAAwABAP7/AAAAAAAAAgABAAEAAAAAAAAAAwD+/wEAAAAAAAAAAwD//wEAAAAAAAAAAgAAAAEAAAAAAAAAAgABAAAAAAAAAAAAAwACAAIAAAAAAAAAAwD9/wIAAAAAAAAAAwD+/wIAAAAAAAAAAwD//wIAAAAAAAAAAwAAAAIAAAAAAAAAAwABAAIAAAAAAAAAAwACAAAAAAAAAAAAAwACAAEAAAAAAAAAAwD9/wEAAAAAAAAAAwD9/wAAAAAAAAAAAwD9////AAAAAAAAAwD9//7/AAAAAAAAAwD+//3/AAAAAAAAAwD///3/AAAAAAAAAwAAAP3/AAAAAAAAAwABAP3/AAAAAAAAAgACAP7/AAAAAAAAAgACAP//AAAAAAAAAwD9//3/AAAAAAAAAwACAP3/AAAAAAAAAgD///7/AAAAAAAAAwD+//7/AAAAAAAAAwD+////AAAAAAAAAgD+/wAAAAAAAAAAAgD//wAAAAAAAAAAAgAAAP7/AAAAAAAAAwABAP//AAAAAAAAAwA=")
+tile_set = ExtResource("4_fiuwg")
+script = ExtResource("5_6psld")
+
+[node name="Hover" type="TileMapLayer" parent="LevelManager/Level4/Center/DrawableTilemap"]
+modulate = Color(1, 1, 1, 0.129412)
+tile_set = ExtResource("4_fiuwg")
+
+[node name="Game17" type="Node" parent="LevelManager/Level4" node_paths=PackedStringArray("n_tilemap", "n_palette")]
+script = ExtResource("6_hf4tu")
+n_tilemap = NodePath("../Center/DrawableTilemap")
+n_palette = NodePath("../Palette")
+preset_color_button = ExtResource("7_i4kca")
+preset_color_rule = ExtResource("10_ohvm1")
+
+[node name="Palette" type="VBoxContainer" parent="LevelManager/Level4"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_right = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Level5" parent="LevelManager" instance=ExtResource("5_2yalj")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="Control" parent="LevelManager/Level5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DrawableTilemap" type="TileMapLayer" parent="LevelManager/Level5/Center"]
+position = Vector2(32, 0)
+scale = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAwAAAP//AAAAAAAAAwAAAAAAAAAAAAAABQABAP7/AAAAAAAABQABAAEAAAAAAAAAAwD+/wEAAAAAAAAAAwAAAAEAAAAAAAAAAwABAAAAAAAAAAAABQACAAIAAAAAAAAAAwD9/wIAAAAAAAAABQD+/wIAAAAAAAAABQD//wIAAAAAAAAABQAAAAIAAAAAAAAABQABAAIAAAAAAAAABQACAAAAAAAAAAAAAwACAAEAAAAAAAAAAwD9/wEAAAAAAAAAAwD9/wAAAAAAAAAABQD9////AAAAAAAABQD9//7/AAAAAAAABQD+//3/AAAAAAAABQD///3/AAAAAAAAAwAAAP3/AAAAAAAABQABAP3/AAAAAAAAAwACAP7/AAAAAAAABQACAP//AAAAAAAAAwD9//3/AAAAAAAAAwACAP3/AAAAAAAABQD///7/AAAAAAAAAwD+//7/AAAAAAAABQAAAP7/AAAAAAAABQABAP//AAAAAAAABQD8/wMAAAAAAAAAAwD9/wMAAAAAAAAABQD+/wMAAAAAAAAAAwD//wMAAAAAAAAABQAAAAMAAAAAAAAAAwABAAMAAAAAAAAABQACAAMAAAAAAAAAAwADAAIAAAAAAAAAAwADAAMAAAAAAAAAAwADAAEAAAAAAAAAAwADAAAAAAAAAAAAAwADAP//AAAAAAAAAwADAP7/AAAAAAAAAwADAP3/AAAAAAAAAwADAPz/AAAAAAAAAwACAPz/AAAAAAAABQABAPz/AAAAAAAABQAAAPz/AAAAAAAABQD///z/AAAAAAAAAwD+//z/AAAAAAAABQD9//z/AAAAAAAABQD8//z/AAAAAAAABQD8//3/AAAAAAAABQD8//7/AAAAAAAABQD8////AAAAAAAAAwD8/wAAAAAAAAAAAwD8/wEAAAAAAAAAAwD8/wIAAAAAAAAAAwD+////AAAAAAAAAwD+/wAAAAAAAAAABQD//wAAAAAAAAAABQD//wEAAAAAAAAABQD7//z/AAAAAAAAAwD7//3/AAAAAAAAAwD7//7/AAAAAAAAAwD7////AAAAAAAAAwD7/wAAAAAAAAAAAwD7/wEAAAAAAAAAAwD7/wIAAAAAAAAAAwD7/wMAAAAAAAAAAwA=")
+tile_set = ExtResource("4_fiuwg")
+script = ExtResource("5_6psld")
+
+[node name="Hover" type="TileMapLayer" parent="LevelManager/Level5/Center/DrawableTilemap"]
+modulate = Color(1, 1, 1, 0.129412)
+tile_set = ExtResource("4_fiuwg")
+
+[node name="Game17" type="Node" parent="LevelManager/Level5" node_paths=PackedStringArray("n_tilemap", "n_palette")]
+script = ExtResource("6_hf4tu")
+n_tilemap = NodePath("../Center/DrawableTilemap")
+n_palette = NodePath("../Palette")
+preset_color_button = ExtResource("7_i4kca")
+preset_color_rule = ExtResource("10_ohvm1")
+
+[node name="Palette" type="VBoxContainer" parent="LevelManager/Level5"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_right = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Level6" parent="LevelManager" instance=ExtResource("5_2yalj")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="Control" parent="LevelManager/Level6"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DrawableTilemap" type="TileMapLayer" parent="LevelManager/Level6/Center"]
+position = Vector2(32, 0)
+scale = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAABgAAAP//AAAAAAAAAwAAAAAAAAAAAAAAAwABAAEAAAAAAAAABgD+/wEAAAAAAAAAAwAAAAEAAAAAAAAABgABAAAAAAAAAAAAAwACAAIAAAAAAAAABgD9/wIAAAAAAAAAAwD+/wIAAAAAAAAAAwD//wIAAAAAAAAABgAAAAIAAAAAAAAABgABAAIAAAAAAAAABgACAAAAAAAAAAAAAwACAAEAAAAAAAAAAwD9/wEAAAAAAAAAAwD9/wAAAAAAAAAAAwD9////AAAAAAAABgD9//7/AAAAAAAABgD+//3/AAAAAAAAAwD///3/AAAAAAAAAwAAAP3/AAAAAAAAAwD9//3/AAAAAAAAAwD///7/AAAAAAAAAwD+//7/AAAAAAAABgAAAP7/AAAAAAAAAwABAP//AAAAAAAAAwD8/wMAAAAAAAAAAwD9/wMAAAAAAAAAAwD+/wMAAAAAAAAAAwD//wMAAAAAAAAAAwAAAAMAAAAAAAAAAwABAAMAAAAAAAAAAwACAAMAAAAAAAAAAwADAAIAAAAAAAAAAwADAAMAAAAAAAAAAwADAAEAAAAAAAAAAwADAAAAAAAAAAAAAwADAP3/AAAAAAAAAgD8//3/AAAAAAAAAwD8//7/AAAAAAAAAwD8////AAAAAAAABgD8/wAAAAAAAAAAAwD8/wEAAAAAAAAAAwD8/wIAAAAAAAAABgD+////AAAAAAAABgD+/wAAAAAAAAAAAwD//wAAAAAAAAAAAwD//wEAAAAAAAAAAwD7//3/AAAAAAAAAwD7//7/AAAAAAAAAwD7////AAAAAAAAAwD7/wAAAAAAAAAAAwD7/wEAAAAAAAAAAwD7/wIAAAAAAAAAAwD7/wMAAAAAAAAAAwACAP3/AAAAAAAAAgACAP7/AAAAAAAAAgADAP7/AAAAAAAAAgABAP3/AAAAAAAAAwABAP7/AAAAAAAAAwACAP//AAAAAAAAAwADAP//AAAAAAAAAwA=")
+tile_set = ExtResource("4_fiuwg")
+script = ExtResource("5_6psld")
+
+[node name="Hover" type="TileMapLayer" parent="LevelManager/Level6/Center/DrawableTilemap"]
+modulate = Color(1, 1, 1, 0.129412)
+tile_set = ExtResource("4_fiuwg")
+
+[node name="Game17" type="Node" parent="LevelManager/Level6" node_paths=PackedStringArray("n_tilemap", "n_palette")]
+script = ExtResource("6_hf4tu")
+n_tilemap = NodePath("../Center/DrawableTilemap")
+n_palette = NodePath("../Palette")
+preset_color_button = ExtResource("7_i4kca")
+preset_color_rule = ExtResource("10_ohvm1")
+
+[node name="Palette" type="VBoxContainer" parent="LevelManager/Level6"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_right = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Level7" parent="LevelManager" instance=ExtResource("5_2yalj")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="Control" parent="LevelManager/Level7"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DrawableTilemap" type="TileMapLayer" parent="LevelManager/Level7/Center"]
+position = Vector2(32, 0)
+scale = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAACAAAAP//AAAAAAAAAgABAAEAAAAAAAAAAwD+/wEAAAAAAAAAAwAAAAEAAAAAAAAAAwABAAAAAAAAAAAAAwD9/wIAAAAAAAAABwD+/wIAAAAAAAAAAwD//wIAAAAAAAAABwAAAAIAAAAAAAAAAwABAAIAAAAAAAAABwACAAAAAAAAAAAAAwACAAEAAAAAAAAAAwD9/wEAAAAAAAAAAwD9/wAAAAAAAAAAAwD9////AAAAAAAABwD9//7/AAAAAAAABwD+//3/AAAAAAAABwD///3/AAAAAAAABwAAAP3/AAAAAAAABwD9//3/AAAAAAAAAwD///7/AAAAAAAAAgD+//7/AAAAAAAAAgAAAP7/AAAAAAAAAgABAP//AAAAAAAABwD8/wMAAAAAAAAAAwD9/wMAAAAAAAAAAwD+/wMAAAAAAAAABwD//wMAAAAAAAAABwAAAAMAAAAAAAAABwABAAMAAAAAAAAAAwACAAMAAAAAAAAAAwADAAIAAAAAAAAAAwADAAMAAAAAAAAAAwADAAEAAAAAAAAAAwADAAAAAAAAAAAAAwADAP3/AAAAAAAAAwD8//3/AAAAAAAAAwD8//7/AAAAAAAAAwD8////AAAAAAAAAwD8/wAAAAAAAAAAAwD8/wEAAAAAAAAAAwD8/wIAAAAAAAAAAwD+////AAAAAAAAAgD//wAAAAAAAAAABwD//wEAAAAAAAAABwD7//3/AAAAAAAAAwD7//7/AAAAAAAAAwD7////AAAAAAAAAwD7/wAAAAAAAAAAAwD7/wEAAAAAAAAAAwD7/wIAAAAAAAAAAwD7/wMAAAAAAAAAAwACAP3/AAAAAAAAAwACAP7/AAAAAAAAAwADAP7/AAAAAAAAAwABAP3/AAAAAAAAAwABAP7/AAAAAAAABwACAP//AAAAAAAAAwADAP//AAAAAAAAAwAAAAAAAAAAAAAABwD+/wAAAAAAAAAABwACAAIAAAAAAAAAAwA=")
+tile_set = ExtResource("4_fiuwg")
+script = ExtResource("5_6psld")
+
+[node name="Hover" type="TileMapLayer" parent="LevelManager/Level7/Center/DrawableTilemap"]
+modulate = Color(1, 1, 1, 0.129412)
+tile_set = ExtResource("4_fiuwg")
+
+[node name="Game17" type="Node" parent="LevelManager/Level7" node_paths=PackedStringArray("n_tilemap", "n_palette")]
+script = ExtResource("6_hf4tu")
+n_tilemap = NodePath("../Center/DrawableTilemap")
+n_palette = NodePath("../Palette")
+preset_color_button = ExtResource("7_i4kca")
+preset_color_rule = ExtResource("10_ohvm1")
+
+[node name="Palette" type="VBoxContainer" parent="LevelManager/Level7"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_right = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Level8" parent="LevelManager" instance=ExtResource("5_2yalj")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="Control" parent="LevelManager/Level8"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DrawableTilemap" type="TileMapLayer" parent="LevelManager/Level8/Center"]
+position = Vector2(32, 0)
+scale = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAACAAAAP//AAAAAAAACAABAAEAAAAAAAAAAgD+/wEAAAAAAAAAAgAAAAEAAAAAAAAAAgABAAAAAAAAAAAAAgD9/wIAAAAAAAAAAwD+/wIAAAAAAAAAAwD//wIAAAAAAAAAAwAAAAIAAAAAAAAAAwABAAIAAAAAAAAAAwACAAAAAAAAAAAAAwACAAEAAAAAAAAAAwD9/wEAAAAAAAAACAD9/wAAAAAAAAAACAD9////AAAAAAAACAD9//7/AAAAAAAAAwD+//3/AAAAAAAAAgD///3/AAAAAAAAAgAAAP3/AAAAAAAAAgD9//3/AAAAAAAAAgD///7/AAAAAAAAAwD+//7/AAAAAAAAAwAAAP7/AAAAAAAAAwABAP//AAAAAAAAAgD8/wMAAAAAAAAACAD9/wMAAAAAAAAACAD+/wMAAAAAAAAACAD//wMAAAAAAAAACAAAAAMAAAAAAAAACAABAAMAAAAAAAAACAACAAMAAAAAAAAACAADAAIAAAAAAAAACAADAAMAAAAAAAAACAADAAEAAAAAAAAACAADAAAAAAAAAAAACAADAP3/AAAAAAAACAD8//3/AAAAAAAAAgD8//7/AAAAAAAAAwD8////AAAAAAAAAwD8/wAAAAAAAAAAAwD8/wEAAAAAAAAAAwD8/wIAAAAAAAAAAwD+////AAAAAAAACAD//wAAAAAAAAAAAwD//wEAAAAAAAAAAgD7//3/AAAAAAAAAgD7//7/AAAAAAAAAgD7////AAAAAAAAAgD7/wAAAAAAAAAAAgD7/wEAAAAAAAAAAgD7/wIAAAAAAAAAAgD7/wMAAAAAAAAAAgACAP3/AAAAAAAAAgACAP7/AAAAAAAAAwADAP7/AAAAAAAACAABAP3/AAAAAAAAAgABAP7/AAAAAAAAAwACAP//AAAAAAAAAwADAP//AAAAAAAACAAAAAAAAAAAAAAAAwD+/wAAAAAAAAAAAwACAAIAAAAAAAAAAwA=")
+tile_set = ExtResource("4_fiuwg")
+script = ExtResource("5_6psld")
+
+[node name="Hover" type="TileMapLayer" parent="LevelManager/Level8/Center/DrawableTilemap"]
+modulate = Color(1, 1, 1, 0.129412)
+tile_set = ExtResource("4_fiuwg")
+
+[node name="Game17" type="Node" parent="LevelManager/Level8" node_paths=PackedStringArray("n_tilemap", "n_palette")]
+script = ExtResource("6_hf4tu")
+n_tilemap = NodePath("../Center/DrawableTilemap")
+n_palette = NodePath("../Palette")
+preset_color_button = ExtResource("7_i4kca")
+preset_color_rule = ExtResource("10_ohvm1")
+
+[node name="Palette" type="VBoxContainer" parent="LevelManager/Level8"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_right = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Level9" parent="LevelManager" instance=ExtResource("5_2yalj")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="Control" parent="LevelManager/Level9"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DrawableTilemap" type="TileMapLayer" parent="LevelManager/Level9/Center"]
+position = Vector2(32, 0)
+scale = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAwAAAP//AAAAAAAAAgD+/wEAAAAAAAAAAwAAAAEAAAAAAAAACAABAAAAAAAAAAAAAwD9/wIAAAAAAAAACAD+/wIAAAAAAAAAAwD//wIAAAAAAAAAAwAAAAIAAAAAAAAACAACAAAAAAAAAAAAAgACAAEAAAAAAAAAAwD9/wEAAAAAAAAAAgD9/wAAAAAAAAAAAwD9////AAAAAAAAAwD9//7/AAAAAAAAAwD+//3/AAAAAAAACAD///3/AAAAAAAAAwAAAP3/AAAAAAAAAwD9//3/AAAAAAAAAwD///7/AAAAAAAAAwD+//7/AAAAAAAACAAAAP7/AAAAAAAAAwABAP//AAAAAAAAAwD8/wMAAAAAAAAAAwD9/wMAAAAAAAAACAD+/wMAAAAAAAAAAwD//wMAAAAAAAAAAwAAAAMAAAAAAAAACAABAAMAAAAAAAAAAwACAAMAAAAAAAAAAwADAAIAAAAAAAAACAADAAMAAAAAAAAAAwADAAEAAAAAAAAAAwADAAAAAAAAAAAACAADAP3/AAAAAAAAAwD8//3/AAAAAAAAAwD8//7/AAAAAAAAAgD8////AAAAAAAAAwD8/wAAAAAAAAAAAwD8/wEAAAAAAAAAAwD8/wIAAAAAAAAAAwD+////AAAAAAAAAgD//wAAAAAAAAAAAwD//wEAAAAAAAAAAwACAP3/AAAAAAAAAwACAP7/AAAAAAAAAwADAP7/AAAAAAAAAwABAP3/AAAAAAAACAABAP7/AAAAAAAAAgACAP//AAAAAAAAAwADAP//AAAAAAAAAwAAAAAAAAAAAAAACAD+/wAAAAAAAAAAAwACAAIAAAAAAAAAAgD7/wMAAAAAAAAAAwD7/wIAAAAAAAAAAwD7/wEAAAAAAAAAAwD7/wAAAAAAAAAAAwD7////AAAAAAAAAwD7//7/AAAAAAAACAD7//3/AAAAAAAAAwABAAEAAAAAAAAAAwABAAIAAAAAAAAAAwA=")
+tile_set = ExtResource("4_fiuwg")
+script = ExtResource("5_6psld")
+
+[node name="Hover" type="TileMapLayer" parent="LevelManager/Level9/Center/DrawableTilemap"]
+modulate = Color(1, 1, 1, 0.129412)
+tile_set = ExtResource("4_fiuwg")
+
+[node name="Game17" type="Node" parent="LevelManager/Level9" node_paths=PackedStringArray("n_tilemap", "n_palette")]
+script = ExtResource("6_hf4tu")
+n_tilemap = NodePath("../Center/DrawableTilemap")
+n_palette = NodePath("../Palette")
+preset_color_button = ExtResource("7_i4kca")
+preset_color_rule = ExtResource("10_ohvm1")
+
+[node name="Palette" type="VBoxContainer" parent="LevelManager/Level9"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_right = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Level10" parent="LevelManager" instance=ExtResource("5_2yalj")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="Control" parent="LevelManager/Level10"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DrawableTilemap" type="TileMapLayer" parent="LevelManager/Level10/Center"]
+position = Vector2(32, 0)
+scale = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAwAAAP//AAAAAAAAAwD+/wEAAAAAAAAAAwAAAAEAAAAAAAAAAgABAAAAAAAAAAAAAgD9/wIAAAAAAAAAAwD+/wIAAAAAAAAABQD//wIAAAAAAAAAAgAAAAIAAAAAAAAACAACAAAAAAAAAAAACAACAAEAAAAAAAAAAgD9/wEAAAAAAAAAAwD9/wAAAAAAAAAABQD9////AAAAAAAAAgD9//7/AAAAAAAACAD+//3/AAAAAAAACAD///3/AAAAAAAAAgAAAP3/AAAAAAAABQD9//3/AAAAAAAAAgD///7/AAAAAAAABQD+//7/AAAAAAAAAgAAAP7/AAAAAAAAAwABAP//AAAAAAAABQD8/wMAAAAAAAAAAwD9/wMAAAAAAAAABQD+/wMAAAAAAAAAAgD//wMAAAAAAAAACAAAAAMAAAAAAAAAAgABAAMAAAAAAAAABQACAAMAAAAAAAAAAwADAAIAAAAAAAAAAwADAAMAAAAAAAAAAwADAAEAAAAAAAAABQADAAAAAAAAAAAAAgADAP3/AAAAAAAABQD8//3/AAAAAAAABQD8//7/AAAAAAAAAgD8////AAAAAAAACAD8/wAAAAAAAAAAAgD8/wEAAAAAAAAABQD8/wIAAAAAAAAAAwD+////AAAAAAAABQD//wAAAAAAAAAAAwD//wEAAAAAAAAABQACAP3/AAAAAAAAAwACAP7/AAAAAAAABQADAP7/AAAAAAAAAgABAP3/AAAAAAAAAwABAP7/AAAAAAAAAwACAP//AAAAAAAAAgADAP//AAAAAAAACAAAAAAAAAAAAAAABQD+/wAAAAAAAAAAAwACAAIAAAAAAAAABQD7/wMAAAAAAAAAAwD7/wIAAAAAAAAABQD7/wEAAAAAAAAAAgD7/wAAAAAAAAAACAD7////AAAAAAAAAgD7//7/AAAAAAAABQD7//3/AAAAAAAAAwABAAEAAAAAAAAACAABAAIAAAAAAAAAAgA=")
+tile_set = ExtResource("4_fiuwg")
+script = ExtResource("5_6psld")
+
+[node name="Hover" type="TileMapLayer" parent="LevelManager/Level10/Center/DrawableTilemap"]
+modulate = Color(1, 1, 1, 0.129412)
+tile_set = ExtResource("4_fiuwg")
+
+[node name="Game17" type="Node" parent="LevelManager/Level10" node_paths=PackedStringArray("n_tilemap", "n_palette")]
+script = ExtResource("6_hf4tu")
+n_tilemap = NodePath("../Center/DrawableTilemap")
+n_palette = NodePath("../Palette")
+preset_color_button = ExtResource("7_i4kca")
+preset_color_rule = ExtResource("10_ohvm1")
+
+[node name="Palette" type="VBoxContainer" parent="LevelManager/Level10"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_right = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Level11" parent="LevelManager" instance=ExtResource("5_2yalj")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="Control" parent="LevelManager/Level11"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DrawableTilemap" type="TileMapLayer" parent="LevelManager/Level11/Center"]
+position = Vector2(32, 0)
+scale = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAABgAAAP//AAAAAAAABgD+/wEAAAAAAAAABgAAAAEAAAAAAAAABgABAAAAAAAAAAAABgD9/wIAAAAAAAAABgD+/wIAAAAAAAAACAD//wIAAAAAAAAACAAAAAIAAAAAAAAACAACAAAAAAAAAAAACAACAAEAAAAAAAAABgD9/wEAAAAAAAAACAD9/wAAAAAAAAAABgD9////AAAAAAAACAD9//7/AAAAAAAABgD+//3/AAAAAAAABgD///3/AAAAAAAABgAAAP3/AAAAAAAABgD9//3/AAAAAAAABgD///7/AAAAAAAACAD+//7/AAAAAAAACAAAAP7/AAAAAAAACAABAP//AAAAAAAACAD8/wMAAAAAAAAABgD9/wMAAAAAAAAABgD+/wMAAAAAAAAABgD//wMAAAAAAAAABgAAAAMAAAAAAAAABgABAAMAAAAAAAAABgACAAMAAAAAAAAABgADAAIAAAAAAAAABgADAAMAAAAAAAAABgADAAEAAAAAAAAABgADAP3/AAAAAAAABgD8//3/AAAAAAAABgD8//7/AAAAAAAABgD8/wAAAAAAAAAACAD8/wEAAAAAAAAABgD8/wIAAAAAAAAABgD+////AAAAAAAABgD//wAAAAAAAAAAAgD//wEAAAAAAAAABgACAP3/AAAAAAAABgACAP7/AAAAAAAABgADAP7/AAAAAAAABgABAP3/AAAAAAAABgABAP7/AAAAAAAABgACAP//AAAAAAAABgADAP//AAAAAAAABgAAAAAAAAAAAAAABgD+/wAAAAAAAAAABgACAAIAAAAAAAAABgD7/wMAAAAAAAAABgD7/wIAAAAAAAAABgD7/wEAAAAAAAAABgD7////AAAAAAAABgD7//7/AAAAAAAABgD7//3/AAAAAAAABgABAAEAAAAAAAAACAABAAIAAAAAAAAABgADAAAAAAAAAAAABgD8////AAAAAAAABgD7/wAAAAAAAAAABgA=")
+tile_set = ExtResource("4_fiuwg")
+script = ExtResource("5_6psld")
+
+[node name="Hover" type="TileMapLayer" parent="LevelManager/Level11/Center/DrawableTilemap"]
+modulate = Color(1, 1, 1, 0.129412)
+tile_set = ExtResource("4_fiuwg")
+
+[node name="Game17" type="Node" parent="LevelManager/Level11" node_paths=PackedStringArray("n_tilemap", "n_palette")]
+script = ExtResource("6_hf4tu")
+n_tilemap = NodePath("../Center/DrawableTilemap")
+n_palette = NodePath("../Palette")
+preset_color_button = ExtResource("7_i4kca")
+preset_color_rule = ExtResource("10_ohvm1")
+
+[node name="Palette" type="VBoxContainer" parent="LevelManager/Level11"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_right = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Level12" parent="LevelManager" instance=ExtResource("5_2yalj")]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="Control" parent="LevelManager/Level12"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DrawableTilemap" type="TileMapLayer" parent="LevelManager/Level12/Center"]
+position = Vector2(32, 0)
+scale = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAACAAAAP//AAAAAAAAAgD+/wEAAAAAAAAABgAAAAEAAAAAAAAAAgABAAAAAAAAAAAABgD9/wIAAAAAAAAACAD+/wIAAAAAAAAAAwD//wIAAAAAAAAACAAAAAIAAAAAAAAAAgACAAAAAAAAAAAABgACAAEAAAAAAAAABQD9/wEAAAAAAAAABgD9/wAAAAAAAAAACAD9////AAAAAAAACAD9//7/AAAAAAAABgD+//3/AAAAAAAAAwD///3/AAAAAAAACAAAAP3/AAAAAAAAAgD9//3/AAAAAAAACAD///7/AAAAAAAABgD+//7/AAAAAAAAAwAAAP7/AAAAAAAABgABAP//AAAAAAAAAwD8/wMAAAAAAAAAAgD9/wMAAAAAAAAACAD+/wMAAAAAAAAAAwD//wMAAAAAAAAACAAAAAMAAAAAAAAABgABAAMAAAAAAAAAAwACAAMAAAAAAAAABQADAAIAAAAAAAAABgADAAMAAAAAAAAABQADAAEAAAAAAAAABQADAP3/AAAAAAAABgD8//3/AAAAAAAAAgD8//7/AAAAAAAABgD8/wAAAAAAAAAAAgD8/wEAAAAAAAAAAgD8/wIAAAAAAAAAAgD+////AAAAAAAAAwD//wAAAAAAAAAACAD//wEAAAAAAAAACAACAP3/AAAAAAAABQACAP7/AAAAAAAABQADAP7/AAAAAAAABQABAP3/AAAAAAAAAwABAP7/AAAAAAAAAwACAP//AAAAAAAABQADAP//AAAAAAAABQAAAAAAAAAAAAAAAgD+/wAAAAAAAAAAAwACAAIAAAAAAAAABQD7/wMAAAAAAAAAAwD7/wIAAAAAAAAAAwD7/wEAAAAAAAAAAwD7////AAAAAAAAAwD7//7/AAAAAAAABgD7//3/AAAAAAAAAwABAAEAAAAAAAAAAwABAAIAAAAAAAAAAwADAAAAAAAAAAAABQD8////AAAAAAAAAgD7/wAAAAAAAAAABgA=")
+tile_set = ExtResource("4_fiuwg")
+script = ExtResource("5_6psld")
+
+[node name="Hover" type="TileMapLayer" parent="LevelManager/Level12/Center/DrawableTilemap"]
+modulate = Color(1, 1, 1, 0.129412)
+tile_set = ExtResource("4_fiuwg")
+
+[node name="Game17" type="Node" parent="LevelManager/Level12" node_paths=PackedStringArray("n_tilemap", "n_palette")]
+script = ExtResource("6_hf4tu")
+n_tilemap = NodePath("../Center/DrawableTilemap")
+n_palette = NodePath("../Palette")
+preset_color_button = ExtResource("7_i4kca")
+preset_color_rule = ExtResource("10_ohvm1")
+
+[node name="Palette" type="VBoxContainer" parent="LevelManager/Level12"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_right = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Level13" parent="LevelManager" instance=ExtResource("5_2yalj")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Center" type="Control" parent="LevelManager/Level13"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DrawableTilemap" type="TileMapLayer" parent="LevelManager/Level13/Center"]
+position = Vector2(32, 0)
+scale = Vector2(8, 8)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAgAAAP//AAAAAAAACAD+/wEAAAAAAAAABQAAAAEAAAAAAAAABQABAAAAAAAAAAAABQD9/wIAAAAAAAAAAwD+/wIAAAAAAAAAAgD//wIAAAAAAAAAAgAAAAIAAAAAAAAABQACAAAAAAAAAAAAAgACAAEAAAAAAAAACAD9/wEAAAAAAAAABQD9/wAAAAAAAAAACAD9////AAAAAAAACAD9//7/AAAAAAAABQD+//3/AAAAAAAAAgD///3/AAAAAAAAAgAAAP3/AAAAAAAAAgD9//3/AAAAAAAACAD///7/AAAAAAAABQD+//7/AAAAAAAACQAAAP7/AAAAAAAABQABAP//AAAAAAAABQD8/wMAAAAAAAAAAwD9/wMAAAAAAAAACQD+/wMAAAAAAAAAAwD//wMAAAAAAAAACAAAAAMAAAAAAAAAAgABAAMAAAAAAAAAAwACAAMAAAAAAAAAAwADAAIAAAAAAAAAAwADAAMAAAAAAAAACQADAAEAAAAAAAAAAgADAP3/AAAAAAAAAwD8//3/AAAAAAAAAwD8//7/AAAAAAAAAwD8/wAAAAAAAAAABQD8/wEAAAAAAAAACAD8/wIAAAAAAAAABQD+////AAAAAAAABQD//wAAAAAAAAAABQD//wEAAAAAAAAACQACAP3/AAAAAAAACQACAP7/AAAAAAAAAgADAP7/AAAAAAAAAwABAP3/AAAAAAAACAABAP7/AAAAAAAABQACAP//AAAAAAAAAgADAP//AAAAAAAACQAAAAAAAAAAAAAABQD+/wAAAAAAAAAAAgACAAIAAAAAAAAAAwD7/wMAAAAAAAAAAwD7/wIAAAAAAAAACAD7/wEAAAAAAAAACAD7////AAAAAAAAAgD7//7/AAAAAAAACQD7//3/AAAAAAAAAwABAAEAAAAAAAAACAABAAIAAAAAAAAACAADAAAAAAAAAAAAAgD8////AAAAAAAABQD7/wAAAAAAAAAAAgA=")
+tile_set = ExtResource("4_fiuwg")
+script = ExtResource("5_6psld")
+
+[node name="Hover" type="TileMapLayer" parent="LevelManager/Level13/Center/DrawableTilemap"]
+modulate = Color(1, 1, 1, 0.129412)
+tile_set = ExtResource("4_fiuwg")
+
+[node name="Game17" type="Node" parent="LevelManager/Level13" node_paths=PackedStringArray("n_tilemap", "n_palette")]
+script = ExtResource("6_hf4tu")
+n_tilemap = NodePath("../Center/DrawableTilemap")
+n_palette = NodePath("../Palette")
+preset_color_button = ExtResource("7_i4kca")
+preset_color_rule = ExtResource("10_ohvm1")
+
+[node name="Palette" type="VBoxContainer" parent="LevelManager/Level13"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 310.0
+offset_right = 370.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
 [node name="WinScreen" parent="." instance=ExtResource("6_4q50l")]
 layout_mode = 1
 
@@ -159,5 +720,38 @@ layout_mode = 1
 [connection signal="InitLevel" from="LevelManager/Level2" to="LevelManager/Level2/Game17" method="load_level_proxy"]
 [connection signal="OnDraw" from="LevelManager/Level2/Center/DrawableTilemap" to="LevelManager/Level2/Game17" method="check_win"]
 [connection signal="NextLevel" from="LevelManager/Level2/Game17" to="LevelManager" method="next_level"]
+[connection signal="InitLevel" from="LevelManager/Level3" to="LevelManager/Level3/Game17" method="load_level_proxy"]
+[connection signal="OnDraw" from="LevelManager/Level3/Center/DrawableTilemap" to="LevelManager/Level3/Game17" method="check_win"]
+[connection signal="NextLevel" from="LevelManager/Level3/Game17" to="LevelManager" method="next_level"]
+[connection signal="InitLevel" from="LevelManager/Level4" to="LevelManager/Level4/Game17" method="load_level_proxy"]
+[connection signal="OnDraw" from="LevelManager/Level4/Center/DrawableTilemap" to="LevelManager/Level4/Game17" method="check_win"]
+[connection signal="NextLevel" from="LevelManager/Level4/Game17" to="LevelManager" method="next_level"]
+[connection signal="InitLevel" from="LevelManager/Level5" to="LevelManager/Level5/Game17" method="load_level_proxy"]
+[connection signal="OnDraw" from="LevelManager/Level5/Center/DrawableTilemap" to="LevelManager/Level5/Game17" method="check_win"]
+[connection signal="NextLevel" from="LevelManager/Level5/Game17" to="LevelManager" method="next_level"]
+[connection signal="InitLevel" from="LevelManager/Level6" to="LevelManager/Level6/Game17" method="load_level_proxy"]
+[connection signal="OnDraw" from="LevelManager/Level6/Center/DrawableTilemap" to="LevelManager/Level6/Game17" method="check_win"]
+[connection signal="NextLevel" from="LevelManager/Level6/Game17" to="LevelManager" method="next_level"]
+[connection signal="InitLevel" from="LevelManager/Level7" to="LevelManager/Level7/Game17" method="load_level_proxy"]
+[connection signal="OnDraw" from="LevelManager/Level7/Center/DrawableTilemap" to="LevelManager/Level7/Game17" method="check_win"]
+[connection signal="NextLevel" from="LevelManager/Level7/Game17" to="LevelManager" method="next_level"]
+[connection signal="InitLevel" from="LevelManager/Level8" to="LevelManager/Level8/Game17" method="load_level_proxy"]
+[connection signal="OnDraw" from="LevelManager/Level8/Center/DrawableTilemap" to="LevelManager/Level8/Game17" method="check_win"]
+[connection signal="NextLevel" from="LevelManager/Level8/Game17" to="LevelManager" method="next_level"]
+[connection signal="InitLevel" from="LevelManager/Level9" to="LevelManager/Level9/Game17" method="load_level_proxy"]
+[connection signal="OnDraw" from="LevelManager/Level9/Center/DrawableTilemap" to="LevelManager/Level9/Game17" method="check_win"]
+[connection signal="NextLevel" from="LevelManager/Level9/Game17" to="LevelManager" method="next_level"]
+[connection signal="InitLevel" from="LevelManager/Level10" to="LevelManager/Level10/Game17" method="load_level_proxy"]
+[connection signal="OnDraw" from="LevelManager/Level10/Center/DrawableTilemap" to="LevelManager/Level10/Game17" method="check_win"]
+[connection signal="NextLevel" from="LevelManager/Level10/Game17" to="LevelManager" method="next_level"]
+[connection signal="InitLevel" from="LevelManager/Level11" to="LevelManager/Level11/Game17" method="load_level_proxy"]
+[connection signal="OnDraw" from="LevelManager/Level11/Center/DrawableTilemap" to="LevelManager/Level11/Game17" method="check_win"]
+[connection signal="NextLevel" from="LevelManager/Level11/Game17" to="LevelManager" method="next_level"]
+[connection signal="InitLevel" from="LevelManager/Level12" to="LevelManager/Level12/Game17" method="load_level_proxy"]
+[connection signal="OnDraw" from="LevelManager/Level12/Center/DrawableTilemap" to="LevelManager/Level12/Game17" method="check_win"]
+[connection signal="NextLevel" from="LevelManager/Level12/Game17" to="LevelManager" method="next_level"]
+[connection signal="InitLevel" from="LevelManager/Level13" to="LevelManager/Level13/Game17" method="load_level_proxy"]
+[connection signal="OnDraw" from="LevelManager/Level13/Center/DrawableTilemap" to="LevelManager/Level13/Game17" method="check_win"]
+[connection signal="NextLevel" from="LevelManager/Level13/Game17" to="LevelManager" method="next_level"]
 
 [editable path="LevelManager"]
