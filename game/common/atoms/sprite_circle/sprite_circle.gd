@@ -8,6 +8,7 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 
 func _draw() -> void:
+	print("?")
 	if filled:
 		draw_circle(Vector2.ZERO, radius, Color.WHITE)
 	else:

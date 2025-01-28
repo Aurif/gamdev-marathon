@@ -20,3 +20,9 @@ static func four_dir_movement_discrete() -> Vector2i:
 
 static func four_dir_vectors() -> Array[Vector2i]:
 	return [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
+
+static func is_click(event: InputEvent) -> bool:
+	return event is InputEventMouseButton and event.button_index==1 and event.pressed==true
+	
+static func is_click_or_drag(event: InputEvent) -> bool:
+	return (event is InputEventMouseMotion and event.button_mask == 1) or is_click(event)
