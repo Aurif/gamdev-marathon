@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://drkvu04ocaayn"]
 
-[ext_resource type="Script" path="res://common/molecules/shop/shop.gd" id="1_v51f0"]
+[ext_resource type="Script" path="res://common/molecules/shop_basic/shop_basic.gd" id="1_v51f0"]
 [ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="2_5tn2d"]
 [ext_resource type="Texture2D" uid="uid://dk05c3uy6wckx" path="res://game-specific/game_2/abilities/two_balls.png" id="3_jjfor"]
 [ext_resource type="Texture2D" uid="uid://dyq6bewu74g2c" path="res://game-specific/game_2/abilities/damage.png" id="4_88n4w"]

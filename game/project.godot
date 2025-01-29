@@ -11,13 +11,18 @@ config_version=5
 [application]
 
 config/name="Game"
-run/main_scene="res://scenes/game_18.tscn"
+run/main_scene="res://scenes/game_19.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://scenes/icon.svg"
 
 [display]
 
+window/size/viewport_width=640
+window/size/viewport_height=320
+window/size/window_width_override=1280
+window/size/window_height_override=640
 window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 window/main_scene="res://scenes/game_18.tscn"
 
 [input]

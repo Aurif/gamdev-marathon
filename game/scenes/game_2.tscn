@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ct6c7ehcyifus" path="res://common/molecules/bouncing_ball/bouncing_ball.tscn" id="6_7gih1"]
 [ext_resource type="PackedScene" uid="uid://b1k3plojpbrj7" path="res://common/atoms/input_mouse_rotation/input_mouse_rotation.tscn" id="7_4ynrm"]
 [ext_resource type="PackedScene" uid="uid://b7olk6ingolg1" path="res://common/atoms/keep_position/keep_position.tscn" id="7_ypl4p"]
-[ext_resource type="PackedScene" uid="uid://drkvu04ocaayn" path="res://common/molecules/shop/shop.tscn" id="12_yqwyf"]
+[ext_resource type="PackedScene" uid="uid://drkvu04ocaayn" path="res://common/molecules/shop_basic/shop_basic.tscn" id="12_yqwyf"]
 
 [sub_resource type="Gradient" id="Gradient_8uwo8"]
 offsets = PackedFloat32Array(0)

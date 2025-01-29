@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://daeh6urdvu60t"]
+
+[ext_resource type="FontFile" uid="uid://ds51dbfxa1w64" path="res://assets/fonts/Kenney Mini.ttf" id="1_3unky"]
+
+[resource]
+default_font = ExtResource("1_3unky")
+Label/colors/font_color = Color(0.0836667, 0.065, 0.1, 1)
+Label/constants/line_spacing = 0
+Label/font_sizes/font_size = 40
+Label/fonts/font = ExtResource("1_3unky")
