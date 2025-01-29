@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3lq1jg7e6g8j"]
+
+[ext_resource type="Texture2D" uid="uid://dpw4t12a33v78" path="res://assets/sprites/9patch/divider.png" id="1_a8v63"]
+
+[node name="Shelf" type="VBoxContainer"]
+
+[node name="ShelfContents" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Divider" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = -4
+theme_override_constants/margin_bottom = 24
+
+[node name="DividerSprite" type="NinePatchRect" parent="Divider"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+texture = ExtResource("1_a8v63")
+region_rect = Rect2(8, 4, 4, 12)
+patch_margin_left = 8
+patch_margin_right = 8

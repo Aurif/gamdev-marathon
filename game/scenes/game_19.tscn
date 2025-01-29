@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://bpq7t0msxdgtc"]
+[gd_scene load_steps=11 format=3 uid="uid://bpq7t0msxdgtc"]
 
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_cyrod"]
 [ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="2_ch2ej"]
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="2_pxqis"]
+[ext_resource type="Script" path="res://common/molecules/shop/shop.gd" id="5_330tn"]
 [ext_resource type="Texture2D" uid="uid://d02teji3txycn" path="res://assets/sprites/9patch/shop_bg.png" id="5_773br"]
 [ext_resource type="Texture2D" uid="uid://dvn3d1sx5wnjj" path="res://assets/sprites/9patch/shop_bg_title.png" id="6_3film"]
+[ext_resource type="PackedScene" uid="uid://d3lq1jg7e6g8j" path="res://common/molecules/shop/shelf.tscn" id="6_xygol"]
+[ext_resource type="PackedScene" uid="uid://bhqpwbh1v70k7" path="res://common/molecules/shop/item.tscn" id="7_ptvpo"]
 [ext_resource type="PackedScene" uid="uid://cdo5hamcxy2ol" path="res://common/molecules/win_screen/win_screen.tscn" id="8_ckkmn"]
-[ext_resource type="Texture2D" uid="uid://tql2rww0i5ry" path="res://assets/sprites/9patch/item_bg.png" id="8_hhs46"]
 [ext_resource type="Theme" uid="uid://daeh6urdvu60t" path="res://common/atoms/theme_pixel.tres" id="8_p5dcw"]
-[ext_resource type="Texture2D" uid="uid://dpw4t12a33v78" path="res://assets/sprites/9patch/divider.png" id="9_mfint"]
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -38,22 +39,7 @@ metadata/_edit_lock_ = true
 [node name="WinScreen" parent="." instance=ExtResource("8_ckkmn")]
 layout_mode = 1
 
-[node name="Shop" type="Control" parent="."]
-clip_children = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -252.0
-offset_top = -34.0
-offset_right = 252.0
-offset_bottom = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Shop" type="MarginContainer" parent="." node_paths=PackedStringArray("n_temp", "n_shelf_holder")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -61,22 +47,29 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -250.0
-offset_top = -94.0
+offset_top = -46.0
 offset_right = 250.0
-offset_bottom = 94.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_top = -36
+script = ExtResource("5_330tn")
+n_temp = NodePath("../ColorRect")
+money = 1000.0
+n_shelf_holder = NodePath("CenterContainer/MarginContainer/MarginContainer/ShelfHolder")
+preset_shelf = ExtResource("6_xygol")
+preset_item = ExtResource("7_ptvpo")
 
-[node name="Header" type="CenterContainer" parent="MarginContainer"]
+[node name="Header" type="CenterContainer" parent="Shop"]
 z_index = 1
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Header"]
+[node name="MarginContainer" type="MarginContainer" parent="Shop/Header"]
 layout_mode = 2
 
-[node name="HeaderPlate" type="NinePatchRect" parent="MarginContainer/Header/MarginContainer"]
+[node name="HeaderPlate" type="NinePatchRect" parent="Shop/Header/MarginContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(100, 84)
 layout_mode = 2
@@ -86,13 +79,13 @@ patch_margin_top = 36
 patch_margin_right = 36
 patch_margin_bottom = 36
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Header/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Shop/Header/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = -3
 theme_override_constants/margin_right = 19
 
-[node name="Label" type="Label" parent="MarginContainer/Header/MarginContainer/MarginContainer"]
+[node name="Label" type="Label" parent="Shop/Header/MarginContainer/MarginContainer"]
 texture_filter = 1
 layout_mode = 2
 theme = ExtResource("8_p5dcw")
@@ -100,15 +93,15 @@ text = "SHOP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Shop"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Shop/CenterContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = 36
 
-[node name="Background" type="NinePatchRect" parent="MarginContainer/CenterContainer/MarginContainer"]
+[node name="Background" type="NinePatchRect" parent="Shop/CenterContainer/MarginContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
@@ -118,101 +111,49 @@ patch_margin_top = 36
 patch_margin_right = 36
 patch_margin_bottom = 36
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Shop/CenterContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 28
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer"]
+[node name="ShelfHolder" type="VBoxContainer" parent="Shop/CenterContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Shelf" type="VBoxContainer" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(66, 38)
+layout_mode = 0
+offset_right = 66.0
+offset_bottom = 38.0
+color = Color(0.471467, 0.416, 0.52, 0.490196)
 
-[node name="ShelfContents" type="HBoxContainer" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf"]
-layout_mode = 2
-theme_override_constants/separation = 0
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -4
 alignment = 1
 
-[node name="Item" type="MarginContainer" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf/ShelfContents"]
-layout_mode = 2
-size_flags_horizontal = 6
-
-[node name="ItemInner" type="VBoxContainer" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf/ShelfContents/Item"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 8
-theme_override_constants/separation = 4
-alignment = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf/ShelfContents/Item/ItemInner"]
-layout_mode = 2
-theme_override_constants/margin_left = 9
-theme_override_constants/margin_right = 9
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf/ShelfContents/Item/ItemInner/MarginContainer2"]
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf/ShelfContents/Item/ItemInner"]
-z_index = 1
-layout_mode = 2
-theme_override_constants/margin_left = 9
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 9
-theme_override_constants/margin_bottom = -24
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf/ShelfContents/Item/ItemInner/MarginContainer"]
-custom_minimum_size = Vector2(40, 20)
-layout_mode = 2
-color = Color(0.294118, 0.258824, 0.32549, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf/ShelfContents/Item/ItemInner/MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = -2
-
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf/ShelfContents/Item/ItemInner/MarginContainer/MarginContainer"]
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 theme = ExtResource("8_p5dcw")
+theme_override_colors/font_color = Color(0.5684, 0.98, 0.637, 1)
 theme_override_font_sizes/font_size = 16
-text = "1.12T"
+text = "1 in 1000"
 horizontal_alignment = 1
 
-[node name="Highlight" type="MarginContainer" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf/ShelfContents/Item"]
-z_index = 2
-layout_mode = 2
-theme_override_constants/margin_top = -9
-theme_override_constants/margin_bottom = -30
-
-[node name="HighlightSprite" type="NinePatchRect" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf/ShelfContents/Item/Highlight"]
-visible = false
-modulate = Color(0.976471, 0.862745, 0.564706, 1)
+[node name="Label2" type="Label" parent="ColorRect/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("8_hhs46")
-patch_margin_left = 24
-patch_margin_top = 24
-patch_margin_right = 24
-patch_margin_bottom = 24
-
-[node name="Divider" type="MarginContainer" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf"]
-layout_mode = 2
-theme_override_constants/margin_left = -4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = -4
-theme_override_constants/margin_bottom = 24
-
-[node name="DividerSprite" type="NinePatchRect" parent="MarginContainer/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/Shelf/Divider"]
-texture_filter = 1
-custom_minimum_size = Vector2(0, 12)
-layout_mode = 2
-texture = ExtResource("9_mfint")
-region_rect = Rect2(8, 4, 4, 12)
-patch_margin_left = 8
-patch_margin_right = 8
+theme = ExtResource("8_p5dcw")
+theme_override_colors/font_color = Color(0.92, 0.695827, 0.1288, 1)
+theme_override_font_sizes/font_size = 16
+text = "+200"
+horizontal_alignment = 1

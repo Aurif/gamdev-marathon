@@ -6,16 +6,19 @@ class_name AtomEffectTransition
 
 var _original_scale: Vector2
 var _original_z_index: int
+var _original_color: Color
 
 var _tween_scale: Tween
 var _tween_position: Tween
 var _tween_highlight: Tween
+var _tween_modulate: Tween
 
 func _ready() -> void:
 	_original_scale = target().scale
 	_original_z_index = target().z_index
 	if n_highlight:
 		n_highlight.visible = true
+		_original_color = n_highlight.modulate
 		n_highlight.modulate = Color.TRANSPARENT
 	if not n_scale_target:
 		n_scale_target = target()
@@ -39,7 +42,15 @@ func set_global_position(new_position: Vector2, time: float, trans: Tween.Transi
 	_tween_position.tween_property(target(), "global_position", new_position, time).set_trans(trans).set_ease(ease)
 
 func set_highlight(highlight: float, time: float) -> void:
+	if not is_inside_tree():
+		return
 	if _tween_highlight:
 		_tween_highlight.kill()
 	_tween_highlight = get_tree().create_tween().bind_node(self)
-	_tween_highlight.tween_property(n_highlight, "modulate", lerp(Color.TRANSPARENT, Color.WHITE, highlight), time).set_trans(Tween.TRANS_SINE)
+	_tween_highlight.tween_property(n_highlight, "modulate", lerp(Color(_original_color, 0), _original_color, highlight), time).set_trans(Tween.TRANS_SINE)
+
+func set_modulate(color: Color, time: float) -> void:
+	if _tween_modulate:
+		_tween_modulate.kill()
+	_tween_modulate = get_tree().create_tween().bind_node(self)
+	_tween_modulate.tween_property(target(), "modulate", color, time).set_trans(Tween.TRANS_SINE)
