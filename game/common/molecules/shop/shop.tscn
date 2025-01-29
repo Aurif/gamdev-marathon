@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://bktcky0ehsk1y"]
+
+[ext_resource type="Script" path="res://common/molecules/shop/shop.gd" id="1_iwyc2"]
+[ext_resource type="PackedScene" uid="uid://d3lq1jg7e6g8j" path="res://common/molecules/shop/shelf.tscn" id="2_qgtpl"]
+[ext_resource type="PackedScene" uid="uid://bhqpwbh1v70k7" path="res://common/molecules/shop/item.tscn" id="3_w4lfs"]
+[ext_resource type="Texture2D" uid="uid://dvn3d1sx5wnjj" path="res://assets/sprites/9patch/shop_bg_title.png" id="4_i7x55"]
+[ext_resource type="Theme" uid="uid://daeh6urdvu60t" path="res://common/atoms/theme_pixel.tres" id="5_4xp35"]
+[ext_resource type="Texture2D" uid="uid://d02teji3txycn" path="res://assets/sprites/9patch/shop_bg.png" id="6_812ao"]
+
+[node name="Shop" type="MarginContainer" node_paths=PackedStringArray("n_label_shop", "n_shelf_holder")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -46.0
+offset_right = 250.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = -36
+script = ExtResource("1_iwyc2")
+money = 1000.0
+n_label_shop = NodePath("Header/MarginContainer/MarginContainer/Label")
+n_shelf_holder = NodePath("CenterContainer/MarginContainer/MarginContainer/ShelfHolder")
+preset_shelf = ExtResource("2_qgtpl")
+preset_item = ExtResource("3_w4lfs")
+
+[node name="Header" type="CenterContainer" parent="."]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Header"]
+layout_mode = 2
+
+[node name="HeaderPlate" type="NinePatchRect" parent="Header/MarginContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 84)
+layout_mode = 2
+texture = ExtResource("4_i7x55")
+patch_margin_left = 36
+patch_margin_top = 36
+patch_margin_right = 36
+patch_margin_bottom = 36
+
+[node name="MarginContainer" type="MarginContainer" parent="Header/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = -3
+theme_override_constants/margin_right = 19
+
+[node name="Label" type="Label" parent="Header/MarginContainer/MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("5_4xp35")
+text = "SHOP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 36
+
+[node name="Background" type="NinePatchRect" parent="CenterContainer/MarginContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+texture = ExtResource("6_812ao")
+patch_margin_left = 36
+patch_margin_top = 36
+patch_margin_right = 36
+patch_margin_bottom = 36
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 28
+
+[node name="ShelfHolder" type="VBoxContainer" parent="CenterContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0

@@ -1,15 +1,18 @@
-[gd_scene load_steps=11 format=3 uid="uid://bpq7t0msxdgtc"]
+[gd_scene load_steps=14 format=3 uid="uid://bpq7t0msxdgtc"]
 
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_cyrod"]
+[ext_resource type="Script" path="res://game-specific/game_19/game_19.gd" id="1_disja"]
 [ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="2_ch2ej"]
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="2_pxqis"]
-[ext_resource type="Script" path="res://common/molecules/shop/shop.gd" id="5_330tn"]
-[ext_resource type="Texture2D" uid="uid://d02teji3txycn" path="res://assets/sprites/9patch/shop_bg.png" id="5_773br"]
-[ext_resource type="Texture2D" uid="uid://dvn3d1sx5wnjj" path="res://assets/sprites/9patch/shop_bg_title.png" id="6_3film"]
-[ext_resource type="PackedScene" uid="uid://d3lq1jg7e6g8j" path="res://common/molecules/shop/shelf.tscn" id="6_xygol"]
-[ext_resource type="PackedScene" uid="uid://bhqpwbh1v70k7" path="res://common/molecules/shop/item.tscn" id="7_ptvpo"]
+[ext_resource type="AudioStream" uid="uid://uab6k4wyov1f" path="res://assets/sfx/wrong.ogg" id="4_c1i7h"]
+[ext_resource type="PackedScene" uid="uid://bm8s5tu35rfnt" path="res://common/atoms/highlight/highlight.tscn" id="4_h3r6s"]
+[ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="5_a53lf"]
+[ext_resource type="PackedScene" uid="uid://bktcky0ehsk1y" path="res://common/molecules/shop/shop.tscn" id="7_noqxk"]
 [ext_resource type="PackedScene" uid="uid://cdo5hamcxy2ol" path="res://common/molecules/win_screen/win_screen.tscn" id="8_ckkmn"]
 [ext_resource type="Theme" uid="uid://daeh6urdvu60t" path="res://common/atoms/theme_pixel.tres" id="8_p5dcw"]
+[ext_resource type="PackedScene" uid="uid://44jxk1dbqlpb" path="res://common/atoms/effect_transition/effect_transition.tscn" id="10_by813"]
+[ext_resource type="PackedScene" uid="uid://bg57vt571tkxo" path="res://common/atoms/clickable/clickable.tscn" id="12_aak2o"]
+[ext_resource type="PackedScene" uid="uid://df42y2hn6ngm7" path="res://game-specific/game_19/rand_box.tscn" id="12_ain7r"]
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -19,6 +22,24 @@ offset_bottom = 640.0
 scale = Vector2(0.5, 0.5)
 mouse_filter = 1
 metadata/_edit_lock_ = true
+
+[node name="Game19" type="Node" parent="." node_paths=PackedStringArray("n_flasher", "n_shop", "n_label_money", "n_win_screen")]
+script = ExtResource("1_disja")
+n_flasher = NodePath("../Flasher/EffectTransition")
+n_shop = NodePath("../Shop")
+n_label_money = NodePath("../LabelMoney")
+n_win_screen = NodePath("../WinScreen")
+preset_rand_box = ExtResource("12_ain7r")
+
+[node name="SoundWon" type="AudioStreamPlayer" parent="Game19"]
+stream = ExtResource("5_a53lf")
+volume_db = -10.0
+pitch_scale = 1.6
+
+[node name="SoundLost" type="AudioStreamPlayer" parent="Game19"]
+stream = ExtResource("4_c1i7h")
+volume_db = -4.0
+pitch_scale = 0.8
 
 [node name="DEBUG_MODE" parent="." instance=ExtResource("1_cyrod")]
 visible = false
@@ -36,124 +57,83 @@ z_index = -2
 layout_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="WinScreen" parent="." instance=ExtResource("8_ckkmn")]
-layout_mode = 1
-
-[node name="Shop" type="MarginContainer" parent="." node_paths=PackedStringArray("n_temp", "n_shelf_holder")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -46.0
-offset_right = 250.0
-offset_bottom = 46.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = -36
-script = ExtResource("5_330tn")
-n_temp = NodePath("../ColorRect")
-money = 1000.0
-n_shelf_holder = NodePath("CenterContainer/MarginContainer/MarginContainer/ShelfHolder")
-preset_shelf = ExtResource("6_xygol")
-preset_item = ExtResource("7_ptvpo")
-
-[node name="Header" type="CenterContainer" parent="Shop"]
-z_index = 1
-layout_mode = 2
-size_flags_vertical = 0
-mouse_filter = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Shop/Header"]
-layout_mode = 2
-
-[node name="HeaderPlate" type="NinePatchRect" parent="Shop/Header/MarginContainer"]
-texture_filter = 1
-custom_minimum_size = Vector2(100, 84)
-layout_mode = 2
-texture = ExtResource("6_3film")
-patch_margin_left = 36
-patch_margin_top = 36
-patch_margin_right = 36
-patch_margin_bottom = 36
-
-[node name="MarginContainer" type="MarginContainer" parent="Shop/Header/MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = -3
-theme_override_constants/margin_right = 19
-
-[node name="Label" type="Label" parent="Shop/Header/MarginContainer/MarginContainer"]
-texture_filter = 1
-layout_mode = 2
-theme = ExtResource("8_p5dcw")
-text = "SHOP"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CenterContainer" type="CenterContainer" parent="Shop"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="Shop/CenterContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 36
-
-[node name="Background" type="NinePatchRect" parent="Shop/CenterContainer/MarginContainer"]
-texture_filter = 1
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-texture = ExtResource("5_773br")
-patch_margin_left = 36
-patch_margin_top = 36
-patch_margin_right = 36
-patch_margin_bottom = 36
-
-[node name="MarginContainer" type="MarginContainer" parent="Shop/CenterContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 64
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 28
-
-[node name="ShelfHolder" type="VBoxContainer" parent="Shop/CenterContainer/MarginContainer/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="ColorRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(66, 38)
-layout_mode = 0
-offset_right = 66.0
-offset_bottom = 38.0
-color = Color(0.471467, 0.416, 0.52, 0.490196)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+[node name="Flasher" type="ColorRect" parent="."]
+modulate = Color(0.24, 0.4, 0.24, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 2.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = -4
-alignment = 1
 
-[node name="Label" type="Label" parent="ColorRect/VBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-theme = ExtResource("8_p5dcw")
-theme_override_colors/font_color = Color(0.5684, 0.98, 0.637, 1)
-theme_override_font_sizes/font_size = 16
-text = "1 in 1000"
-horizontal_alignment = 1
+[node name="EffectTransition" parent="Flasher" instance=ExtResource("10_by813")]
 
-[node name="Label2" type="Label" parent="ColorRect/VBoxContainer"]
+[node name="Shop" parent="." instance=ExtResource("7_noqxk")]
+layout_mode = 1
+money = 100.0
+
+[node name="LabelMoney" type="Label" parent="."]
 texture_filter = 1
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -134.0
+offset_bottom = -84.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = ExtResource("8_p5dcw")
-theme_override_colors/font_color = Color(0.92, 0.695827, 0.1288, 1)
-theme_override_font_sizes/font_size = 16
-text = "+200"
+theme_override_colors/font_color = Color(0.976471, 0.862745, 0.564706, 1)
+text = "Money:   100$"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highlight" parent="LabelMoney" instance=ExtResource("4_h3r6s")]
+
+[node name="LabelExit" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0.235294)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("8_p5dcw")
+theme_override_colors/font_color = Color(0.976471, 0.862745, 0.564706, 1)
+theme_override_font_sizes/font_size = 32
+text = "End game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Clickable" parent="LabelExit" node_paths=PackedStringArray("show_on_hover") instance=ExtResource("12_aak2o")]
+show_on_hover = NodePath("../LabelHighlight")
+
+[node name="LabelHighlight" type="Label" parent="LabelExit"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_p5dcw")
+theme_override_colors/font_color = Color(0.976471, 0.862745, 0.564706, 1)
+theme_override_font_sizes/font_size = 32
+text = "End game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinScreen" parent="." instance=ExtResource("8_ckkmn")]
+layout_mode = 1
+
+[connection signal="RecalcMoney" from="Shop" to="Game19" method="display_money"]
+[connection signal="onClick" from="LabelExit/Clickable" to="Game19" method="end_game" unbinds=1]

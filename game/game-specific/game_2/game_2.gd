@@ -6,7 +6,7 @@ extends Node
 @export var n_fail_screen: MolFailScreen
 @export var n_win_screen: MolWinScreen
 @export var n_pause_label: Label
-@export var n_shop: MolShop
+@export var n_shop: MolShopBasic
 @export var n_rotator: AtomInputMouseRotation
 @export var n_planck_sprite: Polygon2D
 

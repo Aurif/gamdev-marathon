@@ -47,5 +47,5 @@ func recalc_money(money: float) -> void:
 	if can_buy:
 		n_item_holder.modulate = Color.WHITE
 	else:
-		n_item_holder.modulate = Color("#ffffff71")
+		n_item_holder.modulate = Color("#ffffff61")
 		_on_mouse_exited()

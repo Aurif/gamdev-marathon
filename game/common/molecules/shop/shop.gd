@@ -1,18 +1,13 @@
 extends Node
-
-@export var n_temp: Control
+class_name MolShop
 
 @export var money: float = 0
+@export var n_label_shop: Label
 @export var n_shelf_holder: Control
 @export var preset_shelf: PackedScene
 @export var preset_item: PackedScene
 
 signal RecalcMoney(money: float)
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	n_temp.get_parent().remove_child.call_deferred(n_temp)
-	add_item.call_deferred(0, n_temp, 153, func(): pass)
 
 func add_item(shelf: int, sprite: Node, price: float, callback: Callable, label: String = "") -> void:
 	while len(n_shelf_holder.get_children()) <= shelf:
@@ -30,6 +25,13 @@ func clear_shop() -> void:
 	for c in n_shelf_holder.get_children():
 		c.queue_free()
 
+func add_money(amount: float) -> void:
+	money += amount
+	RecalcMoney.emit(money)
+	
 func reduce_money(amount: float) -> void:
 	money -= amount
 	RecalcMoney.emit(money)
+
+func set_label(label: String) -> void:
+	n_label_shop.text = label

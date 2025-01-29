@@ -1,5 +1,5 @@
 extends TextureRect
-class_name MolShop
+class_name MolShopBasic
 
 @export var items: Array[TextureRect]
 @export var choices: Dictionary
