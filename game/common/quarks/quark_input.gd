@@ -26,3 +26,6 @@ static func is_click(event: InputEvent) -> bool:
 	
 static func is_click_or_drag(event: InputEvent) -> bool:
 	return (event is InputEventMouseMotion and event.button_mask == 1) or is_click(event)
+
+static func is_keypress(event: InputEvent, key: String) -> bool:
+	return event is InputEventKey and event.pressed==true and event.echo==false and event.keycode == key.to_upper().unicode_at(0)

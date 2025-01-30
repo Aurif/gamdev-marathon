@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://nnctgbgptffk"]
+
+[ext_resource type="Script" path="res://common/atoms/sprite_circle/sprite_circle.gd" id="1_gga14"]
+[ext_resource type="PackedScene" uid="uid://b1k3plojpbrj7" path="res://common/atoms/input_mouse_rotation/input_mouse_rotation.tscn" id="2_nckxy"]
+[ext_resource type="Script" path="res://common/atoms/proportional_pivot/proportional_pivot.gd" id="3_a34wn"]
+[ext_resource type="Texture2D" uid="uid://c2sijhe3885pp" path="res://assets/sprites/photos/red_panda_baby.jpg" id="4_im0fk"]
+
+[node name="Segment" type="CenterContainer"]
+clip_children = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -637.5
+offset_top = -500.0
+offset_right = 637.5
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(637, 500)
+script = ExtResource("1_gga14")
+radius = 500
+
+[node name="InputMouseRotation" parent="." instance=ExtResource("2_nckxy")]
+offset_angle = 0
+distance = 0
+step = 15
+update_position = false
+
+[node name="SpriteCenter" parent="InputMouseRotation" index="0"]
+visible = false
+
+[node name="SpriteRadius" parent="InputMouseRotation" index="1"]
+visible = false
+
+[node name="ProportionalPivot" type="Node" parent="."]
+script = ExtResource("3_a34wn")
+proportional_position = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("4_im0fk")
+
+[editable path="InputMouseRotation"]
