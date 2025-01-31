@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Game"
-run/main_scene="res://scenes/game_20.tscn"
+run/main_scene="res://scenes/game_21.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://scenes/icon.svg"
 
@@ -23,7 +23,7 @@ window/size/window_width_override=1280
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
-window/main_scene="res://scenes/game_18.tscn"
+window/main_scene="res://scenes/game_21.tscn"
 
 [input]
 

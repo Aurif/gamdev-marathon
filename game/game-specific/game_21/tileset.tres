@@ -1,0 +1,23 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://6hrdcnuwuuj"]
+
+[ext_resource type="Texture2D" uid="uid://dwpxeryndmttl" path="res://assets/sprites/tilemaps/level_editor.png" id="1_q3q1m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ddjr"]
+texture = ExtResource("1_q3q1m")
+separation = Vector2i(2, 0)
+texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/modulate = Color(1, 1, 1, 0)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:0/1 = 1
+0:0/1/modulate = Color(0.456, 0.76, 0.456, 0.396078)
+0:0/1/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[resource]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 2
+physics_layer_1/collision_layer = 8
+physics_layer_1/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_5ddjr")
