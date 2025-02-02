@@ -141,6 +141,7 @@ colors = PackedColorArray(0.14902, 0.0901961, 0.0901961, 1)
 gradient = SubResource("Gradient_1k1ac")
 
 [node name="FailScreen" type="TextureRect"]
+process_mode = 3
 z_index = 10
 anchors_preset = 15
 anchor_right = 1.0

@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b268goadst3j" path="res://common/molecules/throw_with_trajectory/throw_with_trajectory.tscn" id="7_icdmh"]
 [ext_resource type="PackedScene" uid="uid://bm8s5tu35rfnt" path="res://common/atoms/highlight/highlight.tscn" id="7_o1gxi"]
 [ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="8_k6vev"]
-[ext_resource type="TileSet" uid="uid://dnspyeioavgls" path="res://common/atoms/tile_set_bg.tres" id="9_agaa1"]
+[ext_resource type="TileSet" uid="uid://dnspyeioavgls" path="res://common/atoms/tileset_bg.tres" id="9_agaa1"]
 [ext_resource type="TileSet" uid="uid://dtwdlvxt75ycr" path="res://common/atoms/tileset_pico_platformer.tres" id="10_5i1tb"]
 [ext_resource type="Texture2D" uid="uid://ct0nar2cew4sj" path="res://assets/sprites/tilemaps/monochrome_tilemap_transparent.png" id="11_jyff8"]
 [ext_resource type="Script" path="res://game-specific/game_16/goal.gd" id="13_55etg"]

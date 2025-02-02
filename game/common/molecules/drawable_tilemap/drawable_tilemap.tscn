@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://mcj5srw4eros"]
 
-[ext_resource type="TileSet" uid="uid://dnspyeioavgls" path="res://common/atoms/tile_set_bg.tres" id="1_vas51"]
+[ext_resource type="TileSet" uid="uid://dnspyeioavgls" path="res://common/atoms/tileset_bg.tres" id="1_vas51"]
 [ext_resource type="Script" path="res://common/molecules/drawable_tilemap/drawable_tilemap.gd" id="2_6yqpv"]
 
 [node name="DrawableTilemap" type="TileMapLayer"]

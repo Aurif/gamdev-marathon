@@ -73,6 +73,9 @@ pitch_scale = 0.6
 [node name="DrawableCanvas" parent="." instance=ExtResource("5_7olsn")]
 layout_mode = 1
 
+[node name="SubViewport" parent="DrawableCanvas" index="0"]
+size = Vector2i(1280, 640)
+
 [node name="Game18" type="Node" parent="." node_paths=PackedStringArray("n_texture", "n_paint_label", "n_instructions_label", "n_victory_screen", "n_canvas")]
 script = ExtResource("9_2urbi")
 n_texture = NodePath("../DrawableCanvas/SubViewport/ColorRect/TextureRect")

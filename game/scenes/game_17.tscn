@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_f0ulu"]
 [ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="2_3c3db"]
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="2_d3sdy"]
-[ext_resource type="TileSet" uid="uid://dnspyeioavgls" path="res://common/atoms/tile_set_bg.tres" id="4_fiuwg"]
+[ext_resource type="TileSet" uid="uid://dnspyeioavgls" path="res://common/atoms/tileset_bg.tres" id="4_fiuwg"]
 [ext_resource type="PackedScene" uid="uid://bqsmf1mn60c0i" path="res://common/molecules/level_manager/level_manager.tscn" id="4_qgkcl"]
 [ext_resource type="PackedScene" uid="uid://gmk3y8axidpf" path="res://common/molecules/level_manager/level_layer.tscn" id="5_2yalj"]
 [ext_resource type="Script" path="res://common/molecules/drawable_tilemap/drawable_tilemap.gd" id="5_6psld"]
