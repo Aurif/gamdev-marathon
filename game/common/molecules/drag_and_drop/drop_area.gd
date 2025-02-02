@@ -14,7 +14,7 @@ func unset_highlighted() -> void:
 
 func drop_here(node: MolDragAndDrop_Draggable, instant: bool = false) -> bool:
 	var actual_size = get_child(0).shape.size*get_child(0).global_scale
-	node.n_transitions.set_global_position(self.global_position+actual_size*anchor, 0 if instant else 0.1)
+	node.n_transitions.set_global_position(self.global_position+actual_size*anchor, 0.0 if instant else 0.1)
 	
 	if node.current_area:
 		node.current_area.currently_holds = null

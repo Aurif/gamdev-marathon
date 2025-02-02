@@ -9,7 +9,7 @@ class_name MolShop
 
 signal RecalcMoney(money: float)
 
-func add_item(shelf: int, sprite: Node, price: float, callback: Callable, label: String = "") -> void:
+func add_item(shelf: int, sprite: Node, price: float, callback: Callable, label: String = "") -> MolShop_Item:
 	while len(n_shelf_holder.get_children()) <= shelf:
 		n_shelf_holder.add_child(preset_shelf.instantiate())
 	
@@ -17,9 +17,11 @@ func add_item(shelf: int, sprite: Node, price: float, callback: Callable, label:
 	item.set_item(sprite, price, label)
 	item.ItemBought.connect(callback.unbind(1))
 	item.ItemBought.connect(reduce_money)
+	item.ItemBought.connect($SoundBuy.play)
 	RecalcMoney.connect(item.recalc_money)
 	item.recalc_money.call_deferred(money)
 	n_shelf_holder.get_child(shelf).get_node("ShelfContents").add_child(item)
+	return item
 
 func clear_shop() -> void:
 	for c in n_shelf_holder.get_children():

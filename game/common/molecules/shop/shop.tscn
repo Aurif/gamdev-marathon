@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bktcky0ehsk1y"]
+[gd_scene load_steps=8 format=3 uid="uid://bktcky0ehsk1y"]
 
 [ext_resource type="Script" path="res://common/molecules/shop/shop.gd" id="1_iwyc2"]
 [ext_resource type="PackedScene" uid="uid://d3lq1jg7e6g8j" path="res://common/molecules/shop/shelf.tscn" id="2_qgtpl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dvn3d1sx5wnjj" path="res://assets/sprites/9patch/shop_bg_title.png" id="4_i7x55"]
 [ext_resource type="Theme" uid="uid://daeh6urdvu60t" path="res://common/atoms/theme_pixel.tres" id="5_4xp35"]
 [ext_resource type="Texture2D" uid="uid://d02teji3txycn" path="res://assets/sprites/9patch/shop_bg.png" id="6_812ao"]
+[ext_resource type="AudioStream" uid="uid://bao14ihsqfb34" path="res://assets/sfx/click.ogg" id="7_qsjbq"]
 
 [node name="Shop" type="MarginContainer" node_paths=PackedStringArray("n_label_shop", "n_shelf_holder")]
 anchors_preset = 8
@@ -56,6 +57,8 @@ theme_override_constants/margin_right = 19
 texture_filter = 1
 layout_mode = 2
 theme = ExtResource("5_4xp35")
+theme_override_colors/font_color = Color(0.0836667, 0.065, 0.1, 1)
+theme_override_font_sizes/font_size = 24
 text = "SHOP"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -88,3 +91,6 @@ theme_override_constants/margin_bottom = 28
 [node name="ShelfHolder" type="VBoxContainer" parent="CenterContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+
+[node name="SoundBuy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_qsjbq")
