@@ -3,6 +3,7 @@ class_name MolDragAndDrop_DropArea
 
 @export var n_transitions: AtomEffectTransition
 @export var anchor: Vector2 = Vector2.ZERO
+@export var on_merge: Callable = func(_old, _new): pass
 
 var currently_holds: Node
 
@@ -21,7 +22,9 @@ func drop_here(node: MolDragAndDrop_Draggable, instant: bool = false) -> bool:
 	if self.currently_holds:
 		if not node.current_area:
 			return false
-		node.current_area.drop_here(currently_holds, instant)
+		on_merge.call(currently_holds, node)
+		if currently_holds.is_inside_tree():
+			node.current_area.drop_here(currently_holds, instant)
 	
 	self.currently_holds = node
 	node.current_area = self

@@ -5,6 +5,8 @@ class_name MolShop_Item
 @export var n_label_price: Label
 @export var n_highlight_sprite: Control
 
+var price_suffix: String = ""
+
 var item_price: float
 var can_afford: bool = false
 var can_buy_condition: bool = true
@@ -39,8 +41,7 @@ func set_item(sprite: Node, price: float, label: String = "") -> void:
 		c.queue_free()
 	n_item_holder.add_child(sprite)
 	
-	item_price = price
-	n_label_price.text = QuarkNumber.format_number(price)
+	update_price(price)
 	
 	n_highlight_sprite.tooltip_text = label
 
@@ -68,5 +69,5 @@ func update_condition(condition: bool) -> void:
 
 func update_price(new_price: float) -> void:
 	item_price = new_price
-	n_label_price.text = QuarkNumber.format_number(item_price)
+	n_label_price.text = QuarkNumber.format_number(item_price)+price_suffix
 	recalc_money()

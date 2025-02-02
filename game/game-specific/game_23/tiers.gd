@@ -28,7 +28,10 @@ class DualVar:
 ## Tiers
 ##
 static var TIER_DEFINITIONS = {
-	1: Tier1
+	1: Tier1,
+	2: Tier2,
+	3: Tier3,
+	4: Tier4
 }
 
 class Tier:
@@ -39,3 +42,18 @@ class Tier1:
 	static var tooltip = "Earn 1@/tick"
 	static func calc(amount: int, state: Dictionary) -> void:
 		state.income.add_temporary(amount)
+
+class Tier2:
+	static var tooltip = "Earn 3@/tick"
+	static func calc(amount: int, state: Dictionary) -> void:
+		state.income.add_temporary(amount*3)
+
+class Tier3:
+	static var tooltip = "Earn 8@/tick"
+	static func calc(amount: int, state: Dictionary) -> void:
+		state.income.add_temporary(amount*8)
+
+class Tier4:
+	static var tooltip = "Earn 16@/tick"
+	static func calc(amount: int, state: Dictionary) -> void:
+		state.income.add_temporary(amount*16)

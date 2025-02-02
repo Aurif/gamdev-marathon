@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://d07gr8ixkxohh"]
+[gd_scene load_steps=16 format=3 uid="uid://d07gr8ixkxohh"]
 
 [ext_resource type="Script" path="res://game-specific/game_23/game_23.gd" id="1_hnbtf"]
 [ext_resource type="PackedScene" uid="uid://cmma7svai4cnr" path="res://common/atoms/anchor/anchor.tscn" id="2_akx4n"]
+[ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="3_mgvn8"]
+[ext_resource type="AudioStream" uid="uid://pxya3q4x5gmu" path="res://assets/sfx/mini_explosion.ogg" id="3_yj0xu"]
 [ext_resource type="Theme" uid="uid://daeh6urdvu60t" path="res://common/atoms/theme_pixel.tres" id="4_admuu"]
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="4_wf5y7"]
 [ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="5_exlpg"]
@@ -12,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bktcky0ehsk1y" path="res://common/molecules/shop/shop.tscn" id="12_82ixr"]
 [ext_resource type="PackedScene" uid="uid://bf8fty6oenwid" path="res://game-specific/game_23/drop_area.tscn" id="12_anec6"]
 [ext_resource type="Script" path="res://game-specific/game_23/shop_setup.gd" id="12_phi0y"]
+[ext_resource type="PackedScene" uid="uid://bm8s5tu35rfnt" path="res://common/atoms/highlight/highlight.tscn" id="15_xy64m"]
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -23,15 +26,27 @@ grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_lock_ = true
 
-[node name="Game 23" type="Node" parent="." node_paths=PackedStringArray("n_shop", "n_timer", "n_label_money", "n_label_income")]
+[node name="Game 23" type="Node" parent="." node_paths=PackedStringArray("n_shop", "n_timer", "n_grid", "n_unlocks", "n_label_money", "n_label_income")]
 script = ExtResource("1_hnbtf")
 n_shop = NodePath("../Panel Left/Shop")
 n_timer = NodePath("../Panel Top/Timer")
+n_grid = NodePath("../Panel Middle/Grid")
+n_unlocks = NodePath("../Unlocks/CenterContainer/MarginContainer/MarginContainer/ShelfHolder")
 n_label_money = NodePath("../Panel Top/LabelMoney")
 n_label_income = NodePath("../Panel Top/LabelPerTick")
 
 [node name="Anchor" parent="Game 23" instance=ExtResource("2_akx4n")]
 anchor_name = "game"
+
+[node name="SoundUnlock" type="AudioStreamPlayer" parent="Game 23"]
+stream = ExtResource("3_mgvn8")
+volume_db = -9.0
+pitch_scale = 1.2
+
+[node name="SoundMerge" type="AudioStreamPlayer" parent="Game 23"]
+stream = ExtResource("3_yj0xu")
+volume_db = -12.0
+pitch_scale = 1.6
 
 [node name="DEBUG_MODE" parent="." instance=ExtResource("4_wf5y7")]
 visible = false
@@ -150,6 +165,7 @@ grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.5, 0.5)
 money = 0.0
+price_suffix = "@"
 
 [node name="Background" parent="Panel Left/Shop/CenterContainer/MarginContainer" index="0"]
 custom_minimum_size = Vector2(360, 0)
@@ -185,8 +201,46 @@ tiles = Vector2i(8, 8)
 tile_size = Vector2(31, 31)
 preset = ExtResource("12_anec6")
 
+[node name="Unlocks" parent="." instance=ExtResource("12_82ixr")]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 453.0
+offset_top = 66.0
+offset_right = 813.0
+offset_bottom = 158.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.5, 0.5)
+money = 0.0
+price_suffix = "@"
+
+[node name="Label" parent="Unlocks/Header/MarginContainer/MarginContainer" index="0"]
+text = "UNLOCKS"
+
+[node name="Background" parent="Unlocks/CenterContainer/MarginContainer" index="0"]
+custom_minimum_size = Vector2(360, 0)
+
+[node name="Unlock1" type="Label" parent="Unlocks/CenterContainer/MarginContainer/MarginContainer/ShelfHolder" index="0"]
+layout_mode = 2
+tooltip_text = "Buy 2 tier 1 tiles"
+mouse_filter = 1
+theme = ExtResource("4_admuu")
+theme_override_font_sizes/font_size = 24
+text = "???????"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highlight" parent="Unlocks/CenterContainer/MarginContainer/MarginContainer/ShelfHolder/Unlock1" instance=ExtResource("15_xy64m")]
+
 [connection signal="Income" from="Game 23" to="Panel Left/Shop" method="add_money"]
+[connection signal="TileChange" from="Game 23" to="Panel Left" method="update_condition"]
 [connection signal="RecalcMoney" from="Panel Left/Shop" to="Game 23" method="update_labels" unbinds=1]
+[connection signal="RecalcMoney" from="Unlocks" to="Game 23" method="update_labels" unbinds=1]
 
 [editable path="Panel Top/Timer"]
 [editable path="Panel Left/Shop"]
+[editable path="Unlocks"]
