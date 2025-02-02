@@ -9,6 +9,8 @@ var item_price: float
 var can_afford: bool = false
 var can_buy_condition: bool = true
 
+var _current_money: Callable
+
 signal ItemBought(price: float)
 
 func _ready() -> void:
@@ -56,10 +58,15 @@ func refresh_can_buy() -> void:
 		n_item_holder.modulate = Color("#ffffff61")
 		_on_mouse_exited()
 	
-func recalc_money(money: float) -> void:
-	can_afford = money >= item_price
+func recalc_money() -> void:
+	can_afford = _current_money.call() >= item_price
 	refresh_can_buy()
 
 func update_condition(condition: bool) -> void:
 	can_buy_condition = condition
 	refresh_can_buy()
+
+func update_price(new_price: float) -> void:
+	item_price = new_price
+	n_label_price.text = QuarkNumber.format_number(item_price)
+	recalc_money()

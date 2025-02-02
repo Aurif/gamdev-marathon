@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://d07gr8ixkxohh"]
+[gd_scene load_steps=13 format=3 uid="uid://d07gr8ixkxohh"]
 
 [ext_resource type="Script" path="res://game-specific/game_23/game_23.gd" id="1_hnbtf"]
+[ext_resource type="PackedScene" uid="uid://cmma7svai4cnr" path="res://common/atoms/anchor/anchor.tscn" id="2_akx4n"]
 [ext_resource type="Theme" uid="uid://daeh6urdvu60t" path="res://common/atoms/theme_pixel.tres" id="4_admuu"]
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="4_wf5y7"]
 [ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="5_exlpg"]
@@ -28,6 +29,9 @@ n_shop = NodePath("../Panel Left/Shop")
 n_timer = NodePath("../Panel Top/Timer")
 n_label_money = NodePath("../Panel Top/LabelMoney")
 n_label_income = NodePath("../Panel Top/LabelPerTick")
+
+[node name="Anchor" parent="Game 23" instance=ExtResource("2_akx4n")]
+anchor_name = "game"
 
 [node name="DEBUG_MODE" parent="." instance=ExtResource("4_wf5y7")]
 visible = false
@@ -62,7 +66,7 @@ offset_bottom = 65.0
 grow_horizontal = 2
 theme = ExtResource("4_admuu")
 theme_override_font_sizes/font_size = 32
-text = "1234"
+text = "1234@"
 horizontal_alignment = 1
 
 [node name="LabelPerTick" type="Label" parent="Panel Top"]
@@ -145,6 +149,7 @@ offset_bottom = 158.0
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.5, 0.5)
+money = 0.0
 
 [node name="Background" parent="Panel Left/Shop/CenterContainer/MarginContainer" index="0"]
 custom_minimum_size = Vector2(360, 0)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c22bltc6wloin"]
+[gd_scene load_steps=7 format=3 uid="uid://c22bltc6wloin"]
 
 [ext_resource type="Texture2D" uid="uid://bis73vqkw126g" path="res://assets/sprites/9patch/item.png" id="1_4304g"]
+[ext_resource type="Script" path="res://game-specific/game_23/item.gd" id="1_gf8q7"]
 [ext_resource type="Theme" uid="uid://daeh6urdvu60t" path="res://common/atoms/theme_pixel.tres" id="2_ysm0a"]
 [ext_resource type="PackedScene" uid="uid://dfex0ehngg1p1" path="res://common/molecules/drag_and_drop/draggable.tscn" id="3_q0pc1"]
 [ext_resource type="PackedScene" uid="uid://44jxk1dbqlpb" path="res://common/atoms/effect_transition/effect_transition.tscn" id="4_n7q0g"]
@@ -16,6 +17,8 @@ offset_top = 27.0
 offset_right = 560.0
 offset_bottom = 57.0
 mouse_filter = 1
+theme = ExtResource("2_ysm0a")
+script = ExtResource("1_gf8q7")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 self_modulate = Color(0.294118, 0.258824, 0.32549, 1)
@@ -44,7 +47,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_ysm0a")
 theme_override_font_sizes/font_size = 16
-text = "1"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 

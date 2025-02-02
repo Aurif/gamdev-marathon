@@ -13,12 +13,13 @@ func _ready() -> void:
 func unlock_buy_1() -> void:
 	var buy1 = $Buy1
 	buy1.get_parent().remove_child(buy1)
-	shop_items.append($Shop.add_item(0, buy1, 3, insert_tiles.bind(1)))
+	shop_items.append($Shop.add_item(0, buy1, 2, insert_tiles.bind(1)))
 
 func insert_tiles(amount: int, tier: int = 1) -> void:
 	var empty_tiles = get_empty_tiles()
 	for i in range(min(len(empty_tiles), amount)):
 		var tile = preset_item.instantiate()
+		tile.set_tier(tier)
 		n_item_holder.add_child(tile)
 		empty_tiles[i].drop_here(tile.get_node("Draggable"), true)
 	update_condition()
@@ -29,6 +30,7 @@ func get_empty_tiles() -> Array:
 		.filter(func(n): return n.currently_holds == null)
 
 func update_condition() -> void:
-	var cond = len(get_empty_tiles())>0
+	var empty_count = len(get_empty_tiles())
 	for it in shop_items:
-		(it as MolShop_Item).update_condition(cond)
+		(it as MolShop_Item).update_condition(empty_count > 0)
+		(it as MolShop_Item).update_price(pow(2.0, (64-empty_count+1)))

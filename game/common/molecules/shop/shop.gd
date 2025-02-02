@@ -15,11 +15,12 @@ func add_item(shelf: int, sprite: Node, price: float, callback: Callable, label:
 	
 	var item = preset_item.instantiate() as MolShop_Item
 	item.set_item(sprite, price, label)
-	item.ItemBought.connect(callback.unbind(1))
 	item.ItemBought.connect(reduce_money)
+	item.ItemBought.connect(callback.unbind(1))
 	item.ItemBought.connect($SoundBuy.play)
-	RecalcMoney.connect(item.recalc_money)
-	item.recalc_money.call_deferred(money)
+	RecalcMoney.connect(item.recalc_money.unbind(1))
+	item._current_money = func(): return money
+	item.recalc_money.call_deferred()
 	n_shelf_holder.get_child(shelf).get_node("ShelfContents").add_child(item)
 	return item
 
