@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf8fty6oenwid"]
+
+[ext_resource type="PackedScene" uid="uid://b7i21ymoqlnpv" path="res://common/molecules/drag_and_drop/drop_area.tscn" id="1_1d03u"]
+
+[node name="DropArea" instance=ExtResource("1_1d03u")]
+z_index = -1
+scale = Vector2(0.75, 0.75)

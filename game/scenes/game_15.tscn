@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_47rpj"]
 [ext_resource type="Script" path="res://common/molecules/background_blurred/background_blurred.gd" id="3_pxin0"]
 [ext_resource type="Script" path="res://game-specific/game_15/puzzle_maker.gd" id="4_s3e1c"]
-[ext_resource type="PackedScene" uid="uid://b7i21ymoqlnpv" path="res://game-specific/game_15/drop_area.tscn" id="7_l2o2p"]
+[ext_resource type="PackedScene" uid="uid://b7i21ymoqlnpv" path="res://common/molecules/drag_and_drop/drop_area.tscn" id="7_l2o2p"]
 [ext_resource type="PackedScene" uid="uid://bg57vt571tkxo" path="res://common/atoms/clickable/clickable.tscn" id="8_y0lel"]
 [ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="9_1hsxf"]
 [ext_resource type="Texture2D" uid="uid://c2sijhe3885pp" path="res://assets/sprites/photos/red_panda_baby.jpg" id="9_2cbqj"]

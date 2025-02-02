@@ -4,7 +4,10 @@ class_name AtomEffectTransition
 @export var n_highlight: Node
 @export var n_scale_target: Node
 
+@export var scale_as_size: bool = false
+
 var _original_scale: Vector2
+var _original_scale_size: Vector2
 var _original_z_index: int
 var _original_highlight_color: Color
 var _original_color: Color
@@ -15,7 +18,6 @@ var _tween_highlight: Tween
 var _tween_modulate: Tween
 
 func _ready() -> void:
-	_original_scale = target().scale
 	_original_z_index = target().z_index
 	_original_color = target().modulate
 	if n_highlight:
@@ -24,6 +26,9 @@ func _ready() -> void:
 		n_highlight.modulate = Color.TRANSPARENT
 	if not n_scale_target:
 		n_scale_target = target()
+	_original_scale = n_scale_target.scale
+	if scale_as_size:
+		_original_scale_size = n_scale_target.size
 
 func target() -> Node2D:
 	return get_parent()
@@ -31,8 +36,17 @@ func target() -> Node2D:
 func set_scale(new_scale: float, time: float) -> void:
 	if _tween_scale:
 		_tween_scale.kill()
+		
 	_tween_scale = get_tree().create_tween().bind_node(self)
-	_tween_scale.tween_property(n_scale_target, "scale", _original_scale*new_scale, time).set_trans(Tween.TRANS_SINE)
+	if not scale_as_size:
+		_tween_scale.tween_property(n_scale_target, "scale", _original_scale*new_scale, time).set_trans(Tween.TRANS_SINE)
+	else:
+		_tween_scale.tween_method(
+			func(size: Vector2):
+				var margin = Vector2i((_original_scale_size-size)/2)
+				n_scale_target.position = margin
+				n_scale_target.size = Vector2i(_original_scale_size)-margin*2
+		, n_scale_target.size, _original_scale_size*new_scale, time).set_trans(Tween.TRANS_SINE)
 
 func set_z_index(new_z_index: int) -> void:
 	target().z_index = _original_z_index + new_z_index
