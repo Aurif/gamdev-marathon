@@ -14,6 +14,7 @@ func stop_timer() -> void:
 	animation_player.stop()
 
 func execute_callback() -> void:
-	if current_callback.is_valid():
-		current_callback.call()
+	var prev_callback = current_callback
 	current_callback = func(): return
+	if prev_callback.is_valid():
+		prev_callback.call()

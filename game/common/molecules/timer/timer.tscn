@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b24r5qgmcj3o"]
+[gd_scene load_steps=10 format=3 uid="uid://b24r5qgmcj3o"]
 
 [ext_resource type="Script" path="res://common/molecules/timer/timer.gd" id="1_sidxg"]
+[ext_resource type="PackedScene" uid="uid://bpanpomg1se5h" path="res://common/atoms/proportional_pivot/proportional_pivot.tscn" id="2_xy6ts"]
 
 [sub_resource type="Gradient" id="Gradient_861p3"]
 offsets = PackedFloat32Array(0)
@@ -96,3 +97,5 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_rg1fq")
 }
+
+[node name="ProportionalPivot" parent="ProgressBar" instance=ExtResource("2_xy6ts")]

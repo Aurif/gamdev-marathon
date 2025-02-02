@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Game"
-run/main_scene="res://scenes/game_22.tscn"
+run/main_scene="res://scenes/game_23.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://scenes/icon.svg"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=640
+window/size/viewport_width=640
+window/size/viewport_height=320
 window/size/window_width_override=1280
 window/size/window_height_override=640
 window/stretch/mode="canvas_items"
@@ -70,5 +70,6 @@ ui_down={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

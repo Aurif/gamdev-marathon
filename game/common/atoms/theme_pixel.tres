@@ -1,10 +1,27 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://daeh6urdvu60t"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://daeh6urdvu60t"]
 
 [ext_resource type="FontFile" uid="uid://ds51dbfxa1w64" path="res://assets/fonts/Kenney Mini.ttf" id="1_3unky"]
+[ext_resource type="Texture2D" uid="uid://b32pg2dvweetn" path="res://assets/sprites/9patch/tooltip.png" id="2_apiwm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h0aio"]
+content_margin_left = 1.0
+content_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gaipk"]
+texture = ExtResource("2_apiwm")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.294118, 0.258824, 0.32549, 1)
 
 [resource]
 default_font = ExtResource("1_3unky")
-Label/colors/font_color = Color(0.0836667, 0.065, 0.1, 1)
+Label/colors/font_color = Color(0.976471, 0.862745, 0.564706, 1)
 Label/constants/line_spacing = 0
-Label/font_sizes/font_size = 40
+Label/font_sizes/font_size = 8
 Label/fonts/font = ExtResource("1_3unky")
+Label/styles/normal = SubResource("StyleBoxEmpty_h0aio")
+PopupPanel/styles/panel = SubResource("StyleBoxTexture_gaipk")

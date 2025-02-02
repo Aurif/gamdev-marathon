@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://d07gr8ixkxohh"]
+
+[ext_resource type="Script" path="res://game-specific/game_23/game_23.gd" id="1_hnbtf"]
+[ext_resource type="Theme" uid="uid://daeh6urdvu60t" path="res://common/atoms/theme_pixel.tres" id="4_admuu"]
+[ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="4_wf5y7"]
+[ext_resource type="PackedScene" uid="uid://dllc5jfk53p86" path="res://common/molecules/background_animated/background_animated.tscn" id="5_exlpg"]
+[ext_resource type="PackedScene" uid="uid://b24r5qgmcj3o" path="res://common/molecules/timer/timer.tscn" id="5_sa563"]
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="6_tdtf7"]
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="Game 23" type="Node" parent="." node_paths=PackedStringArray("n_timer", "n_label_money", "n_label_income")]
+script = ExtResource("1_hnbtf")
+n_timer = NodePath("../Timer")
+n_label_money = NodePath("../LabelMoney")
+n_label_income = NodePath("../LabelPerTick")
+
+[node name="DEBUG_MODE" parent="." instance=ExtResource("4_wf5y7")]
+visible = false
+
+[node name="BackgroundAnimated" parent="." instance=ExtResource("5_exlpg")]
+z_index = -3
+layout_mode = 1
+speed = 1.5
+
+[node name="Background" parent="." instance=ExtResource("6_tdtf7")]
+modulate = Color(1, 1, 1, 0.560784)
+z_index = -2
+layout_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 190.0
+offset_top = 112.0
+offset_right = 230.0
+offset_bottom = 152.0
+tooltip_text = "Earn 1$/tick"
+theme = ExtResource("4_admuu")
+
+[node name="LabelMoney" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 20.0
+offset_right = -1.0
+offset_bottom = 65.0
+grow_horizontal = 2
+theme = ExtResource("4_admuu")
+theme_override_font_sizes/font_size = 32
+text = "1234"
+horizontal_alignment = 1
+
+[node name="LabelPerTick" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme = ExtResource("4_admuu")
+theme_override_font_sizes/font_size = 16
+text = "123Kᛜ/4s"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Timer" parent="." instance=ExtResource("5_sa563")]
+layout_mode = 1
+anchors_preset = 10
+anchor_left = 0.0
+anchor_right = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 6.0
+
+[editable path="Timer"]
