@@ -3,11 +3,14 @@ extends Node
 @export var n_item_holder: Node
 @export var n_grid: MolGrid
 @export var preset_item: PackedScene
+@export var override_tier: int = 0
 
 var shop_items = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if not QuarkAutosave.SHOULD_INIT:
+		return
 	unlock_buy_1.call_deferred()
 
 func unlock_buy_1() -> void:
@@ -19,7 +22,10 @@ func insert_tiles(amount: int, tier: int = 1) -> void:
 	var empty_tiles = get_empty_tiles()
 	for i in range(min(len(empty_tiles), amount)):
 		var tile = preset_item.instantiate()
-		tile.set_tier(tier)
+		if override_tier != 0:
+			tile.set_tier(override_tier)
+		else:
+			tile.set_tier(tier)
 		n_item_holder.add_child(tile)
 		empty_tiles[i].drop_here(tile.get_node("Draggable"), true)
 	update_condition()

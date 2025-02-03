@@ -10,8 +10,11 @@ func set_tier(new_tier: int) -> void:
 		
 	tier = new_tier
 	$Label.text = str(tier)
-	self.tooltip_text = G23Tiers.TIER_DEFINITIONS[tier].tooltip
+	update_tooltip()
 
 func _exit_tree():
 	if tier != 0:
 		QuarkAnchor.get_anchor("game").unregister_tile(tier)
+
+func update_tooltip() -> void:
+	self.tooltip_text = G23Tiers.TIER_DEFINITIONS[tier].tooltip.call()

@@ -9,6 +9,8 @@ var nodes = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if not QuarkAutosave.SHOULD_INIT:
+		return
 	_make_grid.call_deferred()
 
 func _make_grid() -> void:

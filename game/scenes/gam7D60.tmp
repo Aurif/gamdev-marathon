@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://d07gr8ixkxohh"]
+[gd_scene load_steps=17 format=3 uid="uid://d07gr8ixkxohh"]
 
 [ext_resource type="Script" path="res://game-specific/game_23/game_23.gd" id="1_hnbtf"]
+[ext_resource type="Script" path="res://common/molecules/autosave/autosave.gd" id="1_o3qob"]
 [ext_resource type="PackedScene" uid="uid://cmma7svai4cnr" path="res://common/atoms/anchor/anchor.tscn" id="2_akx4n"]
 [ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="3_mgvn8"]
 [ext_resource type="AudioStream" uid="uid://pxya3q4x5gmu" path="res://assets/sfx/mini_explosion.ogg" id="3_yj0xu"]
@@ -25,6 +26,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_lock_ = true
+
+[node name="Autosave" type="Node" parent="."]
+script = ExtResource("1_o3qob")
 
 [node name="Game 23" type="Node" parent="." node_paths=PackedStringArray("n_shop", "n_timer", "n_grid", "n_unlocks", "n_label_money", "n_label_income")]
 script = ExtResource("1_hnbtf")

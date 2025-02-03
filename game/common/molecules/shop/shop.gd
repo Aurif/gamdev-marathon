@@ -29,6 +29,10 @@ func clear_shop() -> void:
 	for c in n_shelf_holder.get_children():
 		c.queue_free()
 
+func set_money(amount: float) -> void:
+	money = amount
+	RecalcMoney.emit(money)
+
 func add_money(amount: float) -> void:
 	money += amount
 	RecalcMoney.emit(money)

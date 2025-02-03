@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aa13b"]
 size = Vector2(30, 30)
 
-[node name="Item" type="Control"]
+[node name="Item" type="Control" groups=["item"]]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 530.0
