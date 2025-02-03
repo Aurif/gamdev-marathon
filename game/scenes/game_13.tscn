@@ -112,7 +112,6 @@ radius = 20
 shape = SubResource("CircleShape2D_y6feo")
 
 [node name="FailScreen" parent="." instance=ExtResource("11_k0ryi")]
-process_mode = 3
 layout_mode = 1
 mouse_filter = 2
 metadata/_edit_lock_ = true
