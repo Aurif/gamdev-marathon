@@ -16,7 +16,17 @@ static var TIER_DEFINITIONS = {
 	7: Tier7.new(),
 	8: Tier8.new(),
 	9: Tier9.new(),
-	10: Tier10.new()
+	10: Tier10.new(),
+	11: Tier11.new(),
+	12: Tier12.new(),
+	13: Tier13.new(),
+	14: Tier14.new(),
+	15: Tier15.new(),
+	16: Tier16.new(),
+	17: Tier17.new(),
+	18: Tier18.new(),
+	19: Tier19.new(),
+	20: Tier20.new()
 }
 
 class Tier:
@@ -24,6 +34,9 @@ class Tier:
 		return ""
 	
 	func calc(amount: int, state: Dictionary) -> void:
+		return
+	
+	func calc_post(amount: int, state: Dictionary) -> void:
 		return
 	
 	func execute(amount: int, state: Dictionary) -> void:
@@ -110,8 +123,90 @@ class __TierIncreaseIncome extends Tier:
 		
 class Tier9 extends __TierIncreaseIncome:
 	func _get_unit_earnings(state: Dictionary) -> float:
-		return 1
+		return 1+state.T9Boost.get_value()
 
 class Tier10 extends __TierIncreaseIncome:
 	func _get_unit_earnings(state: Dictionary) -> float:
-		return 5
+		return 5+state.T9Boost.get_value()
+
+##
+## 11-12
+##
+class __TierMultiplyIncome extends Tier:
+	func tooltip() -> String:
+		return "Multiply earnings by " + QuarkNumber.format_number(_get_unit_earnings(G23Tiers.get_state())) + ""
+		
+	func calc_post(amount: int, state: Dictionary) -> void:
+		var mult = pow(_get_unit_earnings(state), amount)
+		state.income.add_temporary(state.income.get_value()*(mult-1))
+		
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 1
+		
+class Tier11 extends __TierMultiplyIncome:
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 1.2
+
+class Tier12 extends __TierMultiplyIncome:
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 2
+
+##
+## 13-16
+##
+class __TierIncreaseIncreases extends Tier:
+	func tooltip() -> String:
+		return "Permanently increase power of tiers 9-10 by " + QuarkNumber.format_number(_get_unit_earnings(G23Tiers.get_state())) + "@ every tick"
+		
+	func execute(amount: int, state: Dictionary) -> void:
+		state.T9Boost.add_permanent(amount*_get_unit_earnings(state))
+		
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 0
+		
+class Tier13 extends __TierIncreaseIncreases:
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 1
+
+class Tier14 extends __TierIncreaseIncreases:
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 2
+
+class Tier15 extends __TierIncreaseIncreases:
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 4
+
+class Tier16 extends __TierIncreaseIncreases:
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 8
+
+
+##
+## 17-20
+##
+class __TierPermMultiply extends Tier:
+	func tooltip() -> String:
+		return "Permanently multiplies base income by " + QuarkNumber.format_number(_get_unit_earnings(G23Tiers.get_state())) + " every tick"
+		
+	func execute(amount: int, state: Dictionary) -> void:
+		var mult = pow(_get_unit_earnings(state), amount)
+		state.income.add_permanent(state.income.permanent*(mult-1))
+		
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 1
+
+class Tier17 extends __TierPermMultiply:
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 1.1
+
+class Tier18 extends __TierPermMultiply:
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 1.2
+
+class Tier19 extends __TierPermMultiply:
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 1.4
+
+class Tier20 extends __TierPermMultiply:
+	func _get_unit_earnings(state: Dictionary) -> float:
+		return 2

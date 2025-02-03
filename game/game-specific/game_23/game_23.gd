@@ -7,7 +7,7 @@ extends Node
 @export var n_label_money: Label
 @export var n_label_income: Label
 
-var tickspeed: float = 500
+var tickspeed: float = 4000
 var tile_amounts = {}
 
 
@@ -17,6 +17,7 @@ static var state = {
 	"T2Boost": DualVar.new(),
 	"T3Boost": DualVar.new(),
 	"T4Boost": DualVar.new(),
+	"T9Boost": DualVar.new(),
 }
 
 class DualVar:
@@ -55,9 +56,10 @@ signal TileChange()
 func _ready() -> void:
 	parse_tick(0)
 	(func(): setup_merge.call_deferred()).call_deferred()
-	get_tree().create_timer(0.1).timeout.connect(load_save)
+	if not QuarkDebug.DEBUG:
+		get_tree().create_timer(0.1).timeout.connect(load_save)
 	var autosave = get_tree().create_tween().bind_node(self)
-	autosave.tween_interval(3)
+	autosave.tween_interval(30)
 	autosave.tween_callback(save)
 	autosave.set_loops()
 
@@ -81,7 +83,7 @@ func parse_tick(ticks: int) -> void:
 	Income.emit(G23Tiers.get_state()["income"].get_value()*ticks)
 	for t in get_amounts_order():
 		G23Tiers.TIER_DEFINITIONS[t].execute(tile_amounts[t], G23Tiers.get_state())
-	update_labels()
+	recalc_tiles()
 	n_timer.start_timer(tickspeed, parse_tick.bind(1))
 	
 func update_labels() -> void:
@@ -111,19 +113,25 @@ func recalc_tiles() -> void:
 	
 	for t in get_amounts_order():
 		G23Tiers.TIER_DEFINITIONS[t].calc(tile_amounts[t], G23Tiers.get_state())
+	for t in get_amounts_order(true):
+		G23Tiers.TIER_DEFINITIONS[t].calc_post(tile_amounts[t], G23Tiers.get_state())
 	update_labels()
 	get_tree().call_group("item", "update_tooltip")
 
-func get_amounts_order() -> Array:
+func get_amounts_order(reverse: bool = false) -> Array:
 	var amounts_order = tile_amounts.keys()
-	amounts_order.reverse()
+	if not reverse:
+		amounts_order.reverse()
 	return amounts_order
 
 ##
 ## Unlocks
 ##
 var unlock_defs = [
-	[func(): return tile_amounts.get(1, 0) >= 2, "Drag and drop to merge", func(): pass]
+	[func(): return tile_amounts.get(1, 0) >= 2, "Drag and drop to merge", func(): pass],
+	[func(): return tile_amounts.get(5, 0) >= 1, "ACHVMNT: Getting started", func(): pass],
+	[func(): return tile_amounts.get(10, 0) >= 1, "ACHVMNT: Halfway there", func(): pass],
+	[func(): return tile_amounts.get(20, 0) >= 1, "ACHVMNT: Reached the top", func(): pass],
 ]
 var unlocks = {}
 func check_unlocks() -> void:
