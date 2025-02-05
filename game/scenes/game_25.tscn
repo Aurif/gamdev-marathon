@@ -1,0 +1,154 @@
+[gd_scene load_steps=17 format=3 uid="uid://bsxtjtx71x24r"]
+
+[ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_7q7ph"]
+[ext_resource type="Script" path="res://game-specific/game_25/game_25.gd" id="2_dab5h"]
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="3_rx5gu"]
+[ext_resource type="PackedScene" uid="uid://cdb1hgqkm3ykj" path="res://game-specific/game_25/platform.tscn" id="3_s687d"]
+[ext_resource type="AudioStream" uid="uid://c7qsppujvpjwd" path="res://assets/sfx/splat.mp3" id="4_5efq4"]
+[ext_resource type="AudioStream" uid="uid://blm6q27huherp" path="res://assets/sfx/wind.mp3" id="6_e46wu"]
+[ext_resource type="Script" path="res://common/atoms/sound_falling/sound_falling.gd" id="7_2kxie"]
+[ext_resource type="PackedScene" uid="uid://dyve11bbmpgxr" path="res://common/molecules/character_platformer/character_body_2d.tscn" id="7_dtncm"]
+[ext_resource type="PackedScene" uid="uid://bhkj2clwx51i1" path="res://common/molecules/input_prompt/input_prompt_wasd.tscn" id="8_xwwmy"]
+[ext_resource type="PackedScene" uid="uid://b43xfulcpesul" path="res://common/atoms/bind_camera/bind_camera.tscn" id="9_nqi4y"]
+[ext_resource type="Texture2D" uid="uid://bghuk3ysuowts" path="res://assets/sprites/input_hints/space.png" id="9_wb1eo"]
+[ext_resource type="PackedScene" uid="uid://djgstwib3m7n0" path="res://common/molecules/fail_screen/fail_screen.tscn" id="11_6u86u"]
+
+[sub_resource type="Gradient" id="Gradient_y4jet"]
+offsets = PackedFloat32Array(0, 0.01, 0.052, 0.105, 0.157, 0.21, 0.263, 0.315, 0.368, 0.421, 0.473, 0.526, 0.578, 0.631, 0.684, 0.736, 0.789, 0.842, 0.894, 0.947, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.54902, 0.0784314, 0.239216, 1, 0.72549, 0.32549, 0.301961, 1, 0.862745, 0.513726, 0.345098, 1, 0.929412, 0.67451, 0.384314, 1, 0.972549, 0.784314, 0.454902, 1, 0.94902, 0.87451, 0.505882, 1, 0.886275, 0.905882, 0.737255, 1, 0.780392, 0.858824, 0.941176, 1, 0.623529, 0.796078, 0.878431, 1, 0.427451, 0.678431, 0.843137, 1, 0.247059, 0.576471, 0.788235, 1, 0.133333, 0.447059, 0.717647, 1, 0.0313726, 0.262745, 0.596078, 1, 0.266667, 0.231373, 0.517647, 1, 0.270588, 0.0666667, 0.341176, 1, 0.266667, 0.0784314, 0.180392, 1, 0.258824, 0.0901961, 0.0235294, 1, 0.156863, 0.0431373, 0.0196078, 1, 0.0941176, 0.0235294, 0.0156863, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ksca3"]
+gradient = SubResource("Gradient_y4jet")
+width = 512
+height = 2000
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpn7g"]
+size = Vector2(100, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88t6g"]
+size = Vector2(100, 10)
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="DEBUG_MODE" parent="." instance=ExtResource("1_7q7ph")]
+visible = false
+
+[node name="Game25" type="Node" parent="." node_paths=PackedStringArray("n_player", "n_platforms")]
+script = ExtResource("2_dab5h")
+n_player = NodePath("../CharacterBody2D")
+n_platforms = NodePath("../Platforms")
+preset_platform = ExtResource("3_s687d")
+
+[node name="SoundSplat" type="AudioStreamPlayer" parent="Game25"]
+process_mode = 3
+stream = ExtResource("4_5efq4")
+volume_db = -8.0
+pitch_scale = 0.87
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -64000.0
+offset_right = 256.0
+offset_bottom = -62000.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 32)
+texture = SubResource("GradientTexture2D_ksca3")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(210, 635)
+scale = Vector2(4.5, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+color = Color(0.294118, 0.258824, 0.32549, 1)
+polygon = PackedVector2Array(-50, -5, 50, -5, 50, 5, -50, 5)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_qpn7g")
+one_way_collision = true
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("7_dtncm")]
+
+[node name="SoundFalling" type="AudioStreamPlayer" parent="CharacterBody2D"]
+stream = ExtResource("6_e46wu")
+volume_db = -8.0
+script = ExtResource("7_2kxie")
+
+[node name="InputPromptWASD" parent="." instance=ExtResource("8_xwwmy")]
+position = Vector2(95, 588)
+
+[node name="W" parent="InputPromptWASD" index="0"]
+visible = false
+
+[node name="S" parent="InputPromptWASD" index="1"]
+visible = false
+
+[node name="Space" type="Sprite2D" parent="."]
+position = Vector2(327, 604)
+scale = Vector2(2, 2)
+texture = ExtResource("9_wb1eo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(210, 320)
+
+[node name="Background" parent="Camera2D" instance=ExtResource("3_rx5gu")]
+modulate = Color(1, 1, 1, 0.666667)
+z_index = -2
+offset_left = -217.0
+offset_top = -325.0
+offset_right = 215.0
+offset_bottom = 328.0
+
+[node name="FailScreen" parent="Camera2D" instance=ExtResource("11_6u86u")]
+anchors_preset = -1
+anchor_right = 2.0
+anchor_bottom = 2.0
+offset_left = -210.0
+offset_top = -320.0
+offset_right = 210.0
+offset_bottom = 320.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Camera2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Camera2D/StaticBody2D"]
+position = Vector2(-220, -25)
+scale = Vector2(0.2, 100)
+shape = SubResource("RectangleShape2D_88t6g")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Camera2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Camera2D/StaticBody2D2"]
+position = Vector2(220, -25)
+scale = Vector2(0.2, 100)
+shape = SubResource("RectangleShape2D_88t6g")
+
+[node name="BindCamera" parent="Camera2D" node_paths=PackedStringArray("target") instance=ExtResource("9_nqi4y")]
+target = NodePath("../../CharacterBody2D")
+bounds = Rect2(210, 320, 0, -1e+30)
+
+[connection signal="OnDeath" from="Game25" to="Camera2D/FailScreen" method="show_screen"]
+
+[editable path="InputPromptWASD"]

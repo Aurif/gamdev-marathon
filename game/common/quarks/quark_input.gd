@@ -24,6 +24,13 @@ static func four_dir_movement() -> Vector2:
 		 + Vector2(0, -1)*Input.get_action_strength("ui_up") \
 		 + Vector2(0, 1)*Input.get_action_strength("ui_down")
 
+static func left_right_movement() -> Vector2:
+	return Vector2(-1, 0)*Input.get_action_strength("ui_left") \
+		 + Vector2(1, 0)*Input.get_action_strength("ui_right")
+
+static func jump() -> float:
+	return Input.get_action_strength("ui_jump")
+
 static func four_dir_vectors() -> Array[Vector2i]:
 	return [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
 

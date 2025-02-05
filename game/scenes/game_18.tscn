@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bllc43r2r3hxv"]
+[gd_scene load_steps=10 format=3 uid="uid://bllc43r2r3hxv"]
 
 [ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_osi0d"]
 [ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="3_dn11s"]
 [ext_resource type="PackedScene" uid="uid://da6mle81ks54m" path="res://common/molecules/drawable_canvas/drawable_canvas.tscn" id="5_7olsn"]
 [ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="6_sitni"]
+[ext_resource type="Texture2D" uid="uid://dyywryw5ib88g" path="res://assets/gradients/wide_progression.tres" id="7_cmy2h"]
 [ext_resource type="PackedScene" uid="uid://bm8s5tu35rfnt" path="res://common/atoms/highlight/highlight.tscn" id="7_f88vb"]
 [ext_resource type="AudioStream" uid="uid://rp7b4lyer7li" path="res://assets/sfx/success.ogg" id="8_3nqlg"]
 [ext_resource type="Script" path="res://game-specific/game_18/game_18.gd" id="9_2urbi"]
@@ -74,7 +75,10 @@ pitch_scale = 0.6
 layout_mode = 1
 
 [node name="SubViewport" parent="DrawableCanvas" index="0"]
-size = Vector2i(1280, 640)
+size = Vector2i(420, 640)
+
+[node name="TextureRect" parent="DrawableCanvas/SubViewport/ColorRect" index="0"]
+texture = ExtResource("7_cmy2h")
 
 [node name="Game18" type="Node" parent="." node_paths=PackedStringArray("n_texture", "n_paint_label", "n_instructions_label", "n_victory_screen", "n_canvas")]
 script = ExtResource("9_2urbi")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b43xfulcpesul"]
+
+[ext_resource type="Script" path="res://common/atoms/bind_camera/bind_camera.gd" id="1_42tr3"]
+
+[node name="BindCamera" type="Node" node_paths=PackedStringArray("target")]
+script = ExtResource("1_42tr3")
+target = NodePath("")
+bounds = Rect2(210, 320, 0, inf_neg)
