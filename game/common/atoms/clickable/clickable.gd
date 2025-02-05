@@ -6,7 +6,7 @@ extends Node
 
 @export var n_area: CollisionObject2D
 
-signal onClick(Node)
+signal onClick()
 
 var show_on_hover_tween
 
@@ -36,7 +36,7 @@ func __on_mouse_click():
 		var tween = get_tree().create_tween().bind_node(self)
 		tween.tween_property(get_parent(), "scale", Vector2(0.8, 0.8), 0.1).set_trans(Tween.TRANS_SINE)
 		tween.tween_property(get_parent(), "scale", Vector2(1, 1), 0.1).set_trans(Tween.TRANS_SINE)
-	onClick.emit(get_parent())
+	onClick.emit()
 
 func _mouse_entered() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)

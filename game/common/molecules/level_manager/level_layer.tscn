@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://common/molecules/level_manager/level_layer.gd" id="1_hiea0"]
 
 [node name="Level1" type="Control"]
+process_mode = 4
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

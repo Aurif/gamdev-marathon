@@ -3,6 +3,7 @@ class_name MolLevelManager
 
 var levels = []
 var current_level_i = 0
+var in_animation = false
 
 signal GameWon()
 
@@ -22,19 +23,23 @@ func register_level(name: String, node: MolLevelManager_LevelLayer) -> void:
 ## Level spawning
 ##
 func next_level() -> void:
+	if in_animation:
+		return
+	in_animation = true
 	var tween = get_tree().create_tween().bind_node(self)
 	tween.tween_interval(0.2)
 	tween.tween_callback(next_level_immediate)
 	
 func next_level_immediate() -> void:
-	if current_level_i + 1 > len(levels)-1:
+	current_level_i += 1
+	if current_level_i > len(levels)-1:
 		GameWon.emit()
 		return
 		
 	despawn_level()
-	current_level_i += 1
 	update_label()
 	spawn_level()
+	in_animation = false
 
 func despawn_level() -> void:
 	for child in $SpawnHere.get_children():
@@ -55,3 +60,10 @@ func update_label():
 	$LevelLabel.text = levels[current_level_i][0]
 	$LevelLabel/Highlight.highlight()
 	$LevelLabel/SoundLevel.play()
+
+##
+## DEBUG
+##
+func _input(event: InputEvent) -> void:
+	if QuarkDebug.DEBUG and QuarkInput.is_right_click(event):
+		next_level_immediate()

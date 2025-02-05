@@ -36,6 +36,9 @@ static func four_dir_vectors() -> Array[Vector2i]:
 
 static func is_click(event: InputEvent) -> bool:
 	return event is InputEventMouseButton and event.button_index==1 and event.pressed==true
+
+static func is_right_click(event: InputEvent) -> bool:
+	return event is InputEventMouseButton and event.button_index==2 and event.pressed==true
 	
 static func is_click_or_drag(event: InputEvent) -> bool:
 	return (event is InputEventMouseMotion and event.button_mask == 1) or is_click(event)
