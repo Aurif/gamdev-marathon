@@ -1,0 +1,215 @@
+[gd_scene load_steps=21 format=3 uid="uid://12rktvmaterc"]
+
+[ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_t3woh"]
+[ext_resource type="Texture2D" uid="uid://dkr4fi71k0o5c" path="res://assets/sprites/meteor_detailedLarge.png" id="2_1xg17"]
+[ext_resource type="Material" uid="uid://bp3bpklnj1fne" path="res://game-specific/game_27/background_particles.tres" id="2_aafka"]
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="3_3vuc6"]
+[ext_resource type="Texture2D" uid="uid://d3so68ixxh7ut" path="res://assets/sprites/meteor_detailedSmall.png" id="4_rwbrs"]
+[ext_resource type="Script" path="res://game-specific/game_27/game_27.gd" id="5_m8qp2"]
+[ext_resource type="Texture2D" uid="uid://btlpvjyjh2rw6" path="res://assets/sprites/meteor_large.png" id="5_qeomv"]
+[ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="6_4oqv2"]
+[ext_resource type="Texture2D" uid="uid://pihpae5ib1co" path="res://assets/sprites/meteor_small.png" id="6_06nq6"]
+[ext_resource type="PackedScene" uid="uid://djgstwib3m7n0" path="res://common/molecules/fail_screen/fail_screen.tscn" id="7_6n2ki"]
+[ext_resource type="AudioStream" uid="uid://uab6k4wyov1f" path="res://assets/sfx/wrong.ogg" id="7_o35x6"]
+[ext_resource type="Texture2D" uid="uid://dd7tnfmo04d5v" path="res://assets/sprites/meteor_squareDetailedLarge.png" id="7_umkxy"]
+[ext_resource type="Script" path="res://game-specific/game_27/player.gd" id="8_3maps"]
+[ext_resource type="Texture2D" uid="uid://d3e1e73lnhlwd" path="res://assets/sprites/meteor_squareLarge.png" id="8_gcf7l"]
+[ext_resource type="Texture2D" uid="uid://d313uxpxiprbn" path="res://assets/sprites/ship_sidesC.png" id="8_osnd2"]
+[ext_resource type="PackedScene" uid="uid://cogjwqprkyhya" path="res://game-specific/game_27/booster_particles.tscn" id="9_0jgsv"]
+[ext_resource type="Texture2D" uid="uid://b4gtt5kh0oipo" path="res://assets/sprites/meteor_squareSmall.png" id="9_lgc5e"]
+[ext_resource type="PackedScene" uid="uid://bgljbplcpnwd5" path="res://common/atoms/timer_simple/timer_simple.tscn" id="11_a0wqk"]
+[ext_resource type="AudioStream" uid="uid://cqdaoe33jh1dc" path="res://assets/sfx/thruster.ogg" id="11_p2bjj"]
+
+[sub_resource type="SystemFont" id="SystemFont_hegj5"]
+font_names = PackedStringArray("Monospace")
+font_weight = 600
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="DEBUG_MODE" parent="." instance=ExtResource("1_t3woh")]
+visible = false
+
+[node name="UnderBackground" type="ColorRect" parent="."]
+z_index = -3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.121569, 0.0901961, 0.14902, 1)
+
+[node name="ColorRect" type="ColorRect" parent="UnderBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.121569, 0.0901961, 0.14902, 0.670588)
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="UnderBackground/ColorRect"]
+show_behind_parent = true
+amount = 24
+process_material = ExtResource("2_aafka")
+texture = ExtResource("7_umkxy")
+lifetime = 60.0
+preprocess = 60.0
+visibility_rect = Rect2(0, 0, 1280, 640)
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="UnderBackground/ColorRect"]
+show_behind_parent = true
+amount = 24
+process_material = ExtResource("2_aafka")
+texture = ExtResource("6_06nq6")
+lifetime = 60.0
+preprocess = 60.0
+visibility_rect = Rect2(0, 0, 1280, 640)
+
+[node name="GPUParticles2D8" type="GPUParticles2D" parent="UnderBackground/ColorRect"]
+show_behind_parent = true
+amount = 24
+process_material = ExtResource("2_aafka")
+texture = ExtResource("9_lgc5e")
+lifetime = 60.0
+preprocess = 60.0
+visibility_rect = Rect2(0, 0, 1280, 640)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="UnderBackground"]
+amount = 12
+process_material = ExtResource("2_aafka")
+texture = ExtResource("2_1xg17")
+lifetime = 60.0
+preprocess = 60.0
+visibility_rect = Rect2(0, 0, 1280, 640)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="UnderBackground"]
+amount = 12
+process_material = ExtResource("2_aafka")
+texture = ExtResource("4_rwbrs")
+lifetime = 60.0
+preprocess = 60.0
+visibility_rect = Rect2(0, 0, 1280, 640)
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="UnderBackground"]
+amount = 12
+process_material = ExtResource("2_aafka")
+texture = ExtResource("5_qeomv")
+lifetime = 60.0
+preprocess = 60.0
+visibility_rect = Rect2(0, 0, 1280, 640)
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="UnderBackground"]
+amount = 12
+process_material = ExtResource("2_aafka")
+texture = ExtResource("6_06nq6")
+lifetime = 60.0
+preprocess = 60.0
+visibility_rect = Rect2(0, 0, 1280, 640)
+
+[node name="GPUParticles2D7" type="GPUParticles2D" parent="UnderBackground"]
+amount = 12
+process_material = ExtResource("2_aafka")
+texture = ExtResource("8_gcf7l")
+lifetime = 60.0
+preprocess = 60.0
+visibility_rect = Rect2(0, 0, 1280, 640)
+
+[node name="Background" parent="." instance=ExtResource("3_3vuc6")]
+modulate = Color(1, 1, 1, 0.67451)
+z_index = -2
+layout_mode = 1
+
+[node name="Score" type="Label" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_4oqv2")
+theme_override_colors/font_color = Color(0.101961, 0.0784314, 0.12549, 1)
+theme_override_fonts/font = SubResource("SystemFont_hegj5")
+theme_override_font_sizes/font_size = 190
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Game27" type="Node" parent="." node_paths=PackedStringArray("n_time_label")]
+script = ExtResource("5_m8qp2")
+n_time_label = NodePath("../Score")
+
+[node name="TimerSimple" parent="Game27" instance=ExtResource("11_a0wqk")]
+
+[node name="SoundLose" type="AudioStreamPlayer" parent="Game27"]
+process_mode = 3
+stream = ExtResource("7_o35x6")
+
+[node name="FailScreen" parent="." instance=ExtResource("7_6n2ki")]
+layout_mode = 1
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+process_mode = 4
+position = Vector2(119, 96)
+rotation = 0.992033
+collision_layer = 2
+collision_mask = 4
+gravity_scale = 0.0
+linear_velocity = Vector2(300, 100)
+linear_damp_mode = 1
+angular_velocity = 3.14159
+angular_damp_mode = 1
+script = ExtResource("8_3maps")
+preset_particles = ExtResource("9_0jgsv")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+modulate = Color(0.976471, 0.862745, 0.564706, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_osnd2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D"]
+polygon = PackedVector2Array(14, 26, 17, 26, 26, 8, 18, -26, 14, -26)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="RigidBody2D"]
+polygon = PackedVector2Array(-14, -26, -14, 26, -17, 26, -26, 8, -18, -26)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="RigidBody2D"]
+polygon = PackedVector2Array(0, -16, -8, 0, -8, 16, 0, 24, 8, 16, 8, 0)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="RigidBody2D"]
+position = Vector2(-0.378088, 0.350189)
+scale = Vector2(2.75419, 2.86292)
+
+[node name="SoundBooster" type="AudioStreamPlayer" parent="RigidBody2D"]
+stream = ExtResource("11_p2bjj")
+volume_db = -30.0
+pitch_scale = 8.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_4oqv2")
+theme_override_font_sizes/font_size = 58
+text = "Try to stay on screen as long as possible
+Press <SPACE> to boost forward
+
+Press <SPACE> to begin"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="OnFail" from="Game27" to="FailScreen" method="show_screen"]
+[connection signal="StartGame" from="Game27" to="Label" method="queue_free"]
+[connection signal="StartGame" from="Game27" to="RigidBody2D" method="set_process_mode" binds= [0]]
+[connection signal="screen_exited" from="RigidBody2D/VisibleOnScreenNotifier2D" to="Game27" method="fail"]
