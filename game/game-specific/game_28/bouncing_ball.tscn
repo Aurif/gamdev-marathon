@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://iuejrn3iig4m"]
+
+[ext_resource type="PackedScene" uid="uid://ct6c7ehcyifus" path="res://common/molecules/bouncing_ball/bouncing_ball.tscn" id="1_ba0tj"]
+[ext_resource type="Script" path="res://game-specific/game_28/offscreen_detection.gd" id="2_4tj6r"]
+
+[node name="BouncingBall" instance=ExtResource("1_ba0tj")]
+
+[node name="Offscreen" type="VisibleOnScreenNotifier2D" parent="." index="2"]
+script = ExtResource("2_4tj6r")
+
+[connection signal="screen_exited" from="Offscreen" to="Offscreen" method="_on_screen_exited"]
