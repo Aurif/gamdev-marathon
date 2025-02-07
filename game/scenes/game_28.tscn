@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjldv2du5swn6"]
+
+[ext_resource type="PackedScene" uid="uid://cjvqk1d0ebx55" path="res://common/atoms/debug_mode/debug_mode.tscn" id="1_v5c6y"]
+[ext_resource type="Script" path="res://game-specific/game_28/player.gd" id="5_of015"]
+[ext_resource type="PackedScene" uid="uid://ct6c7ehcyifus" path="res://common/molecules/bouncing_ball/bouncing_ball.tscn" id="7_ptvhh"]
+[ext_resource type="PackedScene" uid="uid://ju7maq1qeu40" path="res://common/molecules/background.tscn" id="10_ejefk"]
+[ext_resource type="Theme" uid="uid://c02k6aerkrk2u" path="res://common/atoms/theme.tres" id="11_wi7mv"]
+[ext_resource type="PackedScene" uid="uid://djgstwib3m7n0" path="res://common/molecules/fail_screen/fail_screen.tscn" id="15_jv1y2"]
+
+[sub_resource type="SystemFont" id="SystemFont_hegj5"]
+font_names = PackedStringArray("Monospace")
+font_weight = 600
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_es8t8"]
+size = Vector2(20, 120)
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="DEBUG_MODE" parent="." instance=ExtResource("1_v5c6y")]
+visible = false
+
+[node name="Background" parent="." instance=ExtResource("10_ejefk")]
+z_index = -2
+layout_mode = 1
+
+[node name="Score" type="Label" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_wi7mv")
+theme_override_colors/font_color = Color(0.101961, 0.0784314, 0.12549, 1)
+theme_override_fonts/font = SubResource("SystemFont_hegj5")
+theme_override_font_sizes/font_size = 190
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FailScreen" parent="." instance=ExtResource("15_jv1y2")]
+layout_mode = 1
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_mask = 2
+script = ExtResource("5_of015")
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D"]
+offset_left = -10.0
+offset_top = -60.0
+offset_right = 10.0
+offset_bottom = 60.0
+color = Color(0.976471, 0.862745, 0.564706, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_es8t8")
+
+[node name="BouncingBall" parent="." instance=ExtResource("7_ptvhh")]
+position = Vector2(584, 345)
+
+[node name="BouncingBall2" parent="." instance=ExtResource("7_ptvhh")]
+position = Vector2(419, 199)
+
+[node name="BouncingBall3" parent="." instance=ExtResource("7_ptvhh")]
+position = Vector2(711, 191)
+
+[node name="BouncingBall4" parent="." instance=ExtResource("7_ptvhh")]
+position = Vector2(327, 366)
+
+[node name="BouncingBall5" parent="." instance=ExtResource("7_ptvhh")]
+position = Vector2(269, 117)
+
+[node name="BouncingBall6" parent="." instance=ExtResource("7_ptvhh")]
+position = Vector2(560, 486)
+
+[node name="BouncingBall7" parent="." instance=ExtResource("7_ptvhh")]
+position = Vector2(884, 351)
+
+[node name="BouncingBall8" parent="." instance=ExtResource("7_ptvhh")]
+position = Vector2(1002, 490)
