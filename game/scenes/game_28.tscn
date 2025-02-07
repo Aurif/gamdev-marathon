@@ -75,6 +75,40 @@ texture = SubResource("GradientTexture1D_hdl1w")
 script = ExtResource("3_5qv72")
 min_scale = Vector2(0.5, 1)
 
+[node name="GradientTop" type="TextureRect" parent="Background"]
+process_mode = 3
+visible = false
+modulate = Color(0.5684, 0.98, 0.62328, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.5
+anchor_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = SubResource("GradientTexture1D_hdl1w")
+script = ExtResource("3_5qv72")
+min_scale = Vector2(0.5, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="GradientDown" type="TextureRect" parent="Background"]
+process_mode = 3
+visible = false
+modulate = Color(0.98, 0.83594, 0.5684, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 4.71239
+texture = SubResource("GradientTexture1D_hdl1w")
+script = ExtResource("3_5qv72")
+min_scale = Vector2(0.5, 1)
+metadata/_edit_use_anchors_ = true
+
 [node name="Background2" parent="." instance=ExtResource("10_ejefk")]
 modulate = Color(1, 1, 1, 0.588235)
 z_index = -2
@@ -95,11 +129,12 @@ theme_override_font_sizes/font_size = 190
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Game28" type="Node" parent="." node_paths=PackedStringArray("n_notes", "n_gradients")]
+[node name="Game28" type="Node" parent="." node_paths=PackedStringArray("n_notes", "n_gradients", "n_player")]
 script = ExtResource("4_stn6x")
 preset_ball = ExtResource("7_f85kq")
-n_notes = [NodePath("../NoteIntro"), NodePath("../NoteRight")]
-n_gradients = [NodePath("../Background/GradientLeft"), NodePath("../Background/GradientRight")]
+n_notes = [NodePath("../NoteIntro"), NodePath("../NoteRight"), NodePath("../NoteUp"), NodePath("../NoteDown")]
+n_gradients = [NodePath("../Background/GradientLeft"), NodePath("../Background/GradientRight"), NodePath("../Background/GradientTop"), NodePath("../Background/GradientDown")]
+n_player = NodePath("../CharacterBody2D")
 
 [node name="SoundScore" type="AudioStreamPlayer" parent="Game28"]
 process_mode = 3
@@ -119,7 +154,7 @@ volume_db = -18.0
 pitch_scale = 1.2
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(-29, 79)
+position = Vector2(-44, 69)
 collision_mask = 2
 script = ExtResource("5_of015")
 
@@ -231,6 +266,110 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("11_wi7mv")
 text = "Red balls will be coming from the right edge of the screen, and they need to be bounced back to the right.
+
+<Left Click> to continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NoteUp" type="Control" parent="."]
+process_mode = 4
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -332.0
+offset_top = -189.0
+offset_right = 333.0
+offset_bottom = 189.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_d5u8q")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="NoteUp"]
+self_modulate = Color(0.294118, 0.258824, 0.32549, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.2
+anchor_bottom = 0.2
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+texture = ExtResource("11_en852")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="NoteUp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 19.0
+offset_right = -21.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_wi7mv")
+text = "Green balls will be coming from top edge. You can press <Right Click> to rotate your paddle.
+
+<Left Click> to continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NoteDown" type="Control" parent="."]
+process_mode = 4
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -332.0
+offset_top = -189.0
+offset_right = 333.0
+offset_bottom = 189.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_d5u8q")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="NoteDown"]
+self_modulate = Color(0.294118, 0.258824, 0.32549, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.2
+anchor_bottom = 0.2
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+texture = ExtResource("11_en852")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="NoteDown"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 19.0
+offset_right = -21.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("11_wi7mv")
+text = "Good luck.
 
 <Left Click> to continue"
 horizontal_alignment = 1

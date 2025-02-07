@@ -19,4 +19,8 @@ func _should_score(pos: Vector2) -> bool:
 		return true
 	if direction == "RIGHT" and pos.x > viewport.x and pos.y >= 0 and pos.y <= viewport.y:
 		return true
+	if direction == "TOP" and pos.y < 0 and pos.x >= 0 and pos.x <= viewport.x:
+		return true
+	if direction == "BOTTOM" and pos.y > viewport.y and pos.x >= 0 and pos.x <= viewport.x:
+		return true
 	return false
