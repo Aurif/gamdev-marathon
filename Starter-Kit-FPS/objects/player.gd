@@ -117,10 +117,7 @@ func handle_controls(_delta):
 		mouse_captured = true
 	
 	if Input.is_action_just_pressed("mouse_capture_exit"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		mouse_captured = false
-		
-		input_mouse = Vector2.ZERO
+		uncapture_mouse()
 	
 	# Movement
 	
@@ -151,6 +148,11 @@ func handle_controls(_delta):
 		if(jump_single): action_jump()
 		
 	# Weapon switching
+
+func uncapture_mouse():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	mouse_captured = false
+	input_mouse = Vector2.ZERO
 
 # Handle gravity
 
