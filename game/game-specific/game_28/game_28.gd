@@ -7,8 +7,11 @@ extends Node
 
 var rng = RandomNumberGenerator.new()
 var score = 0
+var missed = 0
 var current_stage = 0
 var spawn_tween: Tween
+const MAX_HP = 64
+var hp = MAX_HP
 
 var actual_rotation = 0
 var rotation_tween: Tween
@@ -36,21 +39,31 @@ signal UpdateScore(score: String)
 func score_point() -> void:
 	score += 1
 	UpdateScore.emit(str(score))
+	update_hp(1)
 	$SoundScore.play()
 
 func take_damage() -> void:
 	score -= 2
+	missed += 1
 	UpdateScore.emit(str(score))
+	update_hp(-8)
 	$SoundDamage.play()
 
+signal OnFail(message: String)
+func update_hp(by: int) -> void:
+	hp = min(MAX_HP, hp+by)
+	n_player.modulate = lerp(Color.TRANSPARENT, Color.WHITE, float(hp)/MAX_HP)
+	if hp <= 0:
+		OnFail.emit("Final score: "+str(score)+"\nMissed balls: "+str(missed))
+	
 ##
 ## Spawning
 ##
 @onready var STAGES = [
-	[1.5, 0.35, 3, 5, [_spawn_left], [n_notes[1]._show_note, n_gradients[1].show]],
-	[1.5, 0.3, 9, 15, [_spawn_left, _spawn_right], [n_notes[2]._show_note, n_gradients[2].show]],
-	[2.0, 0.4, 25, 35, [_spawn_left, _spawn_right, _spawn_top], [n_notes[3]._show_note, n_gradients[3].show]],
-	[2.0, 0.4, 55, -1, [_spawn_left, _spawn_right, _spawn_top, _spawn_bottom], [n_notes[3]._show_note, n_gradients[3].show]]
+	[1.5, 0.35, 30, 50, [_spawn_left], [n_notes[1]._show_note, n_gradients[1].show]],
+	[1.5, 0.3, 90, 150, [_spawn_left, _spawn_right], [n_notes[2]._show_note, n_gradients[2].show]],
+	[1.4, 0.4, 210, 350, [_spawn_left, _spawn_right, _spawn_top], [n_notes[3]._show_note, n_gradients[3].show]],
+	[0.8, 0.4, 450, -1, [_spawn_left, _spawn_right, _spawn_top, _spawn_bottom], [n_notes[3]._show_note, n_gradients[3].show]]
 ]
 func _trigger_spawn() -> void:
 	var stage = STAGES[current_stage]

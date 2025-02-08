@@ -379,4 +379,5 @@ autowrap_mode = 2
 [node name="FailScreen" parent="." instance=ExtResource("15_jv1y2")]
 layout_mode = 1
 
+[connection signal="OnFail" from="Game28" to="FailScreen" method="show_screen"]
 [connection signal="UpdateScore" from="Game28" to="Score" method="set_text"]
