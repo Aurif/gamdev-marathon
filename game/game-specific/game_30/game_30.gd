@@ -38,6 +38,12 @@ const questions = [
 	["When was \"Roto-Puzzle\" released?", ["Day 5", "Day 16", "Day 20"], 2],
 	["When was \"Go, Ball, Go!\" released?", ["Day 10", "Day 16", "Day 25"], 1],
 	["When was \"Out of orbit\" released?", ["Day 17", "Day 21", "Day 27"], 2],
+	
+	
+	["Did you play all the games made during the marathon?", ["Yes", "Nearly all", "No"], -1],
+	["Did you enjoy taking part in the marathon?", ["Yes", "No", "It's... complicated"], -1],
+	["Would you considered creating a marathon of your own?", ["Yeah!", "Maybe", "Absolutely not"], -1],
+	["Well... this is the end of the road. Whether you were creating, judging, or just playing the games, I want to thank you for being here and joining us in this insane challenge. And thank goodness it's the end, this was exhausting xd", ["^^", ":3", "This is not a question"], -1],
 ]
 
 func _ready() -> void:
@@ -74,7 +80,7 @@ func answered(answer: int) -> void:
 		
 	for a in range(len(answers)):
 		var node = answers[a]
-		if a == questions[current_question][2]:
+		if a == questions[current_question][2] or (a == answer and questions[current_question][2] == -1):
 			node.modulate = Color("#85ff85")
 		elif a == answer:
 			node.modulate = Color("#ff696b")
