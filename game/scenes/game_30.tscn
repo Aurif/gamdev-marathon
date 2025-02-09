@@ -106,9 +106,11 @@ autowrap_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 50
 
 [node name="Answer1" type="Label" parent="VBoxContainer/HBoxContainer"]
 modulate = Color(0.52, 1, 0.52, 1)
+custom_minimum_size = Vector2(390, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 mouse_filter = 1
@@ -116,8 +118,11 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("4_1r6k0")
 theme_override_font_sizes/font_size = 40
 text = "27"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="OnHover" type="Label" parent="VBoxContainer/HBoxContainer/Answer1"]
+custom_minimum_size = Vector2(390, 0)
 layout_mode = 2
 offset_right = 44.0
 offset_bottom = 48.0
@@ -128,11 +133,14 @@ theme = ExtResource("4_1r6k0")
 theme_override_colors/font_color = Color(0.98, 0.932797, 0.8134, 1)
 theme_override_font_sizes/font_size = 40
 text = "27"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Clickable" parent="VBoxContainer/HBoxContainer/Answer1" node_paths=PackedStringArray("show_on_hover") instance=ExtResource("5_mxpw4")]
 show_on_hover = NodePath("../OnHover")
 
 [node name="Answer2" type="Label" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(390, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 mouse_filter = 1
@@ -140,8 +148,11 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("4_1r6k0")
 theme_override_font_sizes/font_size = 40
 text = "27"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="OnHover" type="Label" parent="VBoxContainer/HBoxContainer/Answer2"]
+custom_minimum_size = Vector2(390, 0)
 layout_mode = 2
 offset_right = 44.0
 offset_bottom = 48.0
@@ -152,12 +163,15 @@ theme = ExtResource("4_1r6k0")
 theme_override_colors/font_color = Color(0.98, 0.932797, 0.8134, 1)
 theme_override_font_sizes/font_size = 40
 text = "27"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Clickable" parent="VBoxContainer/HBoxContainer/Answer2" node_paths=PackedStringArray("show_on_hover") instance=ExtResource("5_mxpw4")]
 show_on_hover = NodePath("../OnHover")
 
 [node name="Answer3" type="Label" parent="VBoxContainer/HBoxContainer"]
 modulate = Color(1, 0.41, 0.419833, 1)
+custom_minimum_size = Vector2(390, 0)
 layout_mode = 2
 size_flags_horizontal = 6
 mouse_filter = 1
@@ -165,8 +179,11 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("4_1r6k0")
 theme_override_font_sizes/font_size = 40
 text = "27"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="OnHover" type="Label" parent="VBoxContainer/HBoxContainer/Answer3"]
+custom_minimum_size = Vector2(390, 0)
 layout_mode = 2
 offset_right = 44.0
 offset_bottom = 48.0
@@ -177,6 +194,8 @@ theme = ExtResource("4_1r6k0")
 theme_override_colors/font_color = Color(0.98, 0.932797, 0.8134, 1)
 theme_override_font_sizes/font_size = 40
 text = "27"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Clickable" parent="VBoxContainer/HBoxContainer/Answer3" node_paths=PackedStringArray("show_on_hover") instance=ExtResource("5_mxpw4")]
 show_on_hover = NodePath("../OnHover")
